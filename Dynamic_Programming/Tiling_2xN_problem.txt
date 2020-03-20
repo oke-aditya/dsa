@@ -1,0 +1,50 @@
+https://www.codechef.com/problems/TILE
+
+Tiling 2xN Problem
+
+We wish to tile a grid of size Nx2 with rectangles (dominoes) of 2x1 (in either orientation).
+Write a program that takes input N and outputs the number of different ways to tile the grid. 
+Output the ans mod 10^9 + 7
+
+Input
+
+First line contains T (number of test case)
+Next T lines contains N(height of grid) 
+
+Output
+
+T lines with desired ans mod 1000000007 in each line
+
+Example
+
+Input:
+2
+1
+2
+Output:
+1
+2
+
+Solution Apporach: -
+
+0. Visualize properly. There are 2 rows and N columns. We need to tile with 2x1. 2 rows and 1 column.
+1. We can put it in 2 ways either like
+
+Case 1
+| 
+|
+
+Case 2
+| |     __       
+| |     __
+
+Case 3
+| | |     | __  __| 
+| | |     | __  __|
+
+2. To solve the biggest 2xN tile we need to tile each subtile of 2x2 grid properly.
+3. This breaks it to optimal substructure problem. Hence we can use dp here.
+4. This takes the fibonacci form = 1, 2, 3, 5, ....
+5. We need to find the nth term of fibonacci series.
+6. This can be done by normally in O(n). Matrix Exponentiation in O(logn) or use Golden ratio for O(1) answer.
+

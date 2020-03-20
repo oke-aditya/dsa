@@ -1,0 +1,54 @@
+Given a set {A,B,C} print all its subsets
+
+-> There will be 2^N subsets. We need to print them
+
+
+-> Find a relation between these and binary strings
+
+{}                     =        000     0
+{A}                    =        001     1
+{B}                    =        010     2
+{C}                    =        100     4
+{A, B}                 =        011     3
+{A, C}                 =        101     5
+{B, C}                 =        110     6
+{A, B, C}              =        111     7
+
+
+Bit being 1 relates to character that is used.
+
+How to check if ith bit in a number is 1 ?
+
+Consider F = 1<<i         (Right shifted)
+
+if:
+    N & F = 0
+    ith bit in N is 0
+else:
+    ith bit is 1
+
+How to generate all subsets iteratively ?
+
+C++ Code
+
+cin >> n;                // No of elements in the set
+int tot = 1<<n;          // Total number of subsets = 2^n
+
+for(int N=0; N<tot; N++)    // Totally 2^N elements to check
+{
+    for(int i=0; i<n; i++) // For every number N. Check which bit is set to 1.
+    {
+        int f = 1 << i;
+        if( (N & f) != 0)
+        {
+            print i th element;
+        }
+    }
+    cout<<endl;
+}
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+Given some coins of different denominations and a sum. 
+Compute the fewest number of coins required to make up that given amount
+
+Example 1:
+Coins = 1 2 5
+Sum = 11
+
+Output = 3  ( 5 + 5 + 1)
+
+Example 2:
+Coins: 2
+Sum: 3
+
+Output = -1 (Not possible)
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Note that Greedy Approach will not work as it would yield in wrong answers
+
+DP Approach
+
+Take an array of size sum + 1
+
+dp[sum + 1]
+where dp[i] denotes the minimum coins required to make total sum i.
+Solving for minimum coins for each subproblem will solve the entire problem.
+
+Initialize dp[0] = 0;
+Fill the rest with infinity.
+
+x denote the xth position.
+
+if we can fill the x with the given coin then the value will be 1.
+Otherwise we have to find substructure of x - coin. (optimal substructure)
+
+Python Solution:
+
+dp = [inf * (amount + 1)]
+dp[0] = 0
+coins = [1, 2, 5]
+
+for coin in coins:  # For every coin
+    for x in range(coin, amount + 1):   # Check from coin to amount that is given.
+        dp[x] = min(dp[x], dp[x-coin] + 1)      # Either it is same value or the substructure.
+        # Note that x - coint will become 1 for the position where x = coin and automatically assign 1.
+
+if(dp[amount] != inf):
+    print(dp[amount])
+else:
+    print(-1)
+
+
+

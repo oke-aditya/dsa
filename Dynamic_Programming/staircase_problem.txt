@@ -1,0 +1,38 @@
+https://www.codechef.com/problems/JAM11
+
+Mussadi lal wants to climb a series of stairs. 
+There are n stairs in total, Mussadi can either climb 1, 2 or 3 stairs in a single move. 
+In how many ways can Mussadi lal reach the last stair i.e. the nth stair.
+
+input
+
+The first line of the input contains an integer t, the number of test cases. 
+Then t test descriptions follow. Each test consists of a single number n 
+denoting the number of stairs Mussadi lal wants to climb.
+
+Output
+
+For each test case print the number of ways Mussadi lal can climb the stairs modulo 1000000007.
+
+Solution Approach: -
+0. This is a dp problem since to climb a stair of nth optimally. He has to climb n-k th stair optimally.
+   This has an optimal substructure property. That is every problem can be decomposed to equal sub problems.
+   Each subproblem needs optimal solution. 
+
+1. Find a pattern in staircase climbing. 0 to start the count from 1.
+2. He can climb staircase 1 in 1 way.
+3. He can climb staircase 2 in 2 ways. (1+1 or 2)
+4. He can climb staircase 3 in 4 ways. (1+1+1+1, 2+2, 2+1+1, 1+2+1, 1+1+2)
+
+Solution: -
+
+l = [0, 1, 2, 4]
+for i in range(4, 100001):
+    l.append((l[i-1] + l[i-2] + l[i-3]) % 1000000007 )
+
+t = int(input())
+while(t>0):
+    n = int(input())
+    print(l[n])
+    t -= 1
+

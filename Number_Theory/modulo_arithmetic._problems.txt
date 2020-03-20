@@ -1,0 +1,60 @@
+E.g. for modulo Arithmetic
+
+Find the last digit of 2573 * 34268
+
+(2573 * 34268) % 10
+= (2573 % 10 * 34268 % 10) % 10
+= (3 * 8) % 10
+= 4
+
+E.g for addition
+(142 + 453 + 324 + 781 + 523 + 250 + 313) % 2
+
+= (142 % 2 + 453 % 2 + 324 % 2 + 781 % 2 + 523 % 2 + 250 % 2 + 313 % 2) % 2
+= (0 + 1 + 0 + 1 + 1 + 0 + 1) % 2
+= 4 % 2
+= 0
+
+E.g. Divisibility by 9
+Sum of digits is divisible by 9
+
+Use modulo operator to calculate Sum
+(dig1 % 9 + dig2 % 9 + dig3 % 9 + dig4 % 9 + ...)
+
+E.g. Divisibility by 3
+Sum of digits is divisible by 3.
+(dig1 % 3 + dig2 % 3 + dig3 % 3 + dig4 % 3 + ... )
+
+
+E.g. Modulo Exponentiation.
+If a cong b
+then a power k is congruent to b power k.
+
+Finding a power k modulo N is same as finding b power k modulo N.
+
+16 % 3 == 1
+hence 16 power 5 % 3 == 1 power 5 % 3
+= 1.
+
+E.g. 29 ^ 10 modulo 3
+
+29 % 3 == 2
+Hence 29 and 2 are congruent
+
+2 ^ 10 modulo 3
+= 1024 modulo 3
+= (1 % 3 + 0 % 3 + 2 % 3 + 4 % 3) % 3
+= (1 + 0 + 2 + 1 ) % 3
+= 4 % 3
+= 1
+
+E.g find 2 ^ 123456789 % 7
+
+
+= 2 ^ 123456789
+= (2 ^ 3) ^ 41152263
+= 8 ^ 41152263
+8 % 7 == 1
+
+= 1 ^ 41152263
+= 1

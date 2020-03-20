@@ -1,0 +1,19 @@
+XOR and its properties: -
+
+A = 011101110
+B = 010101001
+XOR 001000111
+
+if both the bits are same result = 0
+else result = 1
+
+A XOR B = A ^ B
+
+Properties of XOR: -
+
+1. A ^ 0 = A
+2. A ^ A = 0
+3. Ordering of XOR does not matter.
+
+A ^ B ^ C = (A ^ B) ^ C = A ^ (B ^ C)
+

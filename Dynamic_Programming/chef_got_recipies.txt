@@ -1,0 +1,90 @@
+Chef has N dishes, numbered 1 through N. For each valid i, dish i is described by a string Di
+
+containing only lowercase vowels, i.e. characters 'a', 'e', 'i', 'o', 'u'.
+
+A meal consists of exactly two dishes. Preparing a meal from dishes i
+and j (i≠j) means concatenating the strings Di and Dj 
+in an arbitrary order into a string M describing the meal. Chef likes this meal if the string M
+
+contains each lowercase vowel at least once.
+
+Now, Chef is wondering - what is the total number of (unordered) pairs of dishes such 
+that he likes the meal prepared from these dishes?
+
+Input
+
+    The first line of the input contains a single integer T denoting the number of test cases. 
+    The description of T test cases follows.
+    The first line of each test case contains a single integer N.
+    N lines follow. For each valid i, the i-th of these lines contains a single string Di
+
+
+Output
+
+For each test case, print a single line containing one integer - the number of ways to prepare a meal Chef likes.
+
+Example Input
+
+1
+3
+aaooaoaooa
+uiieieiieieuuu
+aeioooeeiiaiei
+
+Example Output
+
+2
+
+Example case 1: There are three possible meals:
+
+A meal prepared from dishes 1 and 2
+(for example "aaooaoaooauiieieiieieuuu") contains all vowels.
+
+A meal prepared from dishes 1 and 3
+(for example "aaooaoaooaaeioooeeiiaiei") does not contain 'u'.
+
+A meal prepared from dishes 2 and 3 
+(for example "uiieieiieieuuuaeioooeeiiaiei") contains all vowels.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Bit masking approach
+We will represent each dish with 5 bit number where
+
+0th bit represents  a
+2nd bit represents  e
+3rd bit represents  i
+4th bit represents  o
+5th bit represents  u
+
+Map each dish to a number which is 5 bit
+
+Dish 1                          u o i e a 
+aaooaoaooa  =                   0 1 0 0 1
+uiieieiieieuuu =                1 0 1 1 0
+aeioooeeiiaiei =                0 1 1 1 1
+
+
+Create a frequency array that will store how many times did the bit mask combination occur.
+
+E.g
+
+000  0
+001  2
+010  1
+011  1
+100  1
+101  2
+110  3
+111  1
+
+Now iterate and check for bitwise OR which will result in 111.  This can form valid pair. 
+No. of valid pairs = m * n. 
+E.g. 001 and 110 = pairs possible = 2 * 3 = 6
+
+Also note that for 111. No of possible pairs will be n * (n-1) / 2. 
+As it can pair with itself as well.
+
+Extend the solution to 5 bits we will have 32 bit array.
+
+

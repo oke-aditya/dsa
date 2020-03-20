@@ -1,0 +1,60 @@
+Given a number N find the number of bits that are = 1
+
+Example: -
+N = 12 (1100)  output : 2
+N = 11 (1011)  output : 3
+
+------------------------------------------------------------------------------------------------------
+
+Two approaches
+
+1. Use right shift
+
+Time complexity = O(log(n))
+Since it will run it the number > 0 and we divide the number by 2 every step.
+
+n = int(input())
+count = 0
+
+while(n > 0):
+    if((n & 1) > 0):
+        count += 1
+    
+    n = n >> 1
+
+print(count)
+
+2. Simple Observation
+
+If a number is power of 2.
+E.g. 16, 8, 128.
+
+16 = 1 0 0 0 0
+8 = 0 1 0 0 0
+
+If we subtract 1 from it and check in binary representation.
+we affect the rightmost 1.
+
+
+
+If number is not a power of 2.
+E.g 28, 17
+
+28 = 1 1 1 0 0
+17 = 1 0 0 0 1
+
+Then we subtract 1 from it. Bit's after the rightmost 1 are affected.
+
+Time complexity = O(log(n))
+
+Code: -
+
+int count = 0
+while(n>0):
+    count += 1
+    n = n & (n - 1)  # Take bitwise and with the previous number
+
+print(count)
+
+bitwise and with previous number would remove the rightmost bit which is 1.
+

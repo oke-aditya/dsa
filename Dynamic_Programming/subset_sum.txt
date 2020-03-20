@@ -1,0 +1,101 @@
+Solving the subset sum problem using BitMask
+
+You are given an array A.
+You have to tell if sum of any subset is equal to the specified sum.
+Note here we are allowed to choose empty subarray.
+
+
+Input 
+T test cases
+Each test cases contains 
+n -> size of array
+then the array space seperated.
+
+Output
+Print YES if the sum is possible otherwise print NO
+
+E.g 
+
+3
+5
+3 2 0 7 -1
+8
+3
+-1 3 3
+4
+3
+4 -5 1
+5
+
+Output: -
+YES
+NO
+YES
+
+Explaination: -
+First array has the subset 7 2 -1 that will make the sum as 8
+Second array has NO subset that will make the sum equal to 3
+Third array has the subset 4 1 that will make the sum equal to 5
+
+Solution 1 (Exponential Time): -
+Generate all possible subarrays. 
+Check if any subarray has the sum equal to the given number.
+If any has then break and print YES
+otherwise Print NO
+
+C++ Code: -
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n, arr[15], p, t;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        for(int i=0; i<n; i++)
+        {
+            cin>>arr[i];
+        }
+        cin>>p;               // Number to who the subset sum will be equated
+
+        bool flag = false;
+        // Generate all the possible subarrays 
+
+        int total = 1<<n;
+        for(int mask=0; mask<total; mask++)
+        {
+            int sum = 0;
+            for(int i=0; i<n; i++)      // Checks if ith element exists or not
+            {
+                int f = 1 << i;        // To check if ith bit is 1.
+                if((mask & f) != 0)
+                {
+                    // ith elemenet exists
+                    // Add the ith element in the sum
+                    sum += arr[i];
+                }
+            }
+            if(sum == p)
+            {
+                // There is single subarray that is true
+                flag = true;
+                break;
+            }
+        }
+        if(flag == true)
+        {
+            cout<<"YES"<<endl;
+        }
+        else
+        {
+            cout<<"NO"<<endl;
+        } 
+    }
+}
+
+
+
+
+
+
