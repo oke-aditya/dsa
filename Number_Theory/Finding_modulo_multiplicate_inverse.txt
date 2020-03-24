@@ -1,0 +1,32 @@
+2 Ways to calculate modulo multiplicative inverse
+
+1. Fermat's little theorm
+2. Exteneded Euclidean Algorithm
+
+Running time of both of them is same.
+
+Fermat's little theorm: -
+
+For a prime number m and an integer a coprime with m.
+
+a ^ (m - 1) is congruent to 1 under modulo m
+
+a ^ (m - 1) == 1 under modulo m
+
+Divide both sides by a we get.
+
+a ^ (m - 2) == a ^ (-1) under modulo m.
+
+So this means that to calculate a inverse we need to calculate a ^ (m - 2) modulo m.
+
+This is how we can calculate modulo multiplicative inverse.
+
+To calculate modulo multiplicative inverse of 'a' we need to calculate a ^ (m - 2) modulo m.
+
+C ++ code to calculate modulo multiplicative inverse of a.
+
+int main()
+{
+    
+}
+
