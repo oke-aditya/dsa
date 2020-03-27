@@ -1,0 +1,39 @@
+Basic terminologies: - 
+
+Parent: - A node which uniquely identifies a set.
+E.g. {2, 3, 1}
+Parent = 2
+
+E.g. {4, 6}
+Parent = 6
+
+Operations in Disjoint Set
+
+Find Operation = Find(m)
+Returns which set a particular number belongs to
+
+A = {1, 4, 7}
+B = {10, 14}
+
+find(4) = A
+find(10) = B
+
+Instead of returning the name of the set.
+We can return the parent element
+
+find(4) = 1
+find(10) = 14
+
+Union Operation = Union(a, b)
+
+Used to merge 2 sets (one in which a belongs and other in which b belongs)
+
+A = {1, 4, 7}
+B = {10, 14}
+
+union(1, 4) will have no effect since both belongs to same set.
+union(4, 10) will merge set A and set B.
+
+To perform union.
+All we have to do is change the parent pointer of current set to parent pointer of other set.
+
