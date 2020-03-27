@@ -1,0 +1,53 @@
+Given an array A with n elements, we want to calculate the following
+
+(A_1 + A_1) ^ (A_1 + A_2) ^ (A_1 + A_3) ^ .... ^ (A_1 + A_n) ^
+(A_2 + A_1) ^ (A_2 + A_2) ^ (A_2 + A_3) ^ .... ^ (A_2 + A_n) ^ 
+(A_3 + A_1) ^ (A_3 + A_2) ^ (A_3 + A_3) ^ .... ^ (A_3 + A_n) ^
+(A_n + A_1) ^ (A_n + A_2) ^ (A_n + A_3) ^ .... ^ (A_n + A_n)
+
+E.g. Test case
+
+2, 4, 1
+
+(2 + 2) ^ (2 + 4) ^ (2 + 1) ^
+(4 + 2) ^ (4 + 4) ^ (4 + 1) ^
+(1 + 2) ^ (1 + 4) ^ (1 + 1)
+
+= 14
+
+Total number of pairs = n*n
+
+Naive Approach: -
+Run a O(n*n) loop taking XOR with every row.
+
+int xor_sum = 0;
+for (i=0; i<n; i++){
+	for(j=0;j<n;j++){
+		xor_sum = xor_sum ^ (arr[i] + arr[j]);
+	}
+}
+
+Optimized Approach: -
+
+Consider the matrix for case
+4 3 9 1
+
+8 7 18 5
+7 6 12 4
+13 12 18 9
+5 4 10 2
+
+We see that numbers are repeated twice.
+Also 'a' ^ 'a' = 0
+
+Hence we need to find XOR of only the diagonal elements.
+
+Sum of all XORs = XOR (2 * arr)
+This can be found out in O(N)
+
+int result = 0
+for(i=0;i<n;i++){
+	result = result ^ (2*arr[i])
+}
+
+
