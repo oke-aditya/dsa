@@ -1,0 +1,63 @@
+Given 3 positives numbers a, b and c. 
+Return the minimum flips required in some bits of a and b to make ( a OR b == c ). (bitwise OR operation).
+
+Flip operation consists of change any single bit 1 to 0 or change the bit 0 to 1 in their binary representation.
+
+Input: a = 2, b = 6, c = 5
+Output: 3
+Explanation: After flips a = 1 , b = 4 , c = 5 such that (a OR b == c)
+
+Input: a = 1, b = 2, c = 3
+Output: 0
+
+Check the bits one by one whether they need to be flipped.
+
+C++ code
+
+int minFlips(int a, int b, int c) 
+{
+    int res = 0;
+    for(int i=0;i<32; i++)
+    {
+        // Represent the ith bit 
+        bool x = false, y = false, z = false;
+        
+        if((a & (1<<i)) != 0)
+        {
+            x = true;
+        }
+        
+        if((b & (1<<i)) != 0)
+        {
+            y = true;
+        }
+        
+        if((c & (1<<i) )!= 0)
+        {
+            z = true;
+        }
+        
+        if(z == false)
+        {
+            if(x == true && y == true)
+            {
+                res += 2;
+            }
+            else
+            {
+                if(x == true || y == true)
+                {
+                    res += 1;
+                }
+            }
+        }
+        else
+        {
+            if(x == false && y == false)
+            {
+                res += 1;
+            }
+        }
+    }
+    return res;
+}

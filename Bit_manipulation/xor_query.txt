@@ -1,0 +1,71 @@
+Given an array of integers and Q queries of form L, R.
+
+Find XOR of elements from L to R in the given array.
+
+Example: - 1 3 4 8
+0 1
+1 2
+0 3
+3 3
+
+Output: - 
+2
+3
+7
+14
+
+Explaination: -
+arr[0] ^ arr[1] = 2
+arr[1] ^ arr[2] = 3
+arr[0] ^ arr[1] ^ arr[2] ^ arr[3] = 7
+
+Expected Time coplexity = O(1)
+
+Solution: -
+
+Create a prefix array. Storing XOR of arrays.
+
+prefix = 1 2 6 14
+prefix[i] = arr[0] ^ arr[1] ^ arr[2] ^ ... ^ arr[i]
+
+Answer of Query L, R
+
+prefix[R] ^ prefix[L-1]               if L > 0
+prefix[R]                             if L = 0
+
+prefix[R] ^ prefix[L-1] = (arr[0] ^ arr[1] ^ arr[2] ^ ... ^ arr[R]) ^ (arr[0] ^ arr[1] ^ arr[2] ^ ... ^ arr[L-1])
+                        = arr[L] ^ arr[L+1] ^ arr[L+2] ^ ... ^ arr[R]
+                        = XOR from L to R
+
+
+C ++ Code: -
+
+vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries) 
+    {
+        int n = arr.size();
+        int prefix[n];
+        
+        prefix[0]  = arr[0];
+        
+        for(int i=1; i<n; i++)
+        {
+            prefix[i] = prefix[i-1] ^ arr[i];
+        }
+        
+        vector <int> res;
+        for(int i=0; i<queries.size(); i++)
+        {
+            int L = queries[i][0];
+            int R = queries[i][1];
+            
+            if(L == 0)
+            {
+                res.push_back(prefix[R]);
+            }
+            else
+            {
+                res.push_back(prefix[R] ^ prefix[L-1]);
+            }
+        }
+        return res;
+    }
