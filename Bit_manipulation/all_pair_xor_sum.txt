@@ -1,0 +1,54 @@
+Given an array A with n elements, we want to calculate the following
+
+(A_1 ^ A_2) + (A_1 ^ A_3) + .... + (A_1 ^ A_n) +
+              (A_2 ^ A_3) + .... + (A_2 ^ A_n) + 
+                          + .... + (A_n-1 ^ A_n)
+
+Just reverse of previous problem.
+
+Example case
+5 9 7 6
+
+(5 ^ 9) +
+(5 ^ 7) +
+(5 ^ 6) +
+(9 ^ 7) +
+(9 ^ 6) +
+(7 ^ 6) +
+=
+47
+
+-----------------------------------------------------------------------
+
+Brute force approach: -
+int res = 0
+for(int i=0; i<n-1; i++)
+{
+    for(int j=i+1; j<=n; j++)
+    {
+        res += arr[i] ^ arr[j];
+    }
+}
+std::cout<<res<<endl;
+
+O(n^2) complexity
+
+Better approach: -
+5       3       9
+0101    0011    1001
+
+5 ^ 3 = 0 1 1 0
+5 ^ 9 = 1 1 0 0
+3 ^ 9 = 1 0 1 0
+
+Total sum = 0 * (2^0) + 2 * (2 ^ 1) + 2 * (2 ^ 2) + 2 * (2 ^ 3)
+          = 28
+
+Check how many bits are set to 0. X
+Check how many bits are set to 1. Y
+Total number of pairs = X * Y.
+Expanding them as total sum we would get thne answer.
+
+Time complexity = O(nlogn)
+
+
