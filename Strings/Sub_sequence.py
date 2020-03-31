@@ -1,13 +1,13 @@
-def is_subseq(s1, s2)
-    j = 0
-    i = 0
-    m = len(s1)
-    n = len(s2)
-    while(im and jn) 
-        if(s1[i] == s2[j])
-            i += 1
-            j += 1
-        else
-            j += 1
-    
-    return i == m
+t = int(input())
+while(t > 0):
+    string1, string2 = map(str, input().split())
+    index = 0
+    for i in range(len(string2)):
+        if(string2[i] == string1[index]):
+            index += 1
+            if(index == len(string1)):
+                print("1")
+                break
+    else:
+        print("0")
+    t -= 1
