@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.exe
-
+*.o
 # C extensions
 *.so
 
@@ -129,3 +129,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .vscode
+Data_Structures/Linked_lists/find_length.exe
+Data_Structures/Linked_lists/find_length.exe

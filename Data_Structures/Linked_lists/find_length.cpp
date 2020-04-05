@@ -39,6 +39,20 @@ int getlength(node *n)
    return count;
 }
 
+// Recursive solution
+int getcount(node *n)
+{
+    if(n == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1 + getcount(n->next);
+    }
+    
+}
+
 int main()
 {
     node *head = NULL;
@@ -48,5 +62,6 @@ int main()
     cout<<"The linked list is"<<endl;
     println(head);
     cout<<endl<<"Length of linked list is: "<<getlength(head);
+    cout<<endl<<"Length of linked list recursively is: "<<getcount(head);
     return(0);
 }

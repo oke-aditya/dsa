@@ -7,6 +7,15 @@ class node
     node *next;
 };
 
+void println(node *n)
+{
+    while(n != NULL)
+    {
+        cout<<n->data<<" ";
+        n = n->next;
+    }
+}
+
 void insert_head(node **head_ref, int newdata)
 {
     node *newnode = new node();
@@ -38,6 +47,7 @@ void del_pos(node *head_ref, int pos)
         }
         else
         {
+            // Double push the temp pointer to delete.
             temp->next = temp->next->next;    
             return;
         }
@@ -46,8 +56,18 @@ void del_pos(node *head_ref, int pos)
 
 int main()
 {
-    // cout<<"Hello GCC"<<endl;
 
+    node *head = NULL;
+    insert_head(&head, 3);
+    insert_head(&head, 2);
+    insert_head(&head, 1);
+    insert_head(&head, 4);
+    cout<<"Before deleting linked list: "<<endl;
+    println(head);
+    del_pos(head, 0);
+    del_pos(head, 3);
+    cout<<endl<<"After deleting linked list"<<endl;
+    println(head);
     return(0);
 }
 
