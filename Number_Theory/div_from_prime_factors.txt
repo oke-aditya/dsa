@@ -1,0 +1,45 @@
+Find total number of divisors from prime factorization of number N.
+N = 300
+N = 2 ^ 2 * 3 ^ 1 * 5 ^ 2
+
+Total divisors = 18
+
+Given a number's prime factorization, find total number of divisors and print its modulo 10^9 + 7
+
+Example
+3
+2 1000
+3 1500
+13 1000000
+
+Number = 2 ^ 1000 * 3 ^ 1500 * 13 ^ 1000000
+
+Number is too big to find O(sqrt(n)) time approach.
+Number is too big for long long int data structure as well.
+
+Assume 
+N = P1 ^ Y1 * P2 ^ Y2 * P3 ^ Y3 * P4 ^ Y4 * ... * Pn ^ Yn
+
+All Pi are prime numbers and Yi are there respective powers.
+
+Total number of divisors : - 
+
+=> (y1 + 1) * (y2 + 1) * (y3 + 1)  ....... * (yn + 1)
+
+If there are k number of primes then we can calculate in O(k) time this product.
+
+Example: -
+
+N = 300
+N = 2 ^ 2 * 3 ^ 1 * 5 ^ 2
+
+Total number of divisors : - 
+= (2 + 1) * (1 + 1) * (2 + 1) 
+= 9 * 2 = 18
+
+Why this approach works ?
+
+Think divisors as boxes and combine these factors to find the number of divisors.
+
+
+

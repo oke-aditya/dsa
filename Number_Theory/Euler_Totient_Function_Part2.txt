@@ -1,0 +1,4 @@
+Euler Totient Function counts the number of positive integers upto n which are coprime to n.
+It is denoted by Phi(n)
+
+

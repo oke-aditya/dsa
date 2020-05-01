@@ -1,0 +1,57 @@
+Euler Totient Function counts the number of positive integers upto n which are coprime to n.
+It is denoted by Phi(n)
+
+E.g. Phi(5) = 4
+
+Since there are 4 coprime numbers from 1 to 5.
+GCD(1, 5) = GCD(2, 5) = GCD(3, 5) = GCD(4, 5) = 1
+
+E.g. Phi(10) = 4
+
+GCD(1, 10) = GCD(3, 10) = GCD(7, 10) = GCD(9, 10) = 1
+
+Novie Approach: -
+
+int phi(int N)
+{
+    int cnt = 0;
+    for(int i=1; i<=N; i++)
+    {
+        if(GCD(i, N) == 1)
+        {
+            cnt += 1;
+        }
+    }
+    return cnt;
+}
+
+Pattern : -
+Phi(2) = 1
+Phi(3) = 2
+Phi(5) = 4
+Phi(7) = 6
+Phi(11) = 10
+
+If P is prime Phi(P) = P - 1
+
+Which is obvious.
+
+Next question: -
+
+Phi (P ** x) = ?
+
+Phi (2 ** 5) = 16
+
+Phi (3 ** 5) = 162
+
+Phi(P ** x) = P ** x - Number of integers not coprime with P.
+            = P ** x - Number of multiple of P
+            = P ** x - (P ** x / P)
+            = P ** (x-1) * (P - 1)
+
+
+*************************************************************************************
+Where P is a prime number
+Phi(P) = P - 1
+Phi(P ** x) = P ** (x-1) * (P - 1) 
+*************************************************************************************
