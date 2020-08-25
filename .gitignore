@@ -7,6 +7,11 @@ __pycache__/
 # C extensions
 *.so
 
+# Practice files
+practice.cpp
+practice.c
+practice.py
+
 # Distribution / packaging
 .Python
 build/
