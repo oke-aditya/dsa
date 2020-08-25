@@ -23,7 +23,6 @@ void find_sub_arr_avg(int arr[], int k, int n)
     // Slide the window of size k. Incrment 1 number and compute the new average.
     int window_size = k;
     int window_sum = 0;
-    int min_window_sum = 99999;
     int window_del = 0;
 
     print_arr(arr,n);
@@ -38,21 +37,14 @@ void find_sub_arr_avg(int arr[], int k, int n)
         {
             window_sum += arr[i];
         }
-        if(window_sum < min_window_sum)
-        {
-            min_window_sum = window_sum;
-        }
-        // cout<<min_window_sum<<endl;
+
+        int min_window_sum = window_sum;
+        
         for(int i=k;i<n;i++)
         {
-            // cout<<arr[i]<<endl;
-            // break;
             window_sum += arr[i] - arr[window_del];
             window_del += 1;
-            if(window_sum < min_window_sum)
-            {
-                min_window_sum = window_sum;
-            }
+            min_window_sum = min(window_sum, min_window_sum);
         }
         cout<<endl<<min_window_sum;
     }
