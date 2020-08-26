@@ -15,15 +15,14 @@
 #    3. Visit the root.
 
 
-
-class Node:
+class Node(object):
 	def __init__(self, key):
 		self.left = None
 		self.right = None
 		self.val = key
 
 
-def printinorder(root):
+def printinorder(root : Node):
 	if root:
 		printinorder(root.left)
 
@@ -31,7 +30,7 @@ def printinorder(root):
 
 		printinorder(root.right)
 
-def printpostorder(root):
+def printpostorder(root : Node):
 	if root:
 		printpostorder(root.left)
 
@@ -39,7 +38,7 @@ def printpostorder(root):
 
 		print(root.val)
 
-def printpreorder(root):
+def printpreorder(root : Node):
 	if root:
 		print(root.val)
 
@@ -47,20 +46,20 @@ def printpreorder(root):
 
 		printpreorder(root.right)
 
+if __name__ == "__main__":
+	root = Node(1)
+	root.left = Node(2)
+	root.right = Node(3)
+	root.left.left = Node(4)
+	root.left.right = Node(5)
 
-root = Node(1)
-root.left = Node(2)
-root.right = Node(3)
-root.left.left = Node(4)
-root.left.right = Node(5)
-
-print "Preorder traversal of binary tree is"
-printPreorder(root) 
-  
-print "\nInorder traversal of binary tree is"
-printInorder(root) 
-  
-print "\nPostorder traversal of binary tree is"
-printPostorder(root) 
+	print("Preorder traversal of binary tree is")
+	printPreorder(root) 
+	
+	print("Inorder traversal of binary tree is")
+	printInorder(root) 
+	
+	print("Postorder traversal of binary tree is")
+	printPostorder(root) 
 
 
