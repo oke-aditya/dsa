@@ -56,14 +56,15 @@ def maxProfit_opt(prices: List[int]) -> int:
             min_value = price
         
         # Check if the price - min_value is greater than the max_profit
-        elif (price - min_value) > max_profit:
-            max_profit = (price - min_value)
+        diff = price - min_value
+        elif diff > max_profit:
+            max_profit = diff
     
     return max_profit
     
 if __name__ == "__main__":
     prices = [7,1,5,3,6,4]
-    prices = [7,6,4,3,1]
+    # prices = [7,6,4,3,1]
     # prices = [1,2]
 
     print(maxProfit_nv(prices))
