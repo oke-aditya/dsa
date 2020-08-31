@@ -36,9 +36,24 @@ def rotate(nums : List[int], k : int) -> None:
     nums = reverse_arr(nums, k, n-1)
     print(nums)
 
+def rotate_append(nums : List[int], k : int) -> None:
+    '''
+    Creates new array and pushes to it.
+    '''
+    temp = []
+    for i in range(k+1, len(nums)):
+        temp.append(nums[i])
+    
+    for i in range(0, k+1):
+        temp.append(nums[i])
+    
+    print(temp)
+    # return temp
+
 
 if __name__ == "__main__":
     nums = [1,2,3,4,5,6,7]
     k = 3
-    rotate(nums, k)
+    # rotate(nums, k)
+    rotate_append(nums, k)
     
