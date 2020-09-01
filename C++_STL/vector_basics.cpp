@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
     }
     else
     {
-        cout<<itr - vec.begin() << "Founda at Counting from zero"<<endl;
+        cout<<itr - vec.begin() << "Found at Counting from zero"<<endl;
     }
 
     // Erase a value from position in vector.
