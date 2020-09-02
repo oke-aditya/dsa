@@ -27,6 +27,7 @@ def hs_solution(nums: List[int], target: int) -> List[int]:
         lookup[num] = cnt
 
 def tw_solution(nums: List[int], target: int) -> List[int]:
+    nums.sort()
     ptr1 = 0
     ptr2 = len(nums) - 1
     while(ptr1 < ptr2):
