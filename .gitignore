@@ -12,6 +12,7 @@ __pycache__/
 practice.cpp
 practice.c
 practice.py
+*.class
 
 # Distribution / packaging
 .Python
