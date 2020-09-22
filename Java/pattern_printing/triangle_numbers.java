@@ -18,6 +18,5 @@ public class triangle_numbers
             }
             System.out.println();
         }
-    }
-    
+    }    
 }
