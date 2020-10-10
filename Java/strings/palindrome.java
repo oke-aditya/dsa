@@ -7,7 +7,6 @@ public class palindrome
     {
         Scanner scanner = new Scanner(System.in);
         String s1 = scanner.nextLine();
-
         int start = 0;
         int end = s1.length() - 1;
         int fg = 1;
