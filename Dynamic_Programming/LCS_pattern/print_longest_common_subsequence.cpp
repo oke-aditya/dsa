@@ -26,7 +26,7 @@ void print_lcs(string s1, string s2, int m, int n)
 
     for(int i=1; i<=m; i++)
     {
-        for(int j=1; j<=m; j++)
+        for(int j=1; j<=n; j++)
         {
             if(s1[i-1] == s2[j-1])
             {
