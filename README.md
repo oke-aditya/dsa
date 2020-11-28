@@ -1,2 +1,3 @@
-# ds_algo
-Data Structures and Algorithms practice.
+# Data Structures and Algorithms
+
+- Data Structures and Algorithms practice.
