@@ -1,9 +1,16 @@
-#include <bits/stdc++.h>
-using namespace std;
 
 // Given an array, print the Next Greater Element (NGE) for every element.
 // The Next greater Element for an element x is the first greater element on the right side of x in array.
 // Elements for which no greater element exist, consider next greater element as -1.
+
+// Solution: -
+// 
+// Traverse array right to left (opposite)
+// If stack is empty
+// 
+
+#include <bits/stdc++.h>
+using namespace std;
 
 void nge_naive(int arr[], int n)
 {
@@ -25,8 +32,8 @@ void nge_naive(int arr[], int n)
 
 vector<int> nge_stack(int arr[], int n)
 {
-    vector <int> v;
     stack <int> s;
+    vector <int> v;
 
     for(int i=n-1; i>=0; i--)
     {
@@ -53,6 +60,7 @@ vector<int> nge_stack(int arr[], int n)
                 v.push_back(s.top());
             }
         }
+        s.push(arr[i]);
     }
     reverse(v.begin(), v.end());
     return v;
@@ -71,8 +79,8 @@ int main(int argc, char const *argv[])
 {
     int arr[] = {11, 13, 21, 3};
     int n = sizeof(arr) / sizeof(arr[0]);
-    nge_naive(arr, n);
-    cout<<endl;
+    // nge_naive(arr, n);
+    // cout<<endl;
 
     auto res = nge_stack(arr, n);
     print_v(res);
