@@ -1,41 +1,38 @@
+// Given an array of integers, find the closest
+// greater on left of every element. 
+// If an element has no greater on the left side, print -1.
+// E.g. array {11, 13, 21, 3};
+// Output will be {-1, -1, -1, 21}
 
-// Given an array, print the Next Greater Element (NGE) for every element.
-// The Next greater Element for an element x is the first greater element on the right side of x in array.
-// Elements for which no greater element exist, consider next greater element as -1.
 
-// Solution: -
-// 
-// Traverse array right to left (opposite)
-// If stack is empty
-// 
-
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 void nge_naive(int arr[], int n)
 {
-    int next, i, j;
-    for (int i = 0; i < n - 1; i++)
+    int next;
+
+    for(int i=0; i<n; i++)
     {
         next = -1;
-        for (int j = i + 1; j < n; j++)
+        for(int j=i-1; j>=0; j--)
         {
-            if (arr[j] > arr[i])
+            if(arr[j] > arr[i])
             {
                 next = arr[j];
-                break;            
+                break;
             }
         }
+        cout<<next<<" ";
     }
-    cout<<next<<" ";
 }
 
-vector<int> nge_stack(int arr[], int n)
+vector <int> nge_stack(int arr[], int n)
 {
     stack <int> s;
     vector <int> v;
 
-    for(int i=n-1; i>=0; i--)
+    for(int i=0; i<n; i++)
     {
         if(s.empty())
         {
@@ -45,6 +42,7 @@ vector<int> nge_stack(int arr[], int n)
         {
             v.push_back(s.top());
         }
+
         else if(!s.empty() && s.top() <= arr[i])
         {
             while(!s.empty() && s.top() <= arr[i])
@@ -57,12 +55,11 @@ vector<int> nge_stack(int arr[], int n)
             }
             else
             {
-                v.push_back(s.top());
+                v.push_back(arr[i]);
             }
         }
         s.push(arr[i]);
     }
-    reverse(v.begin(), v.end());
     return v;
 }
 
@@ -72,18 +69,19 @@ void print_v(vector <int> v)
     {
         cout<<x<<" ";
     }
-    cout<<endl;
 }
+
 
 int main(int argc, char const *argv[])
 {
     int arr[] = {11, 13, 21, 3};
     int n = sizeof(arr) / sizeof(arr[0]);
-    // nge_naive(arr, n);
-    // cout<<endl;
+    nge_naive(arr, n);
+    cout<<endl;
 
     auto res = nge_stack(arr, n);
     print_v(res);
 
     return 0;
 }
+
