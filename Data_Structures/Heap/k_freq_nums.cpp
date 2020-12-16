@@ -1,21 +1,79 @@
-// Given an array of n numbers.
-// Your task is to read numbers from the array and keep at-most K numbers at the top
-// (According to their decreasing frequency) every time a new number is read.
-// We basically need to print top k numbers sorted by frequency when input stream
-// has included k distinct elements, else need to print all distinct elements sorted by frequency.
+// Given a non-empty array of integers, return the k most frequent elements.
 
-// Example:
-// Input :  arr[] = {5, 2, 1, 3, 2}
-// k = 4
-// Output : 5 2 5 1 2 5 1 2 3 5 2 1 3 5
+// Example 1:
 
-#include<bits/stdc++.h>
+// Input: nums = [1,1,1,2,2,3], k = 2
+// Output: [1,2]
 
+// Solution: -
+// We want k frequent numbers. numbers whose frequency is maximum
+// Create a hash map which will store number and frequency of number.
+// One by one add the hashmap values to the min heap till k.
+// Pop values after k insertions.
+// Heap will have top k answers stored.
+
+#include <bits/stdc++.h>
+
+#define pii pair<int, int>
+
+using namespace std;
+
+vector<int> k_freq(vector<int> v, int k)
+{
+    // Create a hashmap
+    unordered_map<int, int> mp;
+    for (int i = 0; i < v.size(); i++)
+    {
+        mp[v[i]] += 1;
+    }
+
+    // for (auto i = mp.begin(); i != mp.end(); i++)
+    // {
+    //     cout<<i->first<<" "<<i->second<<" ";
+    //     cout<<endl;
+    // }
+
+    // Now create a min heap 
+    priority_queue<pii, vector<pii>, greater<pii>> minh;
+
+    for(auto i=mp.begin(); i!= mp.end(); i++)
+    {
+        minh.push({i->second, i->first});
+        if(minh.size() > k)
+        {
+            minh.pop();
+        }
+    }
+
+    // Now store the answer one by one in result
+    vector <int> res;
+
+    while(!minh.empty())
+    {
+        res.push_back(minh.top().second);
+        minh.pop();
+    }
+
+    return res;
+}
+
+void print_v(vector <int> v)
+{
+    for(auto x : v)
+    {
+        cout<<x<<" ";
+    }
+    cout<<endl;
+}
 
 int main(int argc, char const *argv[])
 {
-    
+    vector<int> v{1, 1, 1, 2, 2, 3};
+    int k = 2;
+
+    auto res = k_freq(v, k);
+
+    print_v(res);
+
     return 0;
 }
-
-
