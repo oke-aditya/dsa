@@ -8,7 +8,7 @@
 
 // Input: points = [[1,3],[-2,2]], K = 1
 // Output: [[-2,2]]
-// Explanation: 
+// Explanation:
 // The distance between (1, 3) and the origin is sqrt(10).
 // The distance between (-2, 2) and the origin is sqrt(8).
 // Since sqrt(8) < sqrt(10), (-2, 2) is closer to the origin.
@@ -25,7 +25,7 @@
 // Return remaining items in heap.
 // Use a Max heap here.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 #define piii pair<int, pair<int, int>>
@@ -38,23 +38,23 @@ vector<vector<int>> k_closest(vector<vector<int>> points, int k)
     // int nrows = points.size();
     // int ncols = points[0].size();
 
-    for(int i=0; i<points.size(); i++)
+    for (int i = 0; i < points.size(); i++)
     {
         int dist = (points[i][0] * points[i][0]) + (points[i][1] * points[i][1]);
         maxh.push({dist, {points[i][0], points[i][1]}});
 
-        if(maxh.size() > k)
+        if (maxh.size() > k)
         {
             maxh.pop();
         }
     }
 
     // Pop the max heap results and push them to vector of vector
-    vector <vector<int>> res;
+    vector<vector<int>> res;
 
-    while(!maxh.empty())
-    {   
-        vector<int> temp {maxh.top().second.first, maxh.top().second.second};
+    while (!maxh.empty())
+    {
+        vector<int> temp{maxh.top().second.first, maxh.top().second.second};
         res.push_back(temp);
         maxh.pop();
     }
@@ -64,11 +64,10 @@ vector<vector<int>> k_closest(vector<vector<int>> points, int k)
 
 int main(int argc, char const *argv[])
 {
-    vector<vector<int>> points {{3, 3}, {5, -1}, {-2, 4}};
+    vector<vector<int>> points{{3, 3}, {5, -1}, {-2, 4}};
     int k = 2;
 
     auto res = k_closest(points, k);
 
     return 0;
 }
-

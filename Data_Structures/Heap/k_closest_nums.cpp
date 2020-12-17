@@ -1,8 +1,8 @@
 // Given an unsorted array and
-// two numbers x and k, 
+// two numbers x and k,
 // find k closest values to x.
-// Input : arr[] = {10, 2, 14, 4, 7, 6}, 
-//         x = 5, 
+// Input : arr[] = {10, 2, 14, 4, 7, 6},
+//         x = 5,
 //         k = 3
 
 // Output: [4 6 7]
@@ -17,30 +17,30 @@
 // As usual insert first k elements
 // Pop the top element after every next insert.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-vector <int> k_closest_sort(vector <int> v, int k, int tgt)
+vector<int> k_closest_sort(vector<int> v, int k, int tgt)
 {
 
     // Priority queue of of pair, first key is absolute difference, second is arr value.
-    priority_queue <pair<int, int>> maxh;
+    priority_queue<pair<int, int>> maxh;
 
-    for(int i=0; i<v.size(); i++)
+    for (int i = 0; i < v.size(); i++)
     {
         // First push all the elements
         maxh.push({abs(tgt - v[i]), v[i]});
 
         // If it is greater than k. Start popping them one by one.
-        if(maxh.size() > k)
+        if (maxh.size() > k)
         {
             maxh.pop();
         }
     }
     // Now we have k nearest elements in second item of pair
 
-    vector <int> res;
-    while(!maxh.empty())
+    vector<int> res;
+    while (!maxh.empty())
     {
         res.push_back(maxh.top().second);
         maxh.pop();
@@ -48,18 +48,18 @@ vector <int> k_closest_sort(vector <int> v, int k, int tgt)
     return res;
 }
 
-void print_vec(vector <int> v)
+void print_vec(vector<int> v)
 {
-    for(auto x : v)
+    for (auto x : v)
     {
-        cout<<x<<" ";
+        cout << x << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 
 int main(int argc, char const *argv[])
 {
-    vector<int> v {10, 2, 14, 4, 7, 6};
+    vector<int> v{10, 2, 14, 4, 7, 6};
     int k = 3;
     int x = 5;
     auto res = k_closest_sort(v, k, x);
@@ -68,5 +68,3 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-
-

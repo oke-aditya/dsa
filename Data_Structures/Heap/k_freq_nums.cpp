@@ -33,22 +33,22 @@ vector<int> k_freq(vector<int> v, int k)
     //     cout<<endl;
     // }
 
-    // Now create a min heap 
+    // Now create a min heap
     priority_queue<pii, vector<pii>, greater<pii>> minh;
 
-    for(auto i=mp.begin(); i!= mp.end(); i++)
+    for (auto i = mp.begin(); i != mp.end(); i++)
     {
         minh.push({i->second, i->first});
-        if(minh.size() > k)
+        if (minh.size() > k)
         {
             minh.pop();
         }
     }
 
     // Now store the answer one by one in result
-    vector <int> res;
+    vector<int> res;
 
-    while(!minh.empty())
+    while (!minh.empty())
     {
         res.push_back(minh.top().second);
         minh.pop();
@@ -57,13 +57,13 @@ vector<int> k_freq(vector<int> v, int k)
     return res;
 }
 
-void print_v(vector <int> v)
+void print_v(vector<int> v)
 {
-    for(auto x : v)
+    for (auto x : v)
     {
-        cout<<x<<" ";
+        cout << x << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 
 int main(int argc, char const *argv[])

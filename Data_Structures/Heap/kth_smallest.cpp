@@ -44,7 +44,7 @@ int k_small_heap(int arr[], int n, int k)
             maxh.pop();
         }
     }
-    
+
     // top denotes the kth top most elment
     return maxh.top();
 
