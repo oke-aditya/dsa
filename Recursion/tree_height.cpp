@@ -34,7 +34,7 @@ Node *newNode(int data)
 
 int height_rec(Node *root)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
         return 0;
     }

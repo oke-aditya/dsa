@@ -3,24 +3,24 @@
 // Solution: -
 // The idea is very simple  We recursively remove values from stack until stack becomes empty.
 // Insert those values from call stack back into stack in sorted position.
-// 
+//
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-void print_stack(stack <int> s)
+void print_stack(stack<int> s)
 {
-    while(!s.empty())
+    while (!s.empty())
     {
-        cout<<s.top()<<" ";
+        cout << s.top() << " ";
         s.pop();
     }
 }
 
-void sorted_insert(stack <int> &s, int ele)
+void sorted_insert(stack<int> &s, int ele)
 {
     // Base case. If stack is empty or key is greater than all
-    if(s.empty() || ele > s.top())
+    if (s.empty() || ele > s.top())
     {
         s.push(ele);
         return;
@@ -38,12 +38,11 @@ void sorted_insert(stack <int> &s, int ele)
 
     // insert popped elment into stack
     s.push(top_ele);
-
 }
 
-void sort_stack_rec(stack <int> &s)
+void sort_stack_rec(stack<int> &s)
 {
-    if(s.empty())
+    if (s.empty())
     {
         return;
     }
@@ -57,30 +56,28 @@ void sort_stack_rec(stack <int> &s)
 
     // insert the popped element back into stack
     sorted_insert(s, ele);
-
 }
-
 
 int main(int argc, char const *argv[])
 {
 
-    vector <int> v = {-5, 2, 9, -7, 1};
+    vector<int> v = {-5, 2, 9, -7, 1};
 
-    stack <int> s;
-    for(int x : v)
+    stack<int> s;
+    for (int x : v)
     {
         s.push(x);
     }
 
-    cout<<"Stack before sorting "<<endl;
+    cout << "Stack before sorting " << endl;
     print_stack(s);
 
     sort_stack_rec(s);
 
-    cout<<endl<<"Stack after sorting "<<endl;
+    cout << endl
+         << "Stack after sorting " << endl;
     print_stack(s);
-    cout<<endl;
-    
+    cout << endl;
+
     return 0;
 }
-
