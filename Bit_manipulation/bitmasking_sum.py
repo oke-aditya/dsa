@@ -9,11 +9,11 @@ while(t > 0):
         for nu, ms in zip(l, binary_mask):
             if(ms == '1'):
                 sum_ += nu
-        
+
         if(sum_ == 0):
             fg = 1
             break
-    
+
     if(fg == 1):
         print("Yes")
     else:
