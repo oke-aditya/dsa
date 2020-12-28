@@ -14,7 +14,7 @@
 
 // https://www.geeksforgeeks.org/window-sliding-technique/
 
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
 int max_sum_k_brute(int arr[], int n, int k)
