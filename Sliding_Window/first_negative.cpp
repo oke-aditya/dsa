@@ -1,59 +1,93 @@
-#include<bits/stdc++.h>
+// Given an array and a positive integer k,
+// find the first negative integer for each and /
+// every window(contiguous subarray) of size k.
+
+// Example:
+
+// Input:
+// 2
+// 5
+// -8 2 3 -6 10
+// 2
+// 8
+// 12 -1 -7 8 -15 30 16 28
+// 3
+
+// Output:
+// -8 0 -6 -6
+// -1 -1 -7 -15 -15 0
+
+#include <bits/stdc++.h>
 using namespace std;
 
-void printFirstNegativeInteger(int arr[], int n, int k)
+void print_v(vector<int> v)
 {
-    queue <int> q1;
-    for(int i=0; i<k; i++)
+    for (auto x : v)
     {
-        if(arr[i] < 0)
+        cout << x << " ";
+    }
+}
+
+vector<int> first_neg(vector<int> v, int k)
+{
+    // Solve for first k elements.
+    queue<int> q;
+    vector<int> res;
+
+    int n = v.size();
+
+    for (int j = 0; j < k; j++)
+    {
+        if (v[j] < 0)
         {
-            q1.push(i);
+            // We are pushing the index not the number.
+            q.push(j);
         }
     }
-    if(q1.empty())
+    // No negative element found, print 0
+    if (q.empty())
     {
-        cout<<"0"<<" ";
+        res.push_back(0);
     }
-    // Since we stored the index, we can access it.
     else
     {
-        cout<<arr[q1.front()]<<" ";
+        // We have a negative number, it will be at front of queue
+        res.push_back(v[q.front()]);
     }
-    
-    for(int i=k; i<n; i++)
-    {        
-        // Cleanup for the leftmost window element
-        while( (!q1.empty()) && q1.front() < (i - k + 1))
-        {
-            q1.pop();
-        }
 
-        // Same operation as base problem
-        if(arr[i] < 0)
+    // Now solve for remaining windows.
+    int i = 0;
+    for (int j = k; j < n; j++)
+    {
+        // Cleanup for ith element.
+        // Empty queue till ith position is in queue.
+        while ((!q.empty()) && q.front() < i + 1)
         {
-            q1.push(i);
+            q.pop();
         }
-
-        // If empty we don't have any negative no
-        if(q1.empty())
+        // Now do the same logic for jth element
+        if(v[j] < 0)
         {
-            cout<<"0"<<" ";
+            q.push(j);
         }
-        // Since we stored the index, we can access it.
+        if(q.empty())
+        {
+            res.push_back(0);
+        }
         else
         {
-            cout<<arr[q1.front()]<<" ";
+            res.push_back(v[q.front()]);
         }
-
+        i += 1;
     }
+    return res;
 }
 
 int main(int argc, char const *argv[])
 {
-    int arr[] = {12, -1, -7, 8, -15, 30, 16, 28}; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
+    vector<int> v{12, -1, -7, 8, -15, 30, 16, 28};
     int k = 3;
-    printFirstNegativeInteger(arr, n, k);
+    auto res = first_neg(v, k);
+    print_v(res);
     return 0;
 }

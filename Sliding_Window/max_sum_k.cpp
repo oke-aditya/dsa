@@ -38,15 +38,16 @@ int max_sum_k_opt(int arr[], int n, int k)
     // Compute sum till the window 
     int max_sum = 0;
 
-    for(int i=0; i<k; i++)
+    for(int j=0; j<k; j++)
     {
-        max_sum += arr[i];
+        max_sum += arr[j];
     }
     int window_sum = max_sum;
     // Compute one element at a time.
-    for(int i=k; i<n; i++)
+    int i=0; // Starting pointer
+    for(int j=k; j<n; j++)
     {
-        window_sum += arr[i] - arr[i - k];
+        window_sum += arr[j] - arr[i];
         max_sum = max(max_sum, window_sum);
     }
     return max_sum;
@@ -58,7 +59,7 @@ int main(int argc, char const *argv[])
     int n = sizeof(arr) / sizeof(arr[0]);
     int k = 1;
     auto maxs = max_sum_k_opt(arr, n, k);
-    cout<<maxs;
+    cout<<maxs<<endl;
 
     return 0;
 }

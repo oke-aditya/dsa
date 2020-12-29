@@ -1,5 +1,6 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
+
 // Find the subarray with least average
 // Input:  arr[] = {3, 7, 90, 20, 10, 50, 40}, k = 3
 // Output: Subarray between indexes 3 and 5
@@ -8,54 +9,52 @@ using namespace std;
 
 // Input:  arr[] = {3, 7, 5, 20, -10, 0, 12}, k = 2
 // Output: Subarray between [4, 5] has minimum average
-void print_arr(int arr[], int n)
+
+void print_v(vector <int> v)
 {
-    for(int i=0; i<n;i++)
+    for(auto x : v)
     {
-        cout<<arr[i]<<" ";
+        cout<<x<<" ";
     }
-    return;
 }
 
-void find_sub_arr_avg(int arr[], int k, int n)
+int find_sub_arr_avg(vector <int> v, int k)
 {
-    // Use the sliding window approach.
-    // Slide the window of size k. Incrment 1 number and compute the new average.
-    int window_size = k;
-    int window_sum = 0;
-    int window_del = 0;
-
-    print_arr(arr,n);
-
-    if(n<k)
+    int n = v.size();
+    // Do calculation for first sub array of size k.
+    int wind_avg = -1;
+    int wind_sum = 0;
+    for(int j=0; j<k; j++)
     {
-        std::cout<<"Not possible";
+        wind_sum += v[j];
     }
-    else
+    wind_avg = wind_sum / k;
+    // Now add next element and remove calculations of previous.
+    // i is pointer to start of window, j is to end of window.
+    int i = 0;
+    
+    int min_avg = wind_avg;
+    
+    for(int j=k; j<n; j++)
     {
-        for(int i=0; i<k; i++)
-        {
-            window_sum += arr[i];
-        }
-
-        int min_window_sum = window_sum;
+        wind_sum = wind_sum + v[j] - v[i];
+        wind_avg = wind_sum / k;
+        min_avg = min(min_avg, wind_avg);
         
-        for(int i=k;i<n;i++)
-        {
-            window_sum += arr[i] - arr[window_del];
-            window_del += 1;
-            min_window_sum = min(window_sum, min_window_sum);
-        }
-        cout<<endl<<min_window_sum;
+        // Move ith pointer.
+        i += 1;
     }
-}
+    return min_avg;
 
+    // To search for minimum avg. Use the computed minimum average and find it
+    
+}
 
 int main()
 {
-    int arr[] = {3, 7, 90, 20, 10, 50, 40};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    vector <int> v {3, 7, 90, 20, 10, 50, 40};
     int k = 3;  // Sub array size
-    find_sub_arr_avg(arr, k, n);
+    auto min_avg = find_sub_arr_avg(v, k);
+    cout<<min_avg<<endl;
     return(0);
 }
