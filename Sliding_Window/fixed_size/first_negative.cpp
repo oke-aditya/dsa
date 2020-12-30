@@ -89,5 +89,6 @@ int main(int argc, char const *argv[])
     int k = 3;
     auto res = first_neg(v, k);
     print_v(res);
+    cout<<endl;
     return 0;
 }
