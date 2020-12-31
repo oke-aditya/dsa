@@ -1,4 +1,5 @@
 // Given a string s, find the length of the longest substring without repeating characters.
+// Note that k is not given.
 
 // Example 1:
 
@@ -23,3 +24,18 @@
 
 // Input: s = ""
 // Output: 0
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(int argc, char const *argv[])
+{
+    string s = "abcabcbb";
+    int k = 3;
+
+    string s2 = "pwwkew";
+    int k = 3;
+
+    return 0;
+}
+
