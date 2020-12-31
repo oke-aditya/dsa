@@ -1,3 +1,6 @@
+# PDF Files
+*.pdf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -6,6 +9,7 @@ __pycache__/
 *.out
 *.o
 *.vs
+
 # C extensions
 *.so
 
