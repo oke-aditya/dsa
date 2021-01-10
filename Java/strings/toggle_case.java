@@ -1,29 +1,28 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-public class toggle_case 
+class toggle_case
 {
-    public static void main(String[] args) 
+    public static void main(String args[])
     {
         Scanner scanner = new Scanner(System.in);
+        
         String str = scanner.nextLine();
-        StringBuffer sb = new StringBuffer(str);
 
-        int str_len = sb.length();
-        for(int i=0; i<str_len; i++)
+        String str2 = "";
+
+        for(int i=0; i<str.length(); i++)
         {
-            char ch = sb.charAt(i);
-            if(ch >= 'a' && ch <= 'z')
+            if(Character.isUpperCase(str.charAt(i)))
             {
-                int offset = ch - 'a';
-                ch = (char) ('A' + offset);
+                str2 += Character.toLowerCase(str.charAt(i));
             }
-            else if(ch >= 'A' && ch <= 'Z')
+            else
             {
-                int offset = ch - 'A';
-                ch = (char)('a' + offset);
+                str2 += Character.toUpperCase(str.charAt(i));
             }
-            sb.setCharAt(i, ch);
         }
-        System.out.println(sb);
+        System.out.println(str2);
+        scanner.close();
     }
 }

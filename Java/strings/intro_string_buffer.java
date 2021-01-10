@@ -11,6 +11,7 @@ public class intro_string_buffer
         System.out.println(s.capacity());
         // Default capacity is 16.
 
+        // 16 + length of string
         StringBuffer sb = new StringBuffer("Pokemon");
         System.out.println(sb.capacity());
 
