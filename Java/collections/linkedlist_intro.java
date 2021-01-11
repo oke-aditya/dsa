@@ -36,9 +36,23 @@ public class linkedlist_intro
         a1.addAll(l2);
 
         System.out.println(a1);
-
         
+        LinkedList <String> l3 = new LinkedList<String>();
+        l3.add("ONE");
+        l3.add("TWO");
+        l3.add("THREE");
+        l3.add("FOUR");
+        l3.add("FIVE");
+
+        System.out.println(l3);
+
+        l3.poll();
+        l3.remove();
+        System.out.println(l3);
+
+        l3.pollLast();
+        l3.removeLast();
+        System.out.println(l3);
 
     }
-    
 }

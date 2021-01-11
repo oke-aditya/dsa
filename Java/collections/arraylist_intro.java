@@ -34,6 +34,16 @@ class arraylist_intro
         {
             System.out.println(itr.next());
         }
+
+        ArrayList <Integer> al4 = new ArrayList<Integer>();
+        al4.add(1);
+        al4.add(2);
+        al4.add(3);
+
+        for(Integer x : al4)
+        {
+            System.out.println(x);
+        }
     }
 
 }
