@@ -29,11 +29,11 @@ int longest_uniq(string s, int k)
 {
     int i = 0, j = 0;
     int max_win_size = -1;
-    int n = s.size();
+    int n = s.length();
 
     unordered_map<char, int> mp;
 
-    for (int j = 0; j < n; j++)
+    for (j = 0; j < n; j++)
     {
 
         // Process each element.
