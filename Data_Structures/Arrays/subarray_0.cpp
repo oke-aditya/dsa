@@ -1,6 +1,6 @@
 // Check if subarray with 0 sum is exists or not
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 bool zeroSumSubarray(int arr[], int n)
@@ -12,10 +12,10 @@ bool zeroSumSubarray(int arr[], int n)
     int running_sum = 0;
 
     // Traverse the array
-    for(int i=0; i<n; i++)
+    for (int i = 0; i < n; i++)
     {
         running_sum += arr[i];
-        if(s1.find(running_sum) != s1.end())
+        if (s1.find(running_sum) != s1.end())
         {
             // We found the sum
             return true;
@@ -35,15 +35,14 @@ int main(int argc, char const *argv[])
     int n = sizeof(arr) / sizeof(arr[0]);
     // Subarray with 0 sum exists
     // Subarrays must be with contigous locations, occupy consecutive positions
-    if(zeroSumSubarray(arr, n))
+    if (zeroSumSubarray(arr, n))
     {
-        cout<<"Yes";
+        cout << "Yes";
     }
     else
     {
-        cout<<"No";
+        cout << "No";
     }
-    
+
     return 0;
 }
-
