@@ -25,7 +25,7 @@
 // Input: s = ""
 // Output: 0
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main(int argc, char const *argv[])
@@ -38,4 +38,3 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-
