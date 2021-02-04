@@ -25,4 +25,13 @@
 
 // Output:
 // Number of trials when number of eggs is 2 and number of floors is 36: 8
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    cout
+    return(0);
+}
 
