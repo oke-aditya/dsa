@@ -1,5 +1,7 @@
 // Find the Duplicate Number
 
+// https://leetcode.com/problems/find-the-duplicate-number/
+
 // Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
 
 // There is only one repeated number in nums, return this repeated number.
@@ -11,7 +13,6 @@
 
 // Input: nums = [1,3,4,2,2]
 // Output: 2
-
 
 // Input: nums = [3,1,3,4,2]
 // Output: 3
@@ -26,16 +27,16 @@
 // Time complexity = O(nlogn)
 // Space complexity = O(1) (Can be done in place)
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int find_miss_sort(vector <int> v)
+int find_miss_sort(vector<int> v)
 {
     sort(v.begin(), v.end());
 
-    for(int i=0; i<v.size(); i++)
+    for (int i = 0; i < v.size(); i++)
     {
-        if(i == v[i])
+        if (i == v[i])
         {
             return v[i];
         }
@@ -47,17 +48,16 @@ int find_miss_sort(vector <int> v)
 
 // Keep count of each of the elements in hashmap
 // If count becomes > 1 return the element
-// Time complexity = O(n) 
+// Time complexity = O(n)
 // Space complexity = O(n)
 
-
-int find_miss_map(vector <int> v)
+int find_miss_map(vector<int> v)
 {
-    map <int, int> mp;
+    map<int, int> mp;
 
-    for(int i=0; i<v.size(); i++)
+    for (int i = 0; i < v.size(); i++)
     {
-        if(mp[v[i]] == 1)
+        if (mp[v[i]] == 1)
         {
             return v[i];
         }
@@ -76,7 +76,7 @@ int find_miss_map(vector <int> v)
 // Finally both will converge at an element say el.
 // Return element at index el.
 
-int find_miss_opt(vector <int> v)
+int find_miss_opt(vector<int> v)
 {
     int slow = v[0];
     int fast = v[0];
@@ -88,7 +88,7 @@ int find_miss_opt(vector <int> v)
     } while (slow != fast);
 
     fast = v[0];
-    while(slow != fast)
+    while (slow != fast)
     {
         slow = v[slow];
         fast = v[fast];
@@ -96,17 +96,13 @@ int find_miss_opt(vector <int> v)
     return fast;
 }
 
-
 int main(int argc, char const *argv[])
 {
-    vector <int> v = {1, 3, 4, 2, 2};
+    vector<int> v = {1, 3, 4, 2, 2};
 
-    cout<<find_miss_sort(v)<<endl;
-    cout<<find_miss_map(v)<<endl;
-    cout<<find_miss_opt(v)<<endl;
-
+    cout << find_miss_sort(v) << endl;
+    cout << find_miss_map(v) << endl;
+    cout << find_miss_opt(v) << endl;
 
     return 0;
 }
-
-
