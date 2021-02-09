@@ -31,7 +31,7 @@ using namespace std;
 int search_mat(int mat[4][4], int n, int target)
 {
     int i = 0, j = n - 1;
-    while (i < n && j >= 0)
+    while (i < n - 1 && j >= 0)
     {
         if (target == mat[i][j])
         {
