@@ -14,6 +14,15 @@ using namespace std;
 // 23 30 34 60
 //
 
+
+// Solution: -
+// Brute force: - Check for every element in the matrix.
+
+// Apply a modified binary search. 
+// Start from top right.
+// If tgt > current element , shift down
+// If tgt < current element , shift left.  
+
 bool search_2d(vector<vector<int>> mat, int tgt)
 {
     int m = mat.size();
