@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 class first_last
 {
     public static void main(final String[] array)
@@ -13,4 +12,5 @@ class first_last
             i /= 10;
         }
     }
+    System.out.println(" " + n2 + " " + n);
 }
