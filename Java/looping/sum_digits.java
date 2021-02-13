@@ -1,5 +1,5 @@
 import java.util.Scanner;
-=
+
 
 class sum_digits
 {
