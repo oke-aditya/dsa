@@ -23,13 +23,13 @@ void print_v(vector <int> v)
     cout<<endl;
 }
 
-void merge(vector <int> &v, int l, int m, int r)
+void merge(vector <int> &v, int low, int mid, int high)
 {
     // Merges two subarrays of arr[].
     // First subarray is arr[l..m]
     // Second subarray is arr[m+1..r]
-    int n1 = m - l + 1;
-    int n2 = r - m ;
+    int n1 = mid - low + 1;
+    int n2 = high - mid ;
 
     // Create two empty vectors
     vector <int> left(n1);
@@ -38,17 +38,17 @@ void merge(vector <int> &v, int l, int m, int r)
     // Copy data to left.
     for(int i=0; i<n1; i++)
     {
-        left[i] = v[l + i];
+        left[i] = v[low + i];
     }
 
     for(int j=0; j<n2; j++)
     {
-        right[j] = v[m + j + 1];
+        right[j] = v[mid + j + 1];
     }
 
     // Now it is a simple merge of two arrays in O(n) time.
     // Merge the temp arrays back into arr[l..r]
-    int i=0, j=0, k = l;
+    int i=0, j=0, k = low;
     while(i < n1 && j < n2)
     {
         if(left[i] <= right[j])
