@@ -10,3 +10,46 @@
 // Output: []
 
 
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> three_sum_opt(vector<int> v)
+{
+    int n = v.size();
+    
+
+}
+
+vector<vector<int>> three_sum_brute(vector<int> v)
+{
+    int n = v.size();
+    vector<vector <int>> res;
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            for(int k=j+1; k<n; k++)
+            {
+                if((v[i] + v[j] + v[k]) == 0)
+                {
+                    vector <int> temp;
+                    temp.push_back(v[i]);
+                    temp.push_back(v[j]);
+                    temp.push_back(v[k]);
+                    res.push_back(temp);
+                }
+            }
+        }
+    }
+    return res;
+}
+
+int main(int argc, char const *argv[])
+{
+    vector <int> v = {-1, 0, 1, 2, -1, -4};
+    auto res = three_sum_brute(v);
+
+
+    return 0;
+}
+
