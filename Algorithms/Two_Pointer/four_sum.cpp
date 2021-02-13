@@ -9,4 +9,31 @@
 // Input: nums = [], target = 0
 // Output: []
 
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> four_sum(vector <int> v)
+{
+    vector <vector<int>> res;
+
+    if(v.empty())
+    {
+        return res;
+    }
+
+    int n = v.size();
+    sort(v.begin(), v.end());
+
+    
+    
+
+}
+
+int main(int argc, char const *argv[])
+{
+    vector <int> v = {1, 0, -1, 0, -2, 2};
+    auto res = four_sum(v);
+
+    return 0;
+}
 
