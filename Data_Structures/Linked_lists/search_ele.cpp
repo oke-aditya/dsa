@@ -1,4 +1,4 @@
-// Write a function that searches a given key ‘x’ in a given singly linked list. 
+// Write a function that searches a given key ‘x’ in a given singly linked list.
 // The function should return true if x is present in linked list and false otherwise.
 
 // Iterative solution
@@ -6,70 +6,73 @@
 // 3) Do following while current is not NULL
 //     a) current->key is equal to the key being searched return true.
 //     b) current = current->next
-// 4) Return false 
+// 4) Return false
 
-#include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
-class node
+
+class Node
 {
-    public:
+public:
     int data;
-    node *next;
+    Node *next;
 };
 
-void println(node *n)
+void insert_head(Node **head_ref, int new_data)
 {
-    while(n->next != NULL)
+    Node *new_node = new Node();
+    new_node->data = new_data;
+    new_node->next = *head_ref;
+    *head_ref = new_node;
+}
+
+void print_ln(Node *node)
+{
+    while (node != NULL)
     {
-        cout<<n->data<<" ";
-        n = n->next;
+        cout << node->data << " ";
+        node = node->next;
     }
 }
 
-void insert_head(node **head_ref, int newdata)
+bool search(Node *node, int ele)
 {
-    node *newnode = new node();
-    newnode->data = newdata;
-    newnode->next = (*head_ref);
-    (*head_ref) = newnode;
-}
+    Node *temp = new Node();
+    temp = node;
 
-void search_ele(node *head_ref, int ele)
-{
-    int fg = 0;
-    node *temp = head_ref;
-    while(temp != NULL)
+    while (temp != NULL)
     {
-        // cout<<endl<<temp->data;
-        if(temp->data == ele)
+        if (temp->data == ele)
         {
-            cout<<endl<<"The required "<<ele<<" is found";
-            fg = 1;
-            break;
+            return true;
         }
-        temp = temp->next;
+        else
+        {
+            temp = temp->next;
+        }
     }
-    if(fg == 0)
-    {
-        cout<<endl<<"Element "<<ele<<" not found";
-    }
-    // cout<<endl<<temp->next->data;
+    return false;
 }
 
-
-int main()
+int main(int argc, char const *argv[])
 {
-    node *head = new node();
+    Node *head = new Node();
     head->next = NULL;
+
+    insert_head(&head, 5);
+    insert_head(&head, 4);
     insert_head(&head, 3);
     insert_head(&head, 2);
     insert_head(&head, 1);
-    cout<<"The linked list is: ";
-    cout<<endl;
-    println(head);
-    search_ele(head, 2);
-    search_ele(head, 5);
-    return(0);
+
+    if (search(head, 3))
+    {
+        cout << "Found" << endl;
+    }
+    else
+    {
+        cout << "Not Found" << endl;
+    }
+
+    return 0;
 }
-
-
