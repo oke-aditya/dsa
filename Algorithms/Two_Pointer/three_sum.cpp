@@ -12,6 +12,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Solution: -
+// Brute force approach is to iterate with three loops.
+// Check if sum of all three is 0
+// If true simple add to result temp and retunr result.
+// To take care of duplicates, we would need to make set and store values in a set.
+
+vector<vector<int>> three_sum_brute(vector<int> v)
+{
+    int n = v.size();
+    vector<vector<int>> res;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            for (int k = j + 1; k < n; k++)
+            {
+                if ((v[i] + v[j] + v[k]) == 0)
+                {
+                    vector<int> temp;
+                    temp.push_back(v[i]);
+                    temp.push_back(v[j]);
+                    temp.push_back(v[k]);
+                    res.push_back(temp);
+                }
+            }
+        }
+    }
+    return res;
+}
+
+// Optimized Solution: -
+// Sort the array.
+// Assume that one element is a pivot.
+// if i == 0 or i > 0 && v[i] != v[i-1]. To avoid duplicates.
+// for this element find sum that is = 0 - element.
+// Keep a left pointer = i + 1, right pointer = n - 1
+// if v[left] + v[right] == sum
+// push values to temp result.
+// to avoid duplicate processing.
+// if v[left] == v[left + 1] and left < rigiht
+// keep moving left += 1
+// Simlar condition for right and move right behind.
+// if both are less than sum
+// move left ahead.
+// if both are greater than sum
+// move right behding.
+
 vector<vector<int>> three_sum_opt(vector<int> v)
 {
     int n = v.size();
@@ -52,30 +99,6 @@ vector<vector<int>> three_sum_opt(vector<int> v)
                 else
                 {
                     right -= 1;
-                }
-            }
-        }
-    }
-    return res;
-}
-
-vector<vector<int>> three_sum_brute(vector<int> v)
-{
-    int n = v.size();
-    vector<vector<int>> res;
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = i + 1; j < n; j++)
-        {
-            for (int k = j + 1; k < n; k++)
-            {
-                if ((v[i] + v[j] + v[k]) == 0)
-                {
-                    vector<int> temp;
-                    temp.push_back(v[i]);
-                    temp.push_back(v[j]);
-                    temp.push_back(v[k]);
-                    res.push_back(temp);
                 }
             }
         }

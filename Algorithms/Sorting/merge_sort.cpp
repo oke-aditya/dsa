@@ -23,6 +23,10 @@ void print_v(vector <int> v)
     cout<<endl;
 }
 
+// This is in place merge operations.
+// Cut the vector v into two halves.
+// v[l .. m] and v[m+1 .. r]
+
 void merge(vector <int> &v, int low, int mid, int high)
 {
     // Merges two subarrays of arr[].
@@ -79,6 +83,10 @@ void merge(vector <int> &v, int low, int mid, int high)
     }
 }
 
+// Merge sort is recursive algorithm
+// Apply merge sort on left to mid
+// Apply merge sort to mid+1 to right
+// Merge the resulting vectors.
 
 void merge_sort(vector <int> &v, int l, int r)
 {
@@ -101,5 +109,3 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-
-

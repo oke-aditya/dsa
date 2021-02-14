@@ -8,6 +8,13 @@
 // Input: [2,4,3,5,1]
 // Output: 3
 
+// Solution: -
+
+// Brute Force : -
+// Iterate over the arrays using a nested loop.
+// Check if v[i] > 2 * v[j] and increase the count
+// Return the count.
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -26,6 +33,22 @@ int reverse_brute(vector<int> v)
     }
     return count;
 }
+
+// Optimized Solution: -
+// Optimized solution is a modification of merge sort.
+// We need to modify the merge step in merge sort.
+// In the merge step. Keep two pointers.
+// for i = low to i mid
+// while j <= mid and v[i] > (2 * v[j])
+// increase j to avoid duplicates.
+// Increase the cnt as j - (mid + 1) 
+// Now follow the usual merge routine.
+// check if v[left] <= v[right]
+// push to v[left]
+// otherwise push to v[right]
+// Push remaining left and remaining right
+// Finally return count.
+
 
 int merge(vector<int> &v, int low, int mid, int high)
 {

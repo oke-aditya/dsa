@@ -13,14 +13,28 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int trap(vector<int>& height)
+// Solution: -
+// A simple solution would be to keep a suffix array and prefix array.
+// In suffix array, kee[ ]
+// 
+
+int trap_brute(vector<int>& height)
 {
-           
+
+
+}
+
+int trap_opt(vector<int> &height)
+{
+
 }
 
 int main(int argc, char const *argv[])
 {
-    
+    vector <int> v = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+    cout<<trap_brute(v)<<endl;
+    cout<<trap_opt(v)<<endl;
+
     return 0;
 }
 
