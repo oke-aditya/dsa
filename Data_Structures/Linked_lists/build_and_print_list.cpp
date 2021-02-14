@@ -1,41 +1,42 @@
-#include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-class node
+class Node
 {
     public:
-    int data;
-    node *next;
+            int data;
+            Node *next;  
 };
 
-void println(node *n)
+void print_ln(Node *node)
 {
-    while(n != NULL)
+    while(node != NULL)
     {
-        cout<<n->data<<" ";
-        n = n->next;
+        cout<<node->data<<" ";
+        node = node ->next;
     }
 }
 
-int main()
+int main(int argc, char const *argv[])
 {
-    node *head = NULL;
-    node *second = NULL;
-    node *third = NULL;
-    head = new node();
-    second = new node();
-    third = new node();
+    Node *head = NULL;
+    Node *second = NULL;
+    Node *third = NULL;
+    head = new Node();
+    second = new Node();
+    third = new Node();
 
     head->data = 1;
     head->next = second;
-
+    
     second->data = 2;
     second->next = third;
 
     third->data = 3;
     third->next = NULL;
-    println(head);
-    
+
+    print_ln(head);
+
     return 0;
 }
 

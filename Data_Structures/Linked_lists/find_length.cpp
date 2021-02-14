@@ -1,67 +1,55 @@
-#include<iostream>
+// Find length of linked list
+
+#include<bits/stdc++.h>
 using namespace std;
 
-class node
+class Node
 {
     public:
-    int data;
-    node *next;
+            int data;
+            Node *next;
 };
 
-void insert_head(node **head_ref, int newdata)
+
+void insert_head(Node **head_ref, int new_data)
 {
-    node *newnode = new node();
-    newnode->data = newdata;
-    newnode->next = (*head_ref);
-    (*head_ref) = newnode;
+    Node *new_node = new Node();
+    new_node->data = new_data;
+    new_node->next = *head_ref;
+    *head_ref = new_node;
 }
 
-void println(node *n)
+void print_ln(Node *node)
 {
-    while(n != NULL)
+    while(node != NULL)
     {
-        cout<<n->data<<" ";
-        n = n->next;
+        cout<<node->data<<" ";
+        node = node->next;
     }
+    cout<<endl;
 }
 
-int getlength(node *n)
+int length(Node *node)
 {
-    /* 
-    Returns length from the given node
-    */
-   int count = 0;
-   while(n != NULL)
-   {
-       n = n->next;
-       count += 1;
-   }
-   return count;
-}
-
-// Recursive solution
-int getcount(node *n)
-{
-    if(n == NULL)
+    int count = 0;
+    while(node != NULL)
     {
-        return 0;
+        count += 1;
+        node = node->next;
     }
-    else
-    {
-        return 1 + getcount(n->next);
-    }
-    
+    return count;
 }
 
-int main()
+int main(int argc, char const *argv[])
 {
-    node *head = NULL;
+    Node *head = NULL;
     insert_head(&head, 3);
     insert_head(&head, 2);
     insert_head(&head, 1);
-    cout<<"The linked list is"<<endl;
-    println(head);
-    cout<<endl<<"Length of linked list is: "<<getlength(head);
-    cout<<endl<<"Length of linked list recursively is: "<<getcount(head);
-    return(0);
+
+    print_ln(head);
+    cout<<length(head)<<endl;
+
+    return 0;
 }
+

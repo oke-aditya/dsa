@@ -1,72 +1,68 @@
-#include<iostream>
+// Insert at all 3 positions in linked list
+
+#include<bits/stdc++.h>
 using namespace std;
 
-class node
+class Node
 {
-    public: 
-    int data;
-    node *next;
+    public:
+            int data;
+            Node *next;
 };
 
-// Add a node at the front: (A 4 steps process)
-// And newly added node becomes the new head of the Linked List. 
-// For example if the given Linked List is 10->15->20->25 and we add an item 5 at the front, 
-// then the Linked List becomes 5->10->15->20->25.
-
-// Let us call the function that adds at the front of the list is insert_head(). 
-// The insert_head() must receive a pointer to the head pointer, because push must change the head pointer to point to the new node 
-
-void insert_head(node **headref, int new_data)
+// Insert into head node
+void insert_head(Node **headref, int new_data)
 {
-    // Create a newnode
-    node* newnode = new node();
-    // Push the data;;
-    newnode->data = new_data;
-    // Make next of newnode as head
-    newnode->next = (*headref);
-    // Move the newhead to newnode
-    (*headref) = newnode;
+    // Create a new node
+    Node *new_node = new Node();
+    
+    // Add the data
+    new_node->data = new_data;
+
+    // Point next to head.
+    new_node->next = *headref;
+
+    // Mobe the newhead to newnode.
+    (*headref) = new_node;
 }
 
-// Inserting after a previous node
-
-void insert_afer(node *prev_node, int new_data)
+// Insert after a previous node.
+void insert_after(Node *prev_node, int new_data)
 {
     if(prev_node == NULL)
     {
-        cout<<"Previous cannot be null";
+        cout<<"Previous node cannto be null";
         cout<<endl;
     }
-    //  Allocate new node
-    node *newnode = new node();
-    //  Put new data
-    newnode->data = new_data;
-    //  Shift this pointer to next
-    newnode->next = prev_node->next;
-    //  Shift the prev pointer to this
-    prev_node->next = newnode;
 
+    // Allocate new node
+    Node * new_node = new Node();
+    new_node->data = new_data;
+    
+    // Shift this pointer to point as next of previous node.
+    new_node->next = prev_node->next;
+
+    // Shift the previous node pointer to newnode
+    prev_node->next = new_node;
 }
 
-//  Appending at the end of ll
-void append(node **head_ref, int new_data)
+void insert_end(Node **head_ref, int new_data)
 {
-    node *newnode = new node();
+    Node *new_node = new Node();
 
-    // To keep a track of prev node
-    node *last = *head_ref;
+    // Keep track of prev node
+    Node *last = *head_ref;
 
-    // Put the data 
-    newnode->data = new_data;
+    // Fill the data
+    new_node->data = new_data;
 
-    // This newnode will be last node hence it will be NULL
+    // Since this node is last we will set it to NULL
+    new_node->next = NULL;
 
-    newnode->next = NULL;
-
-    // If we are appending to empty list 
+    // If we are appending to empty list
     if(*head_ref == NULL)
     {
-        *head_ref = newnode;
+        *head_ref = new_node;
         return;
     }
 
@@ -75,28 +71,27 @@ void append(node **head_ref, int new_data)
     {
         last = last->next;
     }
-    last->next = newnode;
+    last->next = new_node;
     return;
 }
 
-void println(node *n)
+void print_ln(Node *node)
 {
-    while(n != NULL)
+    while(node != NULL)
     {
-        cout<<n->data<<" ";
-        n = n->next;
+        cout<<node->data<<" ";
+        node = node->next;
     }
 }
 
-int main()
+int main(int argc, char const *argv[])
 {
-    node *head = NULL;
-    append(&head, 6);
+    Node *head =  NULL;
+    insert_end(&head, 6);
     insert_head(&head, 2);
     insert_head(&head, 3);
-    append(&head, 1);
-    cout<<"The linked list is: "<<endl;
-    println(head);
-    // head = new() node;
-    return(0);
+    insert_end(&head, 1);
+    print_ln(head);
+    return 0;
 }
+
