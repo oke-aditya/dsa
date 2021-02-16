@@ -41,7 +41,7 @@ Node* merge_lists(Node *node1, Node *node2)
 {
     // Merge two linked lists, with help of dummy
     // This is not inplace, we return a new linked list head
-    
+
     // Dummy node. This is just a placeholder for new linked list.
     Node *dummy = new Node();
 
@@ -54,10 +54,16 @@ Node* merge_lists(Node *node1, Node *node2)
     {
         if(node1->data >= node2->data)
         {
-            
+
         }
         
     }
+}
+
+Node *merge_lists_rec(Node *node1, Node *node2)
+{
+    // Merge two linked lists, recursively.
+    // This is also not inplace, we return a new linked list.
 
 }
 

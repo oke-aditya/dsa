@@ -5,88 +5,95 @@
 // For example, let the first linked list be 1->2->3->4->6 and second linked list be 2->4->6->8, 
 // then your function should create and return a third list as 2->4->6.
 
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-class node
+class Node
 {
     public:
-    int data;
-    node *next;
+        int data;
+        Node *next;
 };
 
-void insert_head(node **head_ref, int newdata)
+void insert_head(Node **head_ref, int new_data)
 {
-    node *newnode = new node();
-    newnode->data = newdata;
-    newnode->next = *head_ref;
-    *head_ref = newnode;
+    Node *new_node = new Node();
+    new_node->data = new_data;
+    new_node->next = *head_ref;
+    *head_ref = new_node;
 }
 
-void println(node *n)
+void print_ln(Node *node)
 {
-    while(n != NULL)
+    while(node != NULL)
     {
-        cout<<n->data<<" ";
-        n = n->next;
+        cout<<node->data<<" ";
+        node = node->next;
     }
     cout<<endl;
 }
 
-// The strategy here uses a temporary dummy node as the start of the result list. 
-// The pointer tail always points to the last node in the result list, so appending new nodes is easy. 
-// The dummy node gives tail something to point to initially when the result list is empty. 
-// This dummy node is efficient, since it is only temporary, and it is allocated in the stack. 
-// The loop proceeds, removing one node from either ‘a’ or ‘b’, and adding it to tail. 
+// The strategy here uses a temporary dummy node as the
+// start of the result list. 
+// The pointer tail always points to the last node
+// in the result list, so appending new nodes is easy. 
+// The dummy node gives tail something to point
+// to initially when the result list is empty. 
+// This dummy node is efficient, since it is only
+// temporary, and it is allocated in the stack. 
+// The loop proceeds, removing one node from either ‘a’ or ‘b’,
+// and adding it to tail. 
 // When we are done, the result is in dummy.next.
 
-node *sorted_intersect(node *a, node *b)
-{
-    node dummy;
-    node *tail = &dummy;
-    dummy.next = NULL;
 
-    while(a != NULL && b != NULL)
+Node *sorted_intersect(Node *node1, Node *node2)
+{
+    Node *dummy = NULL;
+    while(node1 != NULL && node2 != NULL)
     {
-        if(a->data == b->data)
+        if(node1->data == node2->data)
         {
-            insert_head(&(tail->next), a->data);
-            tail = tail->next;
-            a = a->next;
-            b = b->next;
+            // This appends intersection to head.
+            // We should actually append to end of list.
+            insert_head(&dummy, node1->data);
+            node1 = node1->next;
+            node2 = node2->next;
         }
-        else if (a->data < b->data)
+        else if(node1->data > node2->data)
         {
-            a = a->next;
+            node2 = node2->next;
         }
         else
         {
-            b = b->next;
+            node1 = node1->next;
         }
     }
-    return dummy.next;
+    return dummy;
+
 }
 
-int main()
+int main(int argc, char const *argv[])
 {
-    node *a = NULL;
-    node *b = NULL;
-    node *intersect = NULL;
+    Node *head1 = NULL;
+    insert_head(&head1, 15);
+    insert_head(&head1, 10);
+    insert_head(&head1, 5);
+    insert_head(&head1, 3);
+    insert_head(&head1, 1);
 
-    insert_head(&a, 5);
-    insert_head(&a, 4);
-    insert_head(&a, 3);
-    insert_head(&a, 1);
+    Node *head2 = NULL;
+    insert_head(&head2, 12);
+    insert_head(&head2, 5);
+    insert_head(&head2, 3);
+    insert_head(&head2, 2);
+    insert_head(&head2, 1);
 
-    insert_head(&b, 6);
-    insert_head(&b, 5);
-    insert_head(&b, 3);
-    insert_head(&b, 2);
+    print_ln(head1);
 
-    intersect = sorted_intersect(a, b);
+    print_ln(head2);
 
-    cout<<"Linked list with intersection of a and b"<<endl;
-    println(intersect);
+    auto res = sorted_intersect(head1, head2);
+    print_ln(res);
 
-    return(0);
+    return 0;
 }

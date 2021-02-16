@@ -38,9 +38,42 @@ void insert_head(Node **head_ref, int new_data)
 }
 
 // This is an inplace merge operation.
-Node* merge_lists(Node *head1, Node* head2)
+Node* merge_lists(Node *node1, Node* node2)
 {
-    
+    // Edge case, where any one is empty.
+    if(node1 == NULL)
+    {
+        return node2;
+    }
+    if(node2 == NULL)
+    {
+        return node1;
+    }
+
+    // We assume node1 to be the node with smallest data at head.
+    if(node1->data > node2->data)
+    {
+        swap(node1, node2);
+    }
+
+    // To this list with inital smallest value, we merge.
+    Node *res = node1;
+    while(node1 != NULL && node2 != NULL)
+    {
+        // Temporary node to fill values.
+        Node *temp = NULL;
+        while(node1 != NULL && node1->data <= node2->data)
+        {
+            // Continue linking the smallest nodes, theya re in node1.
+            temp = node1;
+            node1 = node1->next;
+        }
+        // Since now node1->data > node2->data.
+        // We wil link temp to smallset, that is node2. 
+        temp->next = node2;
+        swap(node1, node2);
+    }
+    return res;
 }
 
 int main(int argc, char const *argv[])
@@ -62,8 +95,9 @@ int main(int argc, char const *argv[])
     cout<<endl<<"Second list = ";
     print_ln(head2);
 
-    // auto merged_list = merge_lists(head1, head2);
-    // print_ln(merge_lists);
+    auto merged_list = merge_lists(head1, head2);
+    cout<<"Merged List = ";
+    print_ln(merged_list);
 
     return 0;
 }
