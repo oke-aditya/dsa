@@ -16,7 +16,7 @@ public class array_search
             arr[i] = scanner.nextInt();
         }
 
-        int search_ele = 10;
+        int search_ele = scanner.nextInt();
         int fg=0;
         for(i=0; i<arr_size; i++)
         {
@@ -34,5 +34,6 @@ public class array_search
         {
             System.out.print("Element not found");
         }
+        System.out.println();
     }
 }
