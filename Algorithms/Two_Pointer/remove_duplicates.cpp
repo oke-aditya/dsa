@@ -17,9 +17,54 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+void print_v(vector <int> v)
+{
+    for(auto x : v)
+    {
+        cout<<x<<" ";
+    }
+    cout<<endl;
+}
+
+// Another simple approach is to add numbers to set.
+// Return all elements in set.
+
+int remove_dup(vector <int> &v)
+{
+    // v.erase(unique(v.begin(), v.end()), v.end());
+    // return v;
+
+    // Another way in O(n) is to shift the unique numbers to first.
+    // Return the only till index of array where unique numbers are.
+
+    if(v.size() == 0)
+    {
+        return 0;
+    }
+    
+    int idx = 0;
+    for(int i=1; i<v.size(); i++)
+    {
+        if(v[i] == v[i-1])
+        {
+            idx += 1;
+        }
+        else
+        {
+            v[i - idx] = v[i];
+        }
+    }
+    return (v.size() - idx);
+
+}
+
 int main(int argc, char const *argv[])
 {
-    
+    vector <int> v = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+    auto res = remove_dup(v);
+    cout<<res;
+    // print_v(res);
+
     return 0;
 }
 
