@@ -28,3 +28,15 @@
 // Explanation:
 // 2 jobs can be done with
 // maximum profit of 127 (100+27).
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(int argc, char const *argv[])
+{
+    
+    return 0;
+}
+
+
