@@ -20,19 +20,52 @@
 // safely manage the arrival and departure
 // of all trains.
 
+// Solution: -
+// Since we do not to worry about train ids.
+// We can sort each of the arrays individually. It will not matter.
+// After sorting we still have the details which trains are going to come and go.
+// Now, we greedily allocate trains that depart early.
+// 
+// 
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int minimal_platform(vector<int> arr, vector<int> dep)
 {
-    
+    sort(arr.begin(), arr.end());
+    sort(dep.begin(), dep.end());
+
+    int plt_needed = 1, max_plt = 1;
+    int i = 1, j = 0;
+
+    while(i < arr.size() && j < dep.size())
+    {
+        if(arr[i] <= dep[j])
+        {
+            plt_needed += 1;
+            i += 1;
+        }
+
+        else if(arr[i] > dep[j])
+        {
+            plt_needed -= 1;
+            j += 1;
+        }
+
+        if(plt_needed > max_plt)
+        {
+            max_plt = plt_needed;
+        }
+    }
+    return max_plt;
 }
 
 int main(int argc, char const *argv[])
 {
     int n = 6;
     // Starting time is not sorted.
-    vector<int> arr = {900, 940, 1100, 1500, 1800};
+    vector<int> arr = {900, 940, 950, 1100, 1500, 1800};
     vector<int> dep = {910, 1200, 1120, 1130, 1900, 2000};
 
     auto res = minimal_platform(arr, dep);

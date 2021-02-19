@@ -113,7 +113,6 @@ int main(int argc, char const *argv[])
 {
     // Array containing start time
     int start[] = {5, 1, 3, 0, 5, 8};
-
     // Array containing finish time
     int finish[] = {9, 2, 4, 6, 7, 9};
 
