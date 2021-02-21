@@ -1,5 +1,3 @@
-import java.util.*;
-
 // Getters and Settters
 
 class Person

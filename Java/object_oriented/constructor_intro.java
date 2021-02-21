@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Student
 {
     String regno, name;
@@ -24,12 +22,12 @@ class Student
     // If we keep both the above, it is overloaded constructor.
 
     // A constructor using this keyword
-    // public Student(String regno, String name, int marks)
-    // {
-    //     this.regno = regno;
-    //     this.name = name;
-    //     this.marks = marks;
-    // }
+    public Student(String regno, String name, int marks)
+    {
+        this.regno = regno;
+        this.name = name;
+        this.marks = marks;
+    }
 
     public void display()
     {

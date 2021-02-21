@@ -1,7 +1,5 @@
 // Synatax for inheritence
 // class subClass extends superClass
-import java.util.*;
-
 class Animal
 {
     void king()
