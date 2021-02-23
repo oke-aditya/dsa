@@ -1,3 +1,5 @@
+package object_oriented;
+
 class Flower
 {
     void color()

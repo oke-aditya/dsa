@@ -1,3 +1,5 @@
+package looping;
+
 import java.util.Scanner;
 
 
@@ -5,7 +7,8 @@ class sum_digits
 {
     public static void main(final String[] array)
     {
-        int i = new Scanner(System.in).nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int i = scanner.nextInt();
         int n = 0;
         while (i > 0)
         {
@@ -13,5 +16,6 @@ class sum_digits
             i /= 10;
         }
         System.out.println(n);
+        scanner.close();
     }
 }

@@ -5,6 +5,8 @@
 // ***
 // ****
 
+package nested_loops;
+
 import java.util.*;
 
 class print_star

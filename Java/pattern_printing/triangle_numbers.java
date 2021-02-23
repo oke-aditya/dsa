@@ -1,4 +1,4 @@
-import java.io.*;
+package pattern_printing;
 import java.util.*;
 
 public class triangle_numbers 
@@ -18,5 +18,6 @@ public class triangle_numbers
             }
             System.out.println();
         }
+        scanner.close();
     }    
 }

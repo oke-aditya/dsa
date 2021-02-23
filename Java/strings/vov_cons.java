@@ -1,4 +1,5 @@
-import java.io.*;
+package strings;
+
 import java.util.*;
 
 public class vov_cons 
@@ -25,6 +26,7 @@ public class vov_cons
         {
             System.out.println("Not an alphabet");
         }
+        scanner.close();
     }
 }
 

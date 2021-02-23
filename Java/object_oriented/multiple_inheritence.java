@@ -1,3 +1,5 @@
+package object_oriented;
+
 // Multiple inheritance is not supported in java.
 // To remove ambiguity.
 // To provide more maintainable and clean design.

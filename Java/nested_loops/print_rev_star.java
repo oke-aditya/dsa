@@ -1,3 +1,5 @@
+package nested_loops;
+
 import java.util.*;
 
 public class print_rev_star

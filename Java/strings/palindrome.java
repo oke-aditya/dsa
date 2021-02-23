@@ -1,4 +1,5 @@
-import java.io.*;
+package strings;
+
 import java.util.*;
 
 public class palindrome 
@@ -29,5 +30,6 @@ public class palindrome
         {
             System.out.println("Not a Palindrome");
         }
+        scanner.close();
     }
 }

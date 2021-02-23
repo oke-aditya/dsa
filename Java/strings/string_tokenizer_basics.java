@@ -1,4 +1,5 @@
-import java.io.*;
+package strings;
+
 import java.util.*;
 
 public class string_tokenizer_basics 

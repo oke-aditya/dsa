@@ -1,4 +1,5 @@
-import java.io.*;
+package strings;
+
 import java.util.*;
 
 public class string_ops 
@@ -15,6 +16,8 @@ public class string_ops
         System.out.println(s1.length() + " " + s2.length());
         System.out.println(s1.concat(s2));
         System.out.print(s1.toUpperCase());
+
+        scanner.close();
 
     }
 }

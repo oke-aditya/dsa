@@ -1,5 +1,4 @@
-import java.io.*;
-import java.util.*;
+package strings;
 
 public class string_basics 
 {

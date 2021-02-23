@@ -1,4 +1,5 @@
-import java.io.*;
+package input_output;
+
 import java.util.*;
 
 public class sort_collections
@@ -35,5 +36,6 @@ public class sort_collections
             System.out.print(s + " ");
         }
         System.out.println();
+        scanner.close();
     }
 }

@@ -1,3 +1,5 @@
+package collections;
+
 import java.util.*;
 
 public class set_intro

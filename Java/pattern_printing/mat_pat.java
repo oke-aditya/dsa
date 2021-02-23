@@ -1,4 +1,4 @@
-import java.io.*;
+package pattern_printing;
 import java.util.*;
 
 public class mat_pat 
@@ -21,6 +21,7 @@ public class mat_pat
             }
             System.out.println();
         }
+        scanner.close();
     }
     
 }

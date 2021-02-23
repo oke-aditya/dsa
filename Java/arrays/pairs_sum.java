@@ -1,6 +1,6 @@
-import java.io.*;
+package arrays;
+
 import java.util.Scanner;
-import java.util.*;
 
 public class pairs_sum 
 {
@@ -30,5 +30,6 @@ public class pairs_sum
             }
         }
         System.out.print(count);
+        scanner.close();
     }
 }

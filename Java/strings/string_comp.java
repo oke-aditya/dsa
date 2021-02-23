@@ -1,4 +1,5 @@
-import java.io.*;
+package strings;
+
 import java.util.*;
 
 public class string_comp 
@@ -17,5 +18,6 @@ public class string_comp
         {
             System.out.print("Not equal");
         }
+        scanner.close();
     }
 }

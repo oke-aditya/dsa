@@ -1,4 +1,5 @@
-import java.io.*;
+package input_output;
+
 import java.util.*;
 
 public class armstrong {
@@ -22,6 +23,7 @@ public class armstrong {
         {
             System.out.println("Not armstrong Number");
         }
+        scanner.close();
     }
 }
 

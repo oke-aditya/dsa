@@ -1,3 +1,5 @@
+package collections;
+
 import java.util.*;
 
 class arraylist_intro

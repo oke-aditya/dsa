@@ -1,5 +1,4 @@
-import java.io.*;
-import java.util.*;
+package arrays;
 
 public class array_basics 
 {

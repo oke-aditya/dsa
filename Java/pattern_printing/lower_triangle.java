@@ -1,4 +1,4 @@
-import java.io.*;
+package pattern_printing;
 import java.util.*;
 
 public class lower_triangle 
@@ -25,6 +25,7 @@ public class lower_triangle
                 k += 2;
             }
             System.out.println();
-        }        
+        }
+        scanner.close();
     }
 }

@@ -1,4 +1,5 @@
-import java.io.*;
+package arrays;
+
 import java.util.*;
 
 public class array_search 
@@ -35,5 +36,6 @@ public class array_search
             System.out.print("Element not found");
         }
         System.out.println();
+        scanner.close();
     }
 }

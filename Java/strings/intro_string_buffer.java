@@ -1,5 +1,5 @@
-import java.io.*;
-import java.util.*;
+package strings;
+
 
 public class intro_string_buffer 
 {

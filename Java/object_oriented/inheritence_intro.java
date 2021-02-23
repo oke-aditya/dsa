@@ -1,3 +1,5 @@
+package object_oriented;
+
 // Synatax for inheritence
 // class subClass extends superClass
 class Animal
