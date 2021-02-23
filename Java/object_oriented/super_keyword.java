@@ -1,3 +1,5 @@
+package object_oriented;
+
 class SuperClass
 {
     protected int a;

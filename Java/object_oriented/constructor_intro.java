@@ -1,3 +1,5 @@
+package object_oriented;
+
 class Student
 {
     String regno, name;

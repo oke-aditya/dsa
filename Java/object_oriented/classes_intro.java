@@ -1,6 +1,8 @@
+package object_oriented;
+
 import java.util.*;
 
-class Student
+class Student1
 {
     // Data member,
     String name, regno;
@@ -48,14 +50,14 @@ public class classes_intro
 {
     public static void main(String[] args)
     {
-        Student s1 = new Student();
+        Student1 s1 = new Student1();
         s1.addinfo();
         s1.viewinfo();
 
-        Student all_students[] = new Student[2];
+        Student1 all_students[] = new Student1[2];
         for(int i=0; i<2; i++)
         {
-            all_students[i] = new Student();
+            all_students[i] = new Student1();
             all_students[i].addinfo();
             // all_students[i].viewinfo();
         }
