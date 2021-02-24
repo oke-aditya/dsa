@@ -1,3 +1,5 @@
+package arrays;
+
 import java.util.*;
 
 public class add_matrix
@@ -48,6 +50,7 @@ public class add_matrix
             }
             System.out.println();
         }
+        scanner.close();
     }
     
 }

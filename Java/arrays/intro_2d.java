@@ -1,7 +1,11 @@
+package arrays;
+
 import java.util.*;
 
 public class intro_2d
 {
+    private static int[][] is;
+
     public static void print_arr(int arr[][])
     {
         for(int row[]: arr)
@@ -36,7 +40,9 @@ public class intro_2d
 
         // Anonymous arrays.
         print_arr(new int[][] {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}});
-        print_arr((x = return_arr()));
+        int[][] x;
+        x = return_arr();
+        print_arr(x);
 
         scanner.close();
     }

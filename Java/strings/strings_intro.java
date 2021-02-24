@@ -1,4 +1,4 @@
-import java.util.*;
+package strings;
 
 public class strings_intro
 {   

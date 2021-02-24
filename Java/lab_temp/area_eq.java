@@ -1,3 +1,5 @@
+package lab_temp;
+
 import java.util.Scanner;
 
 public class area_eq

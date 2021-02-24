@@ -1,5 +1,6 @@
-import java.util.*;
-import java.util.Arrays;  
+package arrays;
+
+import java.util.Arrays;
 
 public class remove_duplicates
 {

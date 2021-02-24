@@ -1,4 +1,6 @@
-import java.util.Arrays;  
+package lab_temp;
+
+import java.util.Arrays;
 
 public class remove_duplicates
 {

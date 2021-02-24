@@ -1,4 +1,4 @@
-import java.util.*;
+package arrays;
 
 public class reverse_arr
 {

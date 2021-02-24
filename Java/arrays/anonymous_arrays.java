@@ -1,4 +1,4 @@
-import java.util.*;
+package arrays;
 
 public class anonymous_arrays
 {

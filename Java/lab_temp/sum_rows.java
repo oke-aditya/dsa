@@ -1,3 +1,5 @@
+package lab_temp;
+
 import java.util.*;
 
 public class sum_rows

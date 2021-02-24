@@ -1,3 +1,5 @@
+package arrays;
+
 import java.util.*;
 
 public class check_identity

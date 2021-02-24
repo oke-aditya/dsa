@@ -1,6 +1,6 @@
-import java.util.*;
+package strings;
 
-import javax.swing.text.StyleContext.NamedStyle;
+import java.util.*;
 
 public class string_arr
 {

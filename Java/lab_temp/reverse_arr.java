@@ -1,4 +1,4 @@
-import java.util.*;
+package lab_temp;
 
 public class reverse_arr
 {

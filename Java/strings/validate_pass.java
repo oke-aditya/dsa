@@ -1,3 +1,5 @@
+package strings;
+
 import java.util.*;
 
 public class validate_pass

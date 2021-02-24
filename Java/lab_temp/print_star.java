@@ -1,3 +1,5 @@
+package lab_temp;
+
 // Print this pattern for n lines  
 
 // *
