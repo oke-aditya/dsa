@@ -1,4 +1,4 @@
-// package object_oriented;
+package object_oriented;
 
 // An example to use interfaces.
 
@@ -17,6 +17,15 @@ interface Button
     void set_button_color();
     void set_button_text();
     void on_click();
+
+    // Adding any single method would force all the implemented classes
+    // To code it
+
+    // To avoid this we can use `default` and declare in place.
+    default void test_method()
+    {
+        System.out.println("This is a test method");
+    }
 
 }
 
@@ -72,6 +81,10 @@ public class interfaces_intro
     {
         Reservation r1 = new Reservation();
         r1.on_click();
+
+        // We can use the test method which is present in interface
+        // We don't need to overload and use it.
+        r1.test_method();
 
     }
 }
