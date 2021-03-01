@@ -29,6 +29,10 @@
 // 2 jobs can be done with
 // maximum profit of 127 (100+27).
 
+// Solution: -
+// 
+// 
+
 
 #include<bits/stdc++.h>
 using namespace std;
