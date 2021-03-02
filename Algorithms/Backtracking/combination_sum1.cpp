@@ -31,9 +31,16 @@
 // Printing combinations / subsequence. Always involves recursion.
 // We have to recurse till we don't reach the target.
 // We have 2 choices for each element. Either we can pick it or we can avoid it.
-// 
-// 
-// 
+// We create a result array and a temp array, then we start backtracking.
+// backtrack till we reach end of the array.
+// if target is 0 we have found one solution in temp.
+// otherwise
+// we push the number which we have found.
+// Remember to pass result by reference.
+// Contrinue backtracking for num[i] - target
+// Do not increase i as we can take each element more than once.
+// If we are not recursing, the we should pop the element. So res.pop_back().
+
 
 #include<bits/stdc++.h>
 
@@ -54,7 +61,8 @@ void print_vv(vector <vector<int>> vv)
 }
 
 // Pass the result by reference.
-void backtrack(vector<vector<int>> &res, vector<int> temp, vector<int> nums, int target, int start)
+void backtrack(vector<vector<int>> &res, vector<int> temp,
+               vector<int> nums, int target, int start)
 {
     if(target < 0)
     {
@@ -89,6 +97,8 @@ vector<vector<int>> print_combination(vector <int> nums, int target)
 {
     vector<vector<int>> res;
     vector<int> temp;
+    // If necessary we can sort
+    // sort(nums.begin(), nums.end());
     backtrack(res, temp, nums, target, 0);
     return res;
 
