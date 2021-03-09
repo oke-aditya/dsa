@@ -15,7 +15,7 @@ def fib_rec(n : int):
     if(n <= 1):
         return n
     else:
-        return fib_mem(n - 1) + fib_mem(n - 2)
+        return fib_rec(n - 1) + fib_rec(n - 2)
 
 def fib_itr(n : int):
     fib_arr = [-1] * (n + 2)
