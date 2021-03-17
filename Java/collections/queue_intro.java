@@ -28,12 +28,18 @@ public class queue_intro
             System.out.println(q1.poll());
         }
 
+        // Queue <Integer> q2 = new ArrayDeque<Integer>();
+
         ArrayDeque <Integer> aq1 = new ArrayDeque <Integer>();
 
         aq1.add(10);
         aq1.add(20);
         aq1.add(30);
         aq1.add(40);
+        aq1.removeFirst();
+        aq1.addFirst(20);
+        aq1.addLast(32);
+        aq1.removeLast();
 
         System.out.println(aq1);
 

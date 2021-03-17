@@ -22,7 +22,7 @@ public class threading_priority
         System.out.println(sp3.getPriority());
         System.out.println(sp3.getId());
         System.out.println(sp3.getName());
-        
+
 
 
     }
