@@ -4,7 +4,7 @@ public class q4_count_words
 {
     public static void main(String[] args)
     {
-        canner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String sentence = scanner.nextLine();
 
         String words[] = sentence.split(" ");

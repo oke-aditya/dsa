@@ -4,7 +4,7 @@ public class q8_find_name
 {
     public static void main(String[] args)
     {
-        Strint arr[] = new String[5];
+        String arr[] = new String[5];
         Scanner scanner = new Scanner(System.in);
 
         for(int i=0; i<5; i++)

@@ -17,6 +17,7 @@ public class q2_reg_no {
         }
 
         // Bubble sort the array
+        String temp = "";
         for (int k = 0; k < arr.length - 1; k++)
         {
             for (int j = 0; j < arr.length - k - 1; j++)

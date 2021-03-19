@@ -12,7 +12,7 @@ public class q7_weak_password
         for(int i=0; i<uname.length()-2; i++)
         {
             String temp = uname.substring(i, i+3);
-            if(password.contains(uname))
+            if(password.contains(temp))
             {
                 System.out.println("Weak password");
                 flag = true;
