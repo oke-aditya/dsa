@@ -30,7 +30,6 @@ public class finally_intro
         {
             System.out.println("finally block is executed");
         }
-
         // Continue the next code here.
     }
 }

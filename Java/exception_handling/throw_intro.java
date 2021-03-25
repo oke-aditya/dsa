@@ -8,29 +8,35 @@
 // Used within a method
 // Cannot throw multiple exceptions.
 
+
+
 public class throw_intro
 {
+    public static void validate(int age)
+    {
+        if(age < 18 || age > 27)
+        {
+            throw new ArithmeticException("Invalid Age");
+        }
+    }
+
     public static void main(String[] args)
     {
         int age = 5;
-        if(age < 21 || age > 27)
+        
+        try
         {
-            throw new ArithmeticException("Invalid age");
+            validate(age);
+        }
+        catch (ArithmeticException e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+        }
+        finally
+        {
+            System.out.println("For more information do not contact us");
         }
     }
-    
 }
-
-// Throws keyword
-
-// The Java throws keyword is used to declare an exception.
-// It gives an information to the programmer or caller
-// method that there may occur an exception so it
-// is better for the programmer or caller method to provide
-// the exception handling code so that normal flow can be maintained.
-
-// Throws is used to declare an exception
-// Checked exceptions can be propogated.
-// Can declare multiple exceptions.
-
 

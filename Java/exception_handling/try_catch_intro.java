@@ -23,6 +23,11 @@
 // Or use generic
 // Exception
 
+// Excpetion e has multiple attributes
+// Use e.getMesage() to get message of error
+// Use e.getCause() to get cause of error
+// Use e.getStackTrace() to get location and call stakc for error.
+
 
 import java.util.*;
 
@@ -36,12 +41,18 @@ public class try_catch_intro
         {
             int z = x / y;
         }
+        // Catch a generic exception
         catch (Exception e)
         {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+            System.out.println(e.getStackTrace());
             System.out.println("Cannot divide by zero");
         }
 
         int arr[] = {1, 2, 3, 4};
+
+        // Catch a specific excpetion.
         try
         {
             int n = arr[6];
