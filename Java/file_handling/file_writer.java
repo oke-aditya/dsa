@@ -3,7 +3,10 @@
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class write_file
+// File writer can read only utf-8 encoding data
+// It cannot read utf-16 or other encodings.
+
+public class file_writer
 {
     public static void main(String[] args)
     {
