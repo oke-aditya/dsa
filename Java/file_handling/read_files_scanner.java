@@ -9,11 +9,12 @@ import java.io.File;
 //  Which one to use depends on the Java version you're working
 // with and whether you need to read bytes or characters, and the size of the file/lines etc.
 
-public class read_files
+public class read_files_scanner
 {
     public static void main(String[] args)
     {
-        try {
+        try
+        {
             File obj = new File("somename.txt");
             Scanner scanner = new Scanner(obj);
 
@@ -22,9 +23,7 @@ public class read_files
                 String data = scanner.nextLine();
                 System.out.println(data);
             }
-
             scanner.close();
-        
         }
         
         catch (Exception e)
