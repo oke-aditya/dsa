@@ -11,6 +11,10 @@
 // Output: true
 // Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
 
+// Input: head = [1,2], pos = 0
+// Output: tail connects to node index 0
+// Explanation: There is a cycle in the linked list, where tail connects to the first node.
+
 // Solution: -
 // Keep a slow pointer and a fast pointer.
 // Proceed fast by 2, slow by 1.

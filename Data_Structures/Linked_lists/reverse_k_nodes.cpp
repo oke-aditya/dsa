@@ -23,9 +23,13 @@
 // Output: [1]
 
 // Solution: -
-// 
-// 
-// 
+// Add dummy to the head.
+// Find length of linked list.
+// Keep ptrs, prev, forw, curr.
+// curr is ahead of prev. fowr is ahead of curr.
+// Reverse the connects.
+// Previous becomes current.
+// Decrease count by k
 
 #include<bits/stdc++.h>
 using namespace std;
