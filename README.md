@@ -34,3 +34,8 @@
 
 [Curated Concepts](https://www.unacademy.com/a/curated-classes-on-competitive-programming-by-sanket)
 
+## Questions taken from
+
+Leetcode
+
+[K Nauid's Book](https://knaidu.gitbooks.io/problem-solving/content/)

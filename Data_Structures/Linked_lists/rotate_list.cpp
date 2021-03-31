@@ -20,6 +20,12 @@
 // 
 // 
 
+// Followup
+// Shift linked list, rotate to left.
+// We can still solve with same logic
+// Rotation to right = length - rotation to left.
+// Continue in same way.
+
 
 #include<bits/stdc++.h>
 using namespace std;
