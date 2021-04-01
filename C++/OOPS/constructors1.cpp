@@ -64,6 +64,22 @@ class cons2
 // be made to call copy constructor which becomes a non-terminating
 // chain of calls. Therefore compiler doesn’t allow parameters to be passed by value.
 
+// C++ compiler provide default copy constructor
+// (and assignment operator) with class.
+// When we don’t provide implementation of copy constructor
+// (and assignment operator) and tries to initialize object
+// with already initialized object of same class then copy
+// constructor gets called and copies members of class one by one in target object.
+
+// The problem with default copy constructor (and assignment operator) is
+// – When we have members which dynamically gets initialized at run time,
+// default copy constructor copies this members with address of dynamically
+// allocated memory and not real copy of this memory. Now both the objects
+// point to the same memory and changes in one reflects in another object,
+// Further the main disastrous effect is, when we delete one of this object
+// other object still points to same memory, which will be dangling pointer,/
+// and memory leak is also possible problem with this approach.
+
 class Point
 {
     private:
