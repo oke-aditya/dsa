@@ -1,4 +1,4 @@
-package object_oriented;
+// package object_oriented;
 
 // An example to use interfaces.
 
@@ -19,7 +19,7 @@ interface Button
     void on_click();
 
     // Adding any single method would force all the implemented classes
-    // To code it
+    // To implement it
 
     // To avoid this we can use `default` and declare in place.
     default void test_method()

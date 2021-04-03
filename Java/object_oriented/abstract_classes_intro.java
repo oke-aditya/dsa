@@ -1,4 +1,4 @@
-package object_oriented;
+// package object_oriented;
 
 // Abstract class gives partial implementation of object
 // We cannot instantiate abstract class.

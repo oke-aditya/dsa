@@ -6,7 +6,7 @@
 // Single Inheritance and Multiple Inheritance
 // but Hybrid Inheritance doesn’t support in java.
 
-package object_oriented;
+// package object_oriented;
 
 class A
 {

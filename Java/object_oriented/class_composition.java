@@ -1,4 +1,4 @@
-package object_oriented;
+// package object_oriented;
 
 // Composition is strong association between two classes.
 // Denoted by has a relationship.
