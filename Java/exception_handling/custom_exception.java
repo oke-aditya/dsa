@@ -56,6 +56,6 @@ public class custom_exception
         {
             System.out.println(e);
         }
-
+        scanner.close();
     }
 }
