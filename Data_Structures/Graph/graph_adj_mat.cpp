@@ -1,8 +1,7 @@
-// Implementing graph using adjacency list
-// This is the representation used in solving problems
+// Implementing graph using adjacency matrix
 // There are n nodes / vertices and m edges.
 // Each index contains list of edges.
-// The weights of edges can be represented as lists of pairs
+// It is represented as matrix.
 
 // Graph to represent
 //  1 --- 2 --- 4
@@ -10,8 +9,9 @@
 //  |   - |  -
 //  5 --- 3
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+
 
 int main(int argc, char const *argv[])
 {
@@ -19,15 +19,18 @@ int main(int argc, char const *argv[])
     // There are five vertices.
     int V, E; // Also denoted as n vertices and m edges.
 
+    // Declare the adjacency matrix;
+    // For each vertex we store the connections.
+    // Both are adjacent to each other
+
     // There are 5 vertices and 7 edjges.
     // (5, 7) is input on first line.
     cin>>V>>E;
 
-    // Declare the adjacency list;
-    // For each vertex we store the connections.
-    vector<int> adj[V+1];
+    // The adjacency matrix for all vertex.
+    int adj[V+1][V+1];
 
-    // Process every edge
+    // Take edges as input.
     for(int i=0; i<E; i++)
     {
         // This denoted there is edge between vertex v1 and v2
@@ -36,17 +39,13 @@ int main(int argc, char const *argv[])
         int v1, v2;
         cin >> v1 >> v2;
 
-        // For each vertex store who is adjacent.
-        adj[v1].push_back(v2);
-
-        // If the graph is directed this may not be true.
-        adj[v2].push_back(v1);
-
-        // If the graph has weights, we will have vector of pairs and push weight too.
+        // Since both are adjacent to each other.
+        adj[v1][v2] = 1;
+        adj[v2][v1] = 1;
 
     }
+
     
     return 0;
 }
-
 

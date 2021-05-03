@@ -28,14 +28,11 @@ class buffered_reader
             bin.close();
             fin.close();
 
-            
-        
         }
 
         catch (Exception e)
         {
             System.out.println(e.getMessage());
         }
-
     }
 }

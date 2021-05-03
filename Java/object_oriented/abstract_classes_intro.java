@@ -63,7 +63,6 @@ class Circle extends Shape
         area = Math.PI * this.radius * this.radius;
         return(area);
     }
-
 }
 
 public class abstract_classes_intro

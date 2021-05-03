@@ -58,6 +58,12 @@ int min_sum_subarr(vector <int> v, int k)
         }
     }
     return min_win_size;
+}
+
+// Two pointer based solution that works for all cases.
+int min_sub_arr(vector<int> v, int k)
+{
+    
 
 }
 
