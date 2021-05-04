@@ -67,7 +67,7 @@ vector <int> dfsofg(int V, vector <int> adj[])
     vector <int> is_visited(V+1, 0);
 
     // We start from node1
-    for(int i=1; i<=V; i++)
+    for(int i=0; i<V; i++)
     {
         if(!is_visited[i])
         {
