@@ -10,6 +10,16 @@
 //  |   - |  -
 //  5 --- 3
 
+// Input for this graph
+// 5 7  (5 vertices and 7 edges)
+// 1 2  (edge between 1 and 2)
+// 1 5
+// 5 3
+// 2 3
+// 1 3
+// 3 4
+// 2 4
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -43,7 +53,16 @@ int main(int argc, char const *argv[])
         adj[v2].push_back(v1);
 
         // If the graph has weights, we will have vector of pairs and push weight too.
+    }
 
+    // Print the adjacency list
+    for(auto it: adj)
+    {
+        for(auto x: it)
+        {
+            cout<<x<<" ";
+        }
+        cout<<endl;
     }
     
     return 0;

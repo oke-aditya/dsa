@@ -7,7 +7,18 @@
 //  1 --- 2 --- 4
 //  | -   |   -
 //  |   - |  -
-//  5 --- 3
+//  7 --- 6
+
+// Input for this graph
+// 5 7  (5 vertices and 7 edges)
+// 1 2  (edge between 1 and 2)
+// 1 5
+// 5 3
+// 2 3
+// 1 3
+// 3 4
+// 2 4
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -28,7 +39,7 @@ int main(int argc, char const *argv[])
     cin>>V>>E;
 
     // The adjacency matrix for all vertex.
-    int adj[V+1][V+1];
+    int adj[V+1][V+1] = {0};
 
     // Take edges as input.
     for(int i=0; i<E; i++)
@@ -45,6 +56,16 @@ int main(int argc, char const *argv[])
 
     }
 
+    // Print the adjacency matrix of graph
+    for(int i=0; i<V; i++)
+    {
+        for(int j=0; j<V; j++)
+        {
+            cout<<adj[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
     
     return 0;
 }
