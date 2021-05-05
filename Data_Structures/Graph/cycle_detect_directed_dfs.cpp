@@ -1,4 +1,5 @@
 // Detect cycle in a directed graph
+// https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
 
 // Given a Directed Graph with V vertices (Numbered from 0 to V-1)
 // and E edges, check whether it contains any cycle or not.
@@ -8,8 +9,11 @@
 // Keep two arrays, one for visited nodes and for dfs visited
 // dfs visited checks if the current node was visited
 // during the current run of dfs
-// 
-// 
+// For every node check if it is not visited.
+// Visit the node and check for cycle.
+// If the node is visited in current dfs visit
+// Or the node has cycle return true.
+// Unmark the node as it was visited by dfs.
 // 
 
 
@@ -82,7 +86,7 @@ int main(int argc, char const *argv[])
         adj[v1].push_back(v2);
 
         // If directed graph this is not true.
-        adj[v2].push_back(v1);
+        // adj[v2].push_back(v1);
     }
 
     // Peform bfs for the given graph with adjacenc list and number of vertices.
@@ -98,5 +102,3 @@ int main(int argc, char const *argv[])
     }
     return 0;
 }
-
-
