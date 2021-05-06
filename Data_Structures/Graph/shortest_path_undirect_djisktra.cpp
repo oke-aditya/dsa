@@ -4,11 +4,18 @@
 // find shortest paths from source to all vertices in the given graph.
 
 // Algorithm (Djisktra Algorithm): -
-// 
-// 
-// 
-// 
-
+// Use a min priority queue to maintain distances and vertices.
+// Priotiy queue has {distance, node}
+// Declare a min heap (as priority queue.
+// We need to compute all distances for V+1 nodes.
+// Distace of src = 0;
+// While priority queue is not empty.
+// Get node and distance.
+// Use BFS like traversal for the node and traverse through adjacency list.
+// Since it is a wieghted graph it is stored as {node, distance}
+// if the distance[prev] + next distance is smaller. 
+// then we update the distance.
+// Push distance to queue along with the node.
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -39,7 +46,7 @@ vector <int> shortest_path(int V, int src, vector<pair<int, int>> adj[])
             int next = it->first;
             int next_dist = it->second;
 
-            if(distances[next] > distances[prev] + next_dist)
+            if( distances[prev] + next_dist < distances[next])
             {
                 distances[next] = distances[prev] + next_dist;
                 pq.push({distances[next], next});
