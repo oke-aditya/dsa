@@ -47,13 +47,39 @@ void print_v(vector <int> v)
 // 2 <= nums.length <= 500
 // 0 <= nums[i] <= 100
 
-
 vector <int> number_smaller(vector <int> &nums)
 {
+    // Result
+    vector <int> res;
+    int i, j;
 
+    // Store all the numbers here like hashmap.
+    int count[101] = {0};
+
+    // Add to count of each number.
+    for(int i=0; i<nums.size(); i++)
+    {
+        count[nums[i]] += 1;
+    }
+
+    for(int i=1; i<101; i++)
+    {
+        count[i] += count[i-1];
+    }
+
+    for(int i=0; i<nums.size(); i++)
+    {
+        if(nums[i] == 0)
+        {
+            res.push_back(0);
+        }
+        else
+        {
+            res.push_back(count[nums[i] - 1]);
+        }
+    }
+    return res;
 }
-
-
 
 int main(int argc, char const *argv[])
 {
