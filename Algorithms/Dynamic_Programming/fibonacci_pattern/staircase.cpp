@@ -75,6 +75,24 @@ int staircase_td(int n)
     }
 }
 
+int climbStairs(int n)
+{
+    vector<int> res(n+4, 0);
+    res[0] = 0;
+    res[1] = 1;
+    res[2] = 2;
+    res[3] = 3;
+    
+    for(int i=4; i<=n; i++)
+    {
+        res[i] = res[i-1] + res[i-2];
+    }
+    
+    return res[n];
+
+}
+
+
 int main(int argc, char const *argv[])
 {
     int n = 4;

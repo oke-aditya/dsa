@@ -53,6 +53,21 @@ int fibonnaci_bu(int n)
     return arr[n];
 }
 
+int fib(int n) {
+    vector<int> res(n+2, 0);
+    res[0] = 0;
+    res[1] = 1;
+    
+    // res[2] = res[0] + res[1];
+    
+    for(int i=2; i<=n; i++)
+    {
+        res[i] = res[i-1] + res[i-2];
+    }
+    
+    return res[n];
+}
+
 int main(int argc, char const *argv[])
 {
     // Seq 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
