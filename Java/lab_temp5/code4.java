@@ -11,7 +11,7 @@ class code4
             @Override
             public void run()
             {
-                for (int i = 0; i < 50; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     user.withdraw(100);
                 }
@@ -22,7 +22,7 @@ class code4
             @Override
             public void run()
             {
-                for (int i = 0; i < 50; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     user.withdraw(100);
                 }
