@@ -14,38 +14,31 @@
 // Add the new element to sum only if net sum is +ve
 // Update maximum sum with sum.
 
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int max_sub_arr(vector <int> v)
+int max_sub_arr(vector<int> &nums)
 {
-    int sum_so_far = 0;
-    int max_sum = v[0];
+    int sum = 0, smax = INT_MIN;
 
-    for(int i=0; i<v.size(); i++)
+    for(int num: nums)
     {
-        sum_so_far += v[i];
-        if(sum_so_far > max_sum)
+        sum += num;
+        smax = max(sum, smax);
+        if(sum < 0)
         {
-            max_sum = sum_so_far;
-        }
-        if(sum_so_far < 0)
-        {
-            sum_so_far = 0;
+            sum = 0;
         }
     }
-    return max_sum;
-
+    return smax;
 }
 
 int main(int argc, char const *argv[])
 {
-    vector <int> v = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-    
+    vector<int> v = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+
     auto res = max_sub_arr(v);
-    cout<<res<<endl;
+    cout << res << endl;
 
     return 0;
 }
-

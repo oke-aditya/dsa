@@ -21,6 +21,7 @@ class arraylist_intro
         System.out.println(al2.contains("Hello"));
         System.out.println(al2.indexOf("From"));
         System.out.println(al2.get(2));
+        
 
         ArrayList <Integer> al3 = new ArrayList<Integer>();
         al3.add(20);

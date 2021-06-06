@@ -35,24 +35,35 @@ Node *newnode(int new_data)
     return new_node;
 }
 
+// The idea is quite simple.
+// Max value of Height(leftSubtree) +
+// Height(rightSubtree) (at any node) is the diameter.
+// Keep track of maximum diameter duing traversal and
+// find the height of the tree.
+
 int diameter_tree(Node *node)
+{
+    int d = 0;
+    auto _ = dmtree(node, d);
+    return d;
+
+}
+
+int dmtree(Node *node, int &d)
 {
     if(node == NULL)
     {
         return 0;
     }
-    int l = diameter_tree(node->left);
-    int r = diameter_tree(node->right);
 
-    // Case where we pass through root for diamater.
-    res = max(res, (1 + l + r));
-    
-    // Pass throught own for diameter.
-    res = 1 + max(l, r);
+    int ld = dmtree(node->left, d);
+    int rd = dmtree(node->right, d);
 
-    return res;
+    d = max(d, ld+ rd);
+    return max(ld, rd) + 1;
 
 }
+
 
 int main(int argc, char const *argv[])
 {

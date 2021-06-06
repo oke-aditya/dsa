@@ -6,22 +6,14 @@
 
 import java.lang.Thread;
 
-public class threading_intro
-{
-    public static void main(String[] args)
-    {
-        Thread th = Thread.currentThread();
-        System.out.println("Current Thread : " + th);
-
-        try
-        {
-            Thread.sleep(1);
-        }
-        catch (InterruptedException e)
-        {
-            System.out.println("Main thread Interrupted");
-        }
-
+public class threading_intro {
+    public static void main(String[] args) {
+        Thread Thr1 = new Thread(new Runnable() {
+            public void run() {
+                // Thread.wait();
+                Thr1.wait();
+            }
+        });
+        Thr1.start();
     }
-    
 }
