@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+
 // Given weights and values of n items, put these items in a
 // knapsack of capacity W to get the maximum total value in the knapsack. 
 // In other words, given two integer arrays val[0..n-1] and wt[0..n-1] which represent values and weights 
@@ -28,7 +29,10 @@ int knapSackRec(int val[], int wt[], int w, int n)
         // wt[n] < w
         else
         {
-            return max(val[n-1] + knapSackRec(val, wt, w-wt[n-1], n - 1), knapSackRec(val, wt, w, n-1));
+            return (
+                max(val[n-1] + 
+                knapSackRec(val, wt, w-wt[n-1], n - 1), 
+                knapSackRec(val, wt, w, n-1)));
         } 
     }
     

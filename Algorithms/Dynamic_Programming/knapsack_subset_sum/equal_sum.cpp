@@ -39,7 +39,7 @@ bool is_subset_sum(int arr[], int sum, int n)
         }
         else
         {
-            dp[n][sum] = (is_subset_sum(arr, sum, n-1) || is_subset_sum(arr, sum-arr[n-1], n=1));
+            dp[n][sum] = (is_subset_sum(arr, sum, n-1) || is_subset_sum(arr, sum-arr[n-1], n-1));
             return dp[n][sum];
         }
         

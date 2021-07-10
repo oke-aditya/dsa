@@ -1,6 +1,13 @@
 // Given a set of non-negative integers, and a value sum,
 // determine if there is a subset of the given set with sum equal to given sum.
 
+// Input: N = 4
+// arr = {1, 5, 11, 5}
+// Output: YES
+// Explaination: 
+// The two parts are {1, 5, 5} and {11}.
+
+
 #include<bits/stdc++.h>
 using namespace std;
 

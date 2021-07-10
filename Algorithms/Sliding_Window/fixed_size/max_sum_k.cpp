@@ -49,6 +49,7 @@ int max_sum_k_opt(int arr[], int n, int k)
     {
         window_sum += arr[j] - arr[i];
         max_sum = max(max_sum, window_sum);
+        i += 1;
     }
     return max_sum;
 }
@@ -57,7 +58,7 @@ int main(int argc, char const *argv[])
 {
     int arr [] = {1, 4, 2, 10, 23, 3, 1, 0, 20};
     int n = sizeof(arr) / sizeof(arr[0]);
-    int k = 1;
+    int k = 4;
     auto maxs = max_sum_k_opt(arr, n, k);
     cout<<maxs<<endl;
 

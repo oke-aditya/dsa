@@ -68,12 +68,12 @@ string print_scs(string str1, int m, string str2, int n)
         }
         else if(dp[i-1][j] > dp[i][j-1])
         {
-            res+=str2[i-1];
+            res+=str1[i-1];
             i--;
         }
         else
         {
-            res+=str1[j-1];
+            res+=str2[j-1];
             j--;
         }
     }
@@ -87,6 +87,7 @@ string print_scs(string str1, int m, string str2, int n)
         res+=str2[j-1];
         j--;
     }
+    reverse(res.begin(), res.end());
     return res;
 
 }

@@ -26,38 +26,35 @@ using namespace std;
 // This works only for case when it is equal
 // Does not work when greater than equal (as in qs)
 
-int min_sum_subarr(vector <int> v, int k)
+int min_sum_subarr(vector <int> nums, int target)
 {
-    int min_win_size = 0;
-    int i=0, j=9;
+    int min_win_size = INT_MAX, n = nums.size();
+    int i=0, j = 0;
     int win_sum = 0;
 
-    for(int j=0; j<v.size(); j++)
+    for(int j=0; j<n; j++)
     {
-        win_sum += v[j];
-        if(win_sum == k)
+        win_sum += nums[j];
+        if(win_sum >= target)
         {
             min_win_size = min(min_win_size, (j - i + 1));
         }
-
-        else if(win_sum > k)
+        while(win_sum >= target)
         {
-            // Cleanup left side
-            while(win_sum > k)
-            {
-                win_sum = win_sum - v[i];
-                i += 1;
-            }
-
-            // if after removing equal to target
-
-            if (win_sum == k)
-            {
-                min_win_size = min(min_win_size, (j - i  + 1));
-            }
+            min_win_size = min(min_win_size, (j - i + 1));
+            win_sum -= nums[i];
+            i += 1;
         }
     }
-    return min_win_size;
+    
+    if(min_win_size == INT_MAX)
+    {
+        return 0;
+    }
+    else
+    {
+        return min_win_size;
+    }
 }
 
 // Two pointer based solution that works for all cases.

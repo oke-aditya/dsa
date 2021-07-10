@@ -1,6 +1,22 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// https://leetcode.com/problems/longest-common-subsequence/
+
+// LCS Problem Statement: Given two sequences, 
+// find the length of longest subsequence present in both of them. 
+// A subsequence is a sequence that appears in the 
+// same relative order, but not necessarily contiguous. 
+// For example, “abc”, “abg”, “bdf”, “aeg”, ‘”acefg”, .. etc are subsequences of “abcdefg”.
+
+// Input: text1 = "abcde", text2 = "ace" 
+// Output: 3  
+// Explanation: The longest common subsequence is "ace" and its length is 3.
+
+// Input: text1 = "abc", text2 = "abc"
+// Output: 3
+// Explanation: The longest common subsequence is "abc" and its length is 3.
+
 int dp[100][100];
 
 int lcs_rec(string s1, string s2, int m, int n)
@@ -20,7 +36,8 @@ int lcs_rec(string s1, string s2, int m, int n)
         else
         {
             // We should find maximum between the other possibilites
-            return(max(lcs_rec(s1, s2, m-1, n), lcs_rec(s1, s2, m, n-1)));
+            return(max(lcs_rec(s1, s2, m-1, n), 
+            lcs_rec(s1, s2, m, n-1)));
         }
     }
 }
