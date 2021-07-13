@@ -1,7 +1,6 @@
 // Write an efficient program for printing k
 // largest elements in an array.
 // Elements in array can be in any order.
-
 // For example, if given array is [1, 23, 12, 9, 30, 2, 50] and you are
 // asked for the largest 3 elements i.e., k = 3
 // then your program should print 50, 30 and 23.
@@ -40,6 +39,27 @@ vector<int> k_larg_heap(int arr[], int n, int k)
         minh.pop();
     }
     return res;
+}
+
+// Using max heap too we can do this.
+int sol(vector<int> v, int k)
+{
+    // kth largest element
+    // max heap
+    priority_queue <int> pk;
+
+    for(auto x: v)
+    {
+        pk.push(x);
+    }
+
+    for(int i=0; i<k-1; i++)
+    {
+        pk.pop();
+    }
+
+    return pk.top();
+
 }
 
 void print_vec(vector<int> v)
