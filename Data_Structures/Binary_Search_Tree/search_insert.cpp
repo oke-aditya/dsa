@@ -19,19 +19,49 @@ class Node
 // Use the BST property to search.
 Node *search(Node *root, int key)
 {
-    if(root == NULL || root->data == key)
+    if(root == NULL)
     {
-        return root;
+        return nullptr;
     }
-
-    if(root->data < key)
+    
+    if(key > root->data)
     {
-        return search(root->right, key);
+        return (search(root->right, key));
     }
-
-    // Otherwise it's less
-    return search(root->left, key);
+    
+    else if(key < root->data)
+    {
+        return (search(root->left, key));
+    }
+    
+    else
+    {
+        return (root);
+    }
 }
+
+// Iterative approach
+
+Node *search_itr(Node *root, int key)
+{
+    while(root != nullptr)
+    {
+        if(key > root->data)
+        {
+            root = root->right;
+        }
+        else if(key < root->data)
+        {
+            root = root->left;
+        }
+        else
+        {
+            return root;
+        }
+    }
+    return nullptr;
+}
+
 
 // To insert, find the position and create a new node
 Node *insert(Node *root, int key)
