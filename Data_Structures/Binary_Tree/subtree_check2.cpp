@@ -16,7 +16,7 @@
 //  The idea is based on the fact that inorder
 // and preorder/postorder uniquely identify a binary tree. 
 // Tree S is a subtree of T if both inorder and preorder traversals
-// of S arew substrings of inorder and preorder traversals of T respectively.
+// of S are substrings of inorder and preorder traversals of T respectively.
 // 1) Find inorder and preorder traversals of T, store them in two auxiliary arrays inT[] and preT[].
 // 2) Find inorder and preorder traversals of S, store them in two auxiliary arrays inS[] and preS[].
 // 3) If inS[] is a subarray of inT[] and preS[] is a subarray preT[], then S is a subtree of T. Else not.

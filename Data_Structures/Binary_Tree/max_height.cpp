@@ -28,15 +28,11 @@ int max_depth(Node *root)
     {
         return 0;
     }
-
     else
     {
         int l_depth = max_depth(root->left);
         int r_depth = max_depth(root->right);
-
         return max(l_depth, r_depth) + 1;
     }
-    
-
 }
 

@@ -23,7 +23,7 @@ class Node
 };
 
 
-void mirror(Node *root)
+Node* mirror(Node *root)
 {
     if(root == NULL)
     {
@@ -40,6 +40,37 @@ void mirror(Node *root)
         // Swap
         swap(root->left, root->right);
     }
+    return root;
+}
+
+Node* mirror2(Node *root)
+{
+    if(root == NULL)
+    {
+        return root;
+    }
+    
+    queue<Node *> q;
+    q.push(root);
+    
+    while(!q.empty())
+    {
+        
+        Node *node = q.front();
+        q.pop();
+        swap(node->left, node->right);
+        
+        if(node->left != NULL)
+        {
+            q.push(node->left);
+        }
+        
+        if(node->right != NULL)
+        {
+            q.push(node->right);
+        }
+    }
+    return root;
 }
 
 

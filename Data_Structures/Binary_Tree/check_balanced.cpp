@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/balanced-binary-tree/
 // Given a binary tree, find if it is height balanced or not. 
 // A tree is height balanced if difference between heights of left and right subtrees is not more than one for all nodes of tree. 
 
@@ -15,6 +16,7 @@
 //   /   \
 //  40   60
 // Output: 1
+
 // Explanation: The max difference in height
 // of left subtree and right subtree is 1.
 // Hence balanced. 
