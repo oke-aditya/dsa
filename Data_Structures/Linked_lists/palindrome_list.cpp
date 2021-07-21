@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/palindrome-linked-list/
 // Given the head of a singly linked list, return true if it is a palindrome.
 
 // Input: head = [1,2,2,1]
@@ -77,9 +78,7 @@ bool is_palindrome(Node *head)
         head = head->next;
         slow = slow->next;
     }
-
     return true;
-
 }
 
 

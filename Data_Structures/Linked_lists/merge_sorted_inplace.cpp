@@ -50,30 +50,45 @@ Node* merge_lists(Node *node1, Node* node2)
         return node1;
     }
 
-    // We assume node1 to be the node with smallest data at head.
-    if(node1->data > node2->data)
+    Node *new_list = NULL;
+
+    // Assign the first to smallest node.
+    if(node1->data < node2->data)
     {
-        swap(node1, node2);
+        new_list = node1;
+        node1 = node1->next;
+    }
+    else
+    {
+        new_list = node2;
+        node2 = node2->next;
     }
 
-    // To this list with inital smallest value, we merge.
-    Node *res = node1;
-    while(node1 != NULL && node2 != NULL)
+    Node *temp = new_list;
+
+    // Add the smaller ones
+    while (node1 != NULL && node2 != NULL)
     {
-        // Temporary node to fill values.
-        Node *temp = NULL;
-        while(node1 != NULL && node1->data <= node2->data)
+        if(node1->data < node2->data)
         {
-            // Continue linking the smallest nodes, theya re in node1.
-            temp = node1;
+            temp->next = node1;
             node1 = node1->next;
         }
-        // Since now node1->data > node2->data.
-        // We wil link temp to smallset, that is node2. 
-        temp->next = node2;
-        swap(node1, node2);
+        else
+        {
+            temp->next = node2;
+            node2 = node2->next;
+        }
+        temp = temp->next;
     }
-    return res;
+
+    // Add rest of the tail
+    if(node1 != NULL)
+        temp->next = node1;
+    else
+        temp->next = node2;
+
+    return new_list;
 }
 
 int main(int argc, char const *argv[])

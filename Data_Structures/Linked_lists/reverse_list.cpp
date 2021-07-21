@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/reverse-linked-list/
 // Given pointer to the head node of a linked list, the task is to reverse the linked list. 
 // We need to reverse the list by changing links between nodes.
 
@@ -45,15 +46,15 @@ void insert_head(Node **head_ref, int new_data)
     *head_ref = new_node;
 }
 
-Node* reverse_list(Node *head)
+Node* reverse_list(Node *node)
 {
     Node *new_head = NULL;
-    while(head != NULL)
+    while(node != NULL)
     {
-        Node *temp = head->next;
-        head->next = new_head;
-        new_head = head;
-        head = temp;
+        Node *temp = node->next;
+        node->next = new_head;
+        new_head = node;
+        node = temp;
     }
     return new_head;
 }
