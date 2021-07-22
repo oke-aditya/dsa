@@ -13,83 +13,33 @@ using namespace std;
 
 bool isvalid(string s)
 {
-    stack <char> s1;
-    s1.push(s[0]);
-
-    for(int i=1; i<s.length(); i++)
+    stack <char> stk;
+        
+    for(char ch: s)
     {
-        if(s[i] == '(')
+        if(stk.empty() || ch == '(' || ch == '{' || ch == '[')
+            stk.push(ch);
+        
+        else
         {
-            s1.push(s[i]);
-        }
-        else if(s[i] == '[')
-        {
-            s1.push(s[i]);
-        }
-        else if(s[i] == '{')
-        {
-            s1.push(s[i]);
-        }
-        else if(s[i] == ')')
-        {
-            if(s1.empty())
-            {
-                return false;
-            }
-
-            char chk = s1.top();
-            if(chk != '(')
-            {
-                return false;
-            }
-            else
-            {
-                s1.pop();
-            }
+            char chk = stk.top();
             
-        }
-        else if(s[i] == ']')
-        {
-            if(s1.empty())
-            {
+            if(ch == ')' && chk != '(')
                 return false;
-            }
-
-            char chk = s1.top();
-            if(chk != '[')
-            {
+            
+            else if(ch == '}' && chk != '{')
                 return false;
-            }
-            else
-            {
-                s1.pop();
-            }
-        }
-        else if(s[i] == '}')
-        {
-            if(s1.empty())
-            {
+            
+            else if(ch == ']' && chk != '[')
                 return false;
-            }
-            char chk = s1.top();
-            if(chk != '{')
-            {
-                return false;
-            }
-            else
-            {
-                s1.pop();
-            }
+            
+            stk.pop();
         }
     }
-    if(!s1.empty())
-    {
-        return false;
-    }
-    else
-    {
+    if(stk.empty())
         return true;
-    } 
+    else
+        return false;
 }
 
 int main(int argc, char const *argv[])

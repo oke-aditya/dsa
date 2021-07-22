@@ -30,43 +30,51 @@ string remove_adj(string s, int k)
     // Stack of Pair to store character and count.
     stack<pair<char, int>> stk;
     string res = "";
-
+    
     for(char ch: s)
     {
-        // If stack is not empty and top of stack matches new char.
-        if(!stk.empty() && stk.top().first == ch)
+        // first occurence.
+        if(stk.empty())
         {
-            // If element has occured till k-1 
-            if(stk.top().second == k - 1)
-            {
-                stk.pop();
-            }
-            else
-            {
-                // We keep track of count.
-                stk.top().second += 1;
-            }
-        }
-
-        else
-        {
-            // It occured first time so add it.
             stk.push({ch, 1});
         }
+        
+        else
+        {
+            // If character matches.
+            if(stk.top().first == ch)
+            {
+                // count is k - 1
+                if(stk.top().second == (k - 1))
+                {
+                    stk.pop();
+                }
+                else
+                {
+                    stk.top().second += 1;
+                }
+            }
+            // character did not match.
+            else
+            {
+                stk.push({ch, 1});
+            }
+        }
     }
-
-    // Now based on count we remove
+    
+    // just pop the stack and add
+    // character count number of times.
     while(!stk.empty())
     {
         int count = stk.top().second;
         while(count > 0)
         {
-            // Add character to result
             res += stk.top().first;
             count -= 1;
         }
         stk.pop();
     }
+    
     reverse(res.begin(), res.end());
     return res;
 }
