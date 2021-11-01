@@ -49,6 +49,8 @@ vector<int> print_level_order(Node *root)
         res.push_back(node->data);
         q.pop();
 
+        // This does level order traversal, left to right.
+        // Exchange the conditions to get right to left traversal.
         if(node->left != NULL)
         {
             q.push(node->left);

@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/hamming-distance/
 // Hamming Distance
 
 // The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
@@ -34,7 +35,7 @@ int hammingDistance(int x, int y)
         {
             count += 1;
         }
-        z >> 1;
+        z = z >> 1;
     }
     
     return count;

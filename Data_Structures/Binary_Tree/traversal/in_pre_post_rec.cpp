@@ -4,7 +4,7 @@
 
 // Three tree traversal algorithms are possible.
 
-// Inorder Traversal): 
+// Inorder Traversal: 
 
 // Algorithm Inorder(tree)
 //    1. Traverse the left subtree, i.e., call Inorder(left-subtree)
