@@ -28,6 +28,40 @@ class Node
     }
 };
 
+Node* solve(vector<int> &inorder, int inOrderStart, int inOrderEnd, 
+            vector<int> &postorder, int postOrderStart, int postOrderEnd, map<int, int> mp
+)
+{
+    if(postOrderStart > postOrderEnd || inOrderStart > inOrderEnd)
+        return NULL;
+    
+    // Last node of postOrder traversal is the root.
+    Node *root = new Node(postorder[postOrderEnd]);
+
+    int inRoot = mp[postorder[postOrderEnd]];
+    int numLeft = inRoot - inOrderStart;
+
+    root->left = solve(inorder, inOrderStart, inRoot - 1, postorder, postOrderStart, postOrderStart + numLeft - 1, mp);
+
+    root->right = solve(inorder, inRoot + 1, inOrderEnd, postorder, postOrderStart + numLeft, postOrderEnd - 1, mp);
+
+    return root;
+
+}
 
 
+Node *buildTree(vector<int>& inorder, vector<int>& postorder) 
+{
+
+    if(inorder.size() != postorder.size())
+        return NULL;
+    
+    map<int, int> mp;
+
+    for(int i=0; i<inorder.size(); i++)
+        mp[inorder[i]] = i;
+
+    
+    return solve(inorder, 0, inorder.size() - 1, postorder, 0, postorder.size() - 1, mp);
+}
 
