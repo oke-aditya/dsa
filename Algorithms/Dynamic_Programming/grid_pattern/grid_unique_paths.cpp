@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-
+// https://leetcode.com/problems/unique-paths/
 // A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
 // The robot can only move either down or right at any point in time.
@@ -16,6 +14,10 @@ using namespace std;
 
 // Input: m = 3, n = 3
 // Output: 6
+
+#include <bits/stdc++.h>
+using namespace std;
+
 
 int solve_grid(int i, int j, int m, int n)
 {

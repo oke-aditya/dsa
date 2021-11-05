@@ -1,4 +1,6 @@
-// Unique Path
+// https://leetcode.com/problems/unique-paths-ii/
+
+// Unique Path 2
 
 // A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
@@ -9,3 +11,69 @@
 // Now consider if some obstacles are added to the grids. How many unique paths would there be?
 
 // An obstacle and space is marked as 1 and 0 respectively in the grid.
+
+// Input: obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]
+// Output: 2
+// Explanation: There is one obstacle in the middle of the 3x3 grid above.
+// There are two ways to reach the bottom-right corner:
+// 1. Right -> Right -> Down -> Down
+// 2. Down -> Down -> Right -> Right
+
+// Solution: -
+// Do not try memoizing it's slightly hard. Directly write bu solution.
+// Again this is modification of path1 problem.
+// We need to perform additional checks.
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve_rec(vector<vector<int>> grid, int i, int j, int m, int n)
+{
+    // boundary check
+    if(i < 0 || j < 0 || i >= m || j >= n)
+        return 0;
+    
+    // starting point has an obstacle
+    if(grid[i][j] == 1)
+        return 0;
+
+    // If we are 1 step closer then there is just 1 path. (If unblocked)
+    if(i == m-1 && j == n-1 && grid[i][j] == 0)
+        return 1;
+    
+    return solve_rec(grid, i+1, j, m, n) + solve_rec(grid, i, j+1, m, n);
+
+}
+
+// iterative dp.
+
+int solve_bu(vector<vector<int>> grid, int i, int j, int m, int n)
+{
+    int dp[m+1][n+1];
+    dp[0][1] = 1;
+
+    for(int i=1; i<=m; i++)
+    {
+        for(int j=1; j<=n; j++)
+        {
+            if(grid[i-1][j-1] != 1)
+                dp[i][j] = dp[i-1][j] + dp[i][j-1];
+            else
+                dp[i][j] = 0;
+        }
+    }
+
+    return dp[m][n];
+}
+
+int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+
+    // rows
+    int m = obstacleGrid.size();
+
+    // cols
+    int n = obstacleGrid[0].size();
+
+    return solve_rec(obstacleGrid, 0, 0, m, n);
+
+}

@@ -67,7 +67,7 @@ int peak_idx(int arr[], int n)
     return -1;
 }
 
-int binary_left(int arr[], int left, int right, int tgt)
+int binary_asc(int arr[], int left, int right, int tgt)
 {
     while (left <= right)
     {
@@ -88,7 +88,7 @@ int binary_left(int arr[], int left, int right, int tgt)
     return -1;
 }
 
-int binary_right(int arr[], int left, int right, int tgt)
+int binary_desc(int arr[], int left, int right, int tgt)
 {
     while (left <= right)
     {
@@ -112,8 +112,8 @@ int binary_right(int arr[], int left, int right, int tgt)
 int bit_search(int arr[], int n, int key)
 {
     int peak_index = peak_idx(arr, n);
-    int bsearch_left = binary_left(arr, 0, peak_index, key);
-    int bsearch_right = binary_right(arr, peak_index + 1, n, key);
+    int bsearch_left = binary_asc(arr, 0, peak_index, key);
+    int bsearch_right = binary_desc(arr, peak_index + 1, n, key);
 
     if (bsearch_left != -1)
     {

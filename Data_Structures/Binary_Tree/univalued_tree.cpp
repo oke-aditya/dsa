@@ -1,5 +1,9 @@
 // https://leetcode.com/problems/univalued-binary-tree/
 
+// A binary tree is uni-valued if every node in the tree has the same value.
+
+// Given the root of a binary tree, return true if the given tree is uni-valued, or false otherwise.
+
 #include<bits/stdc++.h>
 using namespace std;
 

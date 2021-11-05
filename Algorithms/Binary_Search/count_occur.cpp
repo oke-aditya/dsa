@@ -53,7 +53,7 @@ int bsearch_right(int arr[], int n, int tgt)
         }
         else if (tgt < arr[mid])
         {
-            right = mid = 1;
+            right = mid - 1;
         }
     }
     return res;

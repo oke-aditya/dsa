@@ -12,3 +12,40 @@
 
 // Input: digits = "2"
 // Output: ["a","b","c"]
+
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<string> mapping = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+void backtrack(string digits, int n, vector<string> &res, string &temp)
+{
+    if(n == digits.length())
+    {
+        res.push_back(temp);
+        return;
+    }
+
+    for(auto &c: mapping[digits[n] - '2'])
+    {
+        temp += c;
+        backtrack(digits, n+1, res, temp);
+        temp.pop_back();
+    }
+
+}
+
+
+vector<string> letterCombinations(string digits) 
+{
+    vector<string> res;
+    string temp = "";
+
+    if(digits == "")
+        return res;
+
+    backtrack(digits, 0, res, temp);
+
+    return res;
+
+}

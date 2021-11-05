@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
 // Given a string S of lowercase letters,
 // a duplicate removal consists of choosing two adjacent and equal letters, and removing them.
 
@@ -18,27 +19,22 @@ using namespace std;
 string remove_adj(string s)
 {
     stack <char> stk;
-
-    string res;
-
-    int i = 0;
-
-    for(int i=0; i<s.length(); i++)
+    string res = "";
+    
+    for(char ch: s)
     {
         if(stk.empty())
-        {
-            stk.push(s[i]);
-        }
+            stk.push(ch);
+        
         else
         {
-            if(stk.top() == s[i])
-            {
-                stk.pop();
-            }
+            char chk = stk.top();
+
+            if(chk != ch)
+                stk.push(ch);
+
             else
-            {
-                stk.push(s[i]);
-            }
+                stk.pop();
         }
     }
 
@@ -49,8 +45,8 @@ string remove_adj(string s)
     }
     
     reverse(res.begin(), res.end());
-
-    return res;
+    
+    return res; 
 }
 
 int main(int argc, char const *argv[])
