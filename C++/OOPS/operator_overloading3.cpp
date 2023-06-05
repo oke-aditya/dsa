@@ -34,9 +34,9 @@ class Complex
 
 int main(int argc, char const *argv[])
 {
-    Complex com(3.0, 4.0);
-
-    cout<<com.mag()<<endl;
-
+    
+    Complex c1 = Complex(8, 6);
+    double c2 = (double) c1;
+    cout<<c2;
     return 0;
 }

@@ -19,7 +19,7 @@ class Overload_inc
         // This overload ++i . Pre-increment operator.
         void operator ++ ()
         {
-            this->count += 1;
+            this->count += 2;
         }
 
         // Overloading the i++. Post-increment operator.
@@ -27,7 +27,7 @@ class Overload_inc
 
         void operator ++ (int)
         {
-            this->count += 1;
+            this->count += 2;
         }
 
         void display()

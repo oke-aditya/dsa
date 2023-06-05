@@ -1,3 +1,4 @@
+// https://practice.geeksforgeeks.org/problems/number-of-occurrence2259/1
 // Given a SORTED array arr[] and a number x,
 // write a function that counts the occurrences of x in arr[]. Expected time complexity is O(Logn)
 
