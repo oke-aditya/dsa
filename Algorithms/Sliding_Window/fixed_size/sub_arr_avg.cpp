@@ -1,6 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+
+// https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/
+
 // Find the subarray with least average
 // Input:  arr[] = {3, 7, 90, 20, 10, 50, 40}, k = 3
 // Output: Subarray between indexes 3 and 5

@@ -57,13 +57,6 @@ int min_sum_subarr(vector <int> nums, int target)
     }
 }
 
-// Two pointer based solution that works for all cases.
-int min_sub_arr(vector<int> v, int k)
-{
-    
-
-}
-
 
 
 int main(int argc, char const *argv[])

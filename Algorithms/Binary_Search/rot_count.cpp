@@ -2,6 +2,12 @@
 // Consider an array of distinct numbers sorted in increasing order.
 // The array has been rotated (clockwise) k number of times. Given such an array, find the value of k.
 
+// Also
+
+// Find minimum in rotated sorted array.
+// https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+// This gives the index of minimum element. We can use this to solve
+
 // Examples:
 
 // Input : arr[] = {15, 18, 2, 3, 6, 12}
@@ -31,49 +37,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int count_rightrot(int arr[], int n)
+int count_rightrot(vector<int> arr)
 {
-    int start = 0, end = n - 1;
-    int pivot = -1;
-
-    // There is only one element
-    if (arr[start] < arr[end])
-    {
+    int n = arr.size();
+    int left = 0, right = n - 1;
+    if (arr[left] <= arr[right]) {
         return 0;
     }
-    while (start <= end)
-    {
-        int mid = (start + end) / 2;
-        int next = (mid + 1) % n;     // % n for restricting overflow
-        int prev = (mid - 1 + n) % n; // add n and % n for start overflow
+   
+    while (left <= right) {
 
-        // Middle element is jam packed, less than both the ends.
-        if (arr[mid] <= arr[next] && arr[mid] <= arr[prev])
-        {
-            pivot = mid;
-            break;
-        }
-        if (arr[start] <= arr[mid])
-        {
-            // search on end as middle is greater than start
-            start = mid + 1;
-        }
-        else if (arr[mid] <= arr[end])
-        {
-            // search on left as middle is smaller
-            end = mid - 1;
-        }
+        // if first element is mid or
+        // last element is mid
+        // then simply use modulo so it
+        // never goes out of bound.
+        int mid = left + (right - left) / 2;
+        int prev = (mid - 1 + n) % n;
+        int next = (mid + 1) % n;
+
+        if (arr[mid] <= arr[prev] && arr[mid] <= arr[next])
+            return mid;
+        else if (arr[mid] <= arr[right])
+            right = mid - 1;
+        else if (arr[mid] >= arr[0])
+            left = mid + 1;
     }
-    return pivot;
+
+    return 0;
 }
 
 // To calculate left rotations, do the same, answer is (n - pivot) % n.
 
 int main(int argc, char const *argv[])
 {
-    int arr[] = {15, 18, 2, 3, 6, 12};
+    vector<int> arr = {15, 18, 2, 3, 6, 12};
     int n = sizeof(arr) / sizeof(arr[0]);
-    int res = count_rightrot(arr, n);
+    int res = count_rightrot(arr);
     cout << res << endl;
     return 0;
 }

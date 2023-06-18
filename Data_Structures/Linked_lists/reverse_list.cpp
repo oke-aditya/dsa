@@ -46,15 +46,15 @@ void insert_head(Node **head_ref, int new_data)
     *head_ref = new_node;
 }
 
-Node* reverse_list(Node *node)
+Node* reverse_list(Node *head)
 {
     Node *new_head = NULL;
-    while(node != NULL)
+    while(head != NULL)
     {
-        Node *temp = node->next;
-        node->next = new_head;
-        new_head = node;
-        node = temp;
+        Node *next_node = head->next;
+        head->next = new_head;
+        new_head = head;
+        head = next_node;
     }
     return new_head;
 }

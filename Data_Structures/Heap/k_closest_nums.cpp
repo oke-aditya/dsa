@@ -21,6 +21,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define pii2 pair<int, int>
+
+
+// min heap solution.
+// Solve all elements and return k elements as result.
+vector<int> findClosestElements(vector<int>& arr, int k, int tgt) {
+    priority_queue<pii2, vector<pii2>, greater<pii2>> minh;
+
+    for(int i=0; i<arr.size(); i++) {
+        pair<int, int> pii = make_pair(abs(tgt - arr[i]), arr[i]); 
+        minh.push(pii);
+    }
+
+    vector<int> res;
+    int i=0; 
+    while(i<k) {
+        pair<int, int> pii = minh.top();
+        res.push_back(pii.second);
+        minh.pop();
+        i += 1;
+    }
+
+    // since result is expected in sorted order.
+    sort(begin(res), end(res));
+
+    return res;
+}
+
+
+// max heap solution
+// Keep just k elements in max heap.
+// These k are k shortest.
 vector<int> k_closest_sort(vector<int> v, int k, int tgt)
 {
 
@@ -46,6 +78,10 @@ vector<int> k_closest_sort(vector<int> v, int k, int tgt)
         res.push_back(maxh.top().second);
         maxh.pop();
     }
+
+    // since result is expected in sorted order.
+    sort(begin(res), end(res));
+
     return res;
 }
 

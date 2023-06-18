@@ -14,7 +14,7 @@ using namespace std;
 
 int bsearch_left(int arr[], int n, int tgt)
 {
-    int left = 0, right = n - 1, res;
+    int left = 0, right = n - 1, res = -1;
     while (left <= right)
     {
         int mid = (left + right) / 2;
@@ -39,7 +39,7 @@ int bsearch_left(int arr[], int n, int tgt)
 
 int bsearch_right(int arr[], int n, int tgt)
 {
-    int left = 0, right = n - 1, res;
+    int left = 0, right = n - 1, res = -1;
     while (left <= right)
     {
         int mid = (left + right) / 2;
@@ -64,6 +64,15 @@ int count_occurence(int arr[], int n, int tgt)
 {
     int left_pos = bsearch_left(arr, n, tgt);
     int right_pos = bsearch_right(arr, n, tgt);
+
+    // if not found
+
+    if (left_pos == -1 || right_pos == -1) 
+    {
+        return 0;
+    }
+	    
+
     return (right_pos - left_pos + 1);
 }
 

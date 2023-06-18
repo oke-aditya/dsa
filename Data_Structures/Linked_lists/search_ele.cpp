@@ -37,19 +37,11 @@ void print_ln(Node *node)
 
 bool search(Node *node, int ele)
 {
-    Node *temp = new Node();
-    temp = node;
-
-    while (temp != NULL)
-    {
-        if (temp->data == ele)
-        {
+    while(node != NULL) {
+        if(node ->data == ele) {
             return true;
         }
-        else
-        {
-            temp = temp->next;
-        }
+        node = node->next;
     }
     return false;
 }

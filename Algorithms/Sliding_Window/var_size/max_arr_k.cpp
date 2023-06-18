@@ -14,6 +14,17 @@
 using namespace std;
 
 // This does not work for negative numbers.
+// Also we cannot find the count.
+// For finding the count, we should use the prefix sum logic.
+// 
+// Sliding window logic doesn't work as we accumulate the result 
+// and then invalidate.
+
+// Consider case [-1, -1, 1]. And target sum = 0;
+// Since we accumulate the sum, we cannot find the window [-1, 1].
+// That's why logic will not work for -ve numbers and -ve K.
+
+
 
 int max_sum_k(vector<int> v, int k)
 {
@@ -46,7 +57,10 @@ int max_sum_k(vector<int> v, int k)
             {
                 // We need to store answers.
                 // Window size is (j - i  + 1)
-                max_win_size = max(max_win_size, (j - i + 1));
+                // if the window is not empty.
+                if(j - i + 1 != 0) {
+                    max_win_size = max(max_win_size, (j - i + 1));
+                }
             }
         }
     }

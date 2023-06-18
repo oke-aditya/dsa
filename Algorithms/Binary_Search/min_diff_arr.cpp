@@ -1,6 +1,12 @@
 // Given a sorted array,
 // find the element in the array which has minimum difference with the given number.
 
+// Solution: -
+// Find the floor.
+// Find the ceiling.
+// Compare the abs() difference of both with the given number.
+
+
 #include <bits/stdc++.h>
 using namespace std;
 

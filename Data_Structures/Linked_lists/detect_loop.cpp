@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/linked-list-cycle/description/
 // Given head, the head of a linked list, determine if the linked list has a cycle in it.
 
 // There is a cycle in a linked list if there is some node in the list 
@@ -49,30 +50,59 @@ void println(Node *node)
     cout<<endl;
 }
 
-bool detect_loop(Node *head)
+bool hasCycle(Node *head)
 {
-    if(head == NULL || head->next == NULL)
-    {
-        return false;
-    }
+    Node* slow = head;
+    Node* fast = head;
 
-    Node *fast = head;
-    Node *slow = head;
-
-    while(fast->next && fast->next->next)
-    {
+    while(fast != NULL && fast->next != NULL) {
         fast = fast->next->next;
         slow = slow->next;
 
-        if(fast == slow)
-        {
+        if(fast == slow) {
             return true;
         }
     }
+
     return false;
 
 }
 
+// to detect the starting positions of loop
+// Keep a fast pointer and a slow pointer and entry pointer all to head.
+// if head is null and head->next is null, we can't have cycle.
+// while fast->next and fast->next->next exists, keep advancing
+// fast by 2. slow by 1.
+// if fast and slow meet together.
+// while slow is not equal to entry.
+// keep moving slow by 1.
+// keep moving entry by 1.
+// Return entry pointer.
+
+// Detect the cycle and trace the entry point.
+
+Node *detectCycle(Node *head) {
+        Node *fast = head;
+        Node *slow = head;
+        Node *entry = head;
+
+
+        while(fast != NULL && fast->next != NULL) {
+            fast = fast->next->next;
+            slow = slow->next;
+
+            if(fast == slow) {
+                while(entry != slow) {
+                    slow = slow->next;
+                    entry = entry->next;
+                }
+                return entry;
+            }
+        }
+
+        return NULL;
+
+}
 
 int main(int argc, char const *argv[])
 {
@@ -85,7 +115,7 @@ int main(int argc, char const *argv[])
     println(head);
     head->next->next->next->next = head;
 
-    auto is_loop = detect_loop(head);
+    auto is_loop = hasCycle(head);
     
     if(is_loop)
     {

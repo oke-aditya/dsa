@@ -29,6 +29,8 @@
 
 // Solution
 
+// Size of window == Size of map. Then there are no repeating chars.
+
 // No repeating character -> All unique characters.
 
 #include <bits/stdc++.h>

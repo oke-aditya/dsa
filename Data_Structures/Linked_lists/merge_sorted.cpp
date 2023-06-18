@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/merge-two-sorted-lists/
 // Merge two sorted linked lists and return it as a sorted list.
 
 // The list should be made by splicing together the nodes of the first two lists.
@@ -37,34 +38,51 @@ void insert_head(Node **head_ref, int new_data)
     *head_ref = new_node;
 }
 
-Node* merge_lists(Node *node1, Node *node2)
+Node* merge_lists(Node *head1, Node *head2)
 {
-    // Merge two linked lists, with help of dummy
-    // This is not inplace, we return a new linked list head
+    if(head1 == NULL)
+        return head2;
 
-    // Dummy node. This is just a placeholder for new linked list.
-    Node *dummy = new Node();
+    if (head2 == NULL)
+        return head1;
 
-    // We will start appending from tail;
-    Node *tail;
-    // Point tail to dummy for now.
-    tail = dummy;
 
-    while(node1 != NULL || node2 != NULL)
-    {
-        if(node1->data >= node2->data)
-        {
+    Node *merged_head = NULL;
 
-        }
-        
+    if(head1->data < head2->data) {
+        merged_head = head1;
+        head1 = head1->next;
     }
-}
+    
+    else {
+        merged_head = head2;
+        head2 = head2->next;
+    }
 
-Node *merge_lists_rec(Node *node1, Node *node2)
-{
-    // Merge two linked lists, recursively.
-    // This is also not inplace, we return a new linked list.
+    Node *temp = merged_head;
 
+    while(head1 != NULL && head2 != NULL) {
+        if(head1->data < head2->data) {
+            temp->next = head1;
+            head1 = head1->next;
+        }
+
+        else {
+            temp->next = head2;
+            head2 = head2->next;
+        }
+        temp = temp->next;
+    }
+
+    if(head1 != NULL) {
+        temp->next = head1;
+    }
+
+    else {
+        temp->next = head2;
+    }
+
+    return merged_head;
 }
 
 
@@ -88,7 +106,7 @@ int main(int argc, char const *argv[])
     print_ln(head2);
 
     auto merged_list = merge_lists(head1, head2);
-    print_ln(merge_lists);
+    print_ln(merged_list);
 
     return 0;
 }

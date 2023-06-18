@@ -2,6 +2,7 @@
 // Find the maximum for each and every contiguous subarray of size K.
 // https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
 // https://www.interviewbit.com/problems/sliding-window-maximum/#
+// https://leetcode.com/problems/sliding-window-maximum/
 
 // Example:
 // Input 1:
@@ -68,7 +69,7 @@ vector<int> print_k_max(vector <int> v, int k)
     for(int j=k; j<n; j++)
     {
         // Remove elements which are out of the current window (undo step)
-        while((!q.empty()) && q.front() <= i)
+        while((!q.empty()) && q.front() < i + 1)
         {
             q.pop_front();
         }
