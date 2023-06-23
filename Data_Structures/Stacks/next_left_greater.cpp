@@ -8,60 +8,60 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void nge_naive(int arr[], int n)
+vector<int> nl_g_naive(int arr[], int n)
 {
-    int next;
-
-    for(int i=0; i<n; i++)
-    {
-        next = -1;
-        for(int j=i-1; j>=0; j--)
-        {
-            if(arr[j] > arr[i])
-            {
-                next = arr[j];
+    vector<int> res;
+    for(int i=n-1; i>=0; i--) {
+        int fg = 1;
+        for(int j=i-1; j>=0; j--) {
+            if(arr[j] > arr[i]) {
+                res.push_back(arr[j]);
+                fg = 0;
                 break;
             }
         }
-        cout<<next<<" ";
+        if(fg) {
+            res.push_back(-1);
+        }
     }
+    reverse(begin(res), end(res));
+    return res;
 }
 
-vector <int> nge_stack(int arr[], int n)
-{
-    stack <int> s;
-    vector <int> v;
 
-    for(int i=0; i<n; i++)
-    {
-        if(s.empty())
-        {
-            v.push_back(-1);
-        }
-        else if(!s.empty() && s.top() > arr[i])
-        {
-            v.push_back(s.top());
+
+vector<int> nl_g(int arr[], int n) {
+    stack<int> stk;
+    vector<int> res;
+
+    for(int i=0; i<n; i++) {
+        if(stk.empty()) {
+            res.push_back(-1);
         }
 
-        else if(!s.empty() && s.top() <= arr[i])
-        {
-            while(!s.empty() && s.top() <= arr[i])
-            {
-                s.pop();
+        if(!stk.empty() && stk.top() > arr[i]) {
+            res.push_back(stk.top());
+        }
+
+        else if(!stk.empty() && stk.top() <= arr[i]) {
+            while(!stk.empty() && stk.top() <= arr[i]) {
+                stk.pop();
             }
-            if(s.empty())
-            {
-                v.push_back(-1);
+
+            if(stk.empty()) {
+                res.push_back(-1);
             }
-            else
-            {
-                v.push_back(arr[i]);
+            else {
+                res.push_back(stk.top());
             }
         }
-        s.push(arr[i]);
+
+        stk.push(arr[i]);
+
     }
-    return v;
+    return res;
 }
+
 
 void print_v(vector <int> v)
 {
@@ -76,10 +76,10 @@ int main(int argc, char const *argv[])
 {
     int arr[] = {11, 13, 21, 3};
     int n = sizeof(arr) / sizeof(arr[0]);
-    nge_naive(arr, n);
+    nl_g_naive(arr, n);
     cout<<endl;
 
-    auto res = nge_stack(arr, n);
+    auto res = nl_g(arr, n);
     print_v(res);
 
     return 0;

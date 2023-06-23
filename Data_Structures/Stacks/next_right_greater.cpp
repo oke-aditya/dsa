@@ -22,38 +22,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void nge_naive(int arr[], int n)
-{
-    int next, i, j;
-    for (int i = 0; i < n - 1; i++)
-    {
-        next = -1;
-        for (int j = i + 1; j < n; j++)
-        {
-            if (arr[j] > arr[i])
-            {
-                next = arr[j];
+vector<int> nr_g(int arr[], int n) {
+    vector<int> res;
+    int fg;
+    for(int i=0; i<n; i++) {
+        fg = 1;
+        for(int j=i+1; j<n; j++) {
+            if(arr[j] > arr[i]) {
+                res.push_back(arr[j]);
+                fg = 0;
                 break;
             }
         }
-        cout<<next<<" ";
+        if(fg)
+            res.push_back(-1);
     }
+
+    return res;
 }
 
 vector<int> nge_stack(int arr[], int n)
 {
     stack <int> s;
-    vector <int> v;
+    vector <int> res;
 
     for(int i=n-1; i>=0; i--)
     {
         if(s.empty())
         {
-            v.push_back(-1);
+            res.push_back(-1);
         }
         else if(!s.empty() && s.top() > arr[i])
         {
-            v.push_back(s.top());
+            res.push_back(s.top());
         }
         else if(!s.empty() && s.top() <= arr[i])
         {
@@ -63,17 +64,17 @@ vector<int> nge_stack(int arr[], int n)
             }
             if(s.empty())
             {
-                v.push_back(-1);
+                res.push_back(-1);
             }
             else
             {
-                v.push_back(s.top());
+                res.push_back(s.top());
             }
         }
         s.push(arr[i]);
     }
-    reverse(v.begin(), v.end());
-    return v;
+    reverse(res.begin(), res.end());
+    return res;
 }
 
 void print_v(vector <int> v)

@@ -1,0 +1,15 @@
+https://leetcode.com/problems/asteroid-collision/
+
+https://leetcode.com/problems/sum-of-subarray-ranges/
+
+https://leetcode.com/problems/remove-k-digits/
+
+https://leetcode.com/problems/largest-rectangle-in-histogram/
+
+https://leetcode.com/problems/trapping-rain-water/
+
+https://leetcode.com/problems/maximal-rectangle/
+
+https://leetcode.com/problems/next-greater-element-ii/
+
+

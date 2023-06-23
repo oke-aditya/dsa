@@ -7,22 +7,21 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void nse_naive(int arr[], int n)
-{
-    int next;
-    for(int i=0; i<n; i++)
-    {
-        next = -1;
-        for(int j=i+1; j<n; j++)
-        {
-            if(arr[j] < arr[i])
-            {
-                next = arr[j];
-                break;
+vector<int> nse_naive(int arr[], int n) {
+    vector<int> res;
+    for(int i=0; i<n; i++) {
+        int fg = 1;
+        for(int j=i+1;j<n;j++) {
+            if(arr[j] < arr[i]) {
+                res.push_back(arr[j]);
+                fg = 0;
             }
         }
-        cout<<next<<" ";
+        if(fg) {
+            res.push_back(-1);
+        }
     }
+    return res;
 }
 
 void print_v(vector <int> v)
@@ -75,8 +74,8 @@ int main(int argc, char const *argv[])
     int arr[] = {11, 8, 3, 44};
     int n = sizeof(arr) / sizeof(arr[0]);
 
-    nse_naive(arr, n);
-    cout<<endl;
+    auto res = nse_naive(arr, n);
+    print_v(res);
 
     auto res = nse_stack(arr, n);
 
