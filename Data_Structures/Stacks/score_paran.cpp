@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/score-of-parentheses/
 // Given a balanced parentheses string S, compute the score of the string based on the following rule:
 
 // () has score 1
