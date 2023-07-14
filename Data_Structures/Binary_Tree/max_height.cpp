@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/maximum-depth-of-binary-tree/
 // Given the root of a binary tree, return its maximum depth.
 
 // A binary tree's maximum depth is the number of nodes along the
@@ -36,3 +37,41 @@ int max_depth(Node *root)
     }
 }
 
+
+int max_depth2(Node *root)
+{
+    if(root == NULL)
+    {
+        return 0;
+    }
+
+    queue<Node *> q;
+
+    q.push(root);
+
+    int count = 0;
+
+    while(!q.empty())
+    {
+        int n = q.size();
+        count += 1;
+        for(int i=0; i<n; i++)
+        {
+            Node *node = q.front();
+            q.pop();
+
+            if(node->left != NULL)
+            {
+                q.push(node->left);
+            }
+
+            if(node->right != NULL)
+            {
+                q.push(node->right);
+            }
+        }
+    }
+
+    return count;
+
+}
