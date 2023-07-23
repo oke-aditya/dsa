@@ -10,53 +10,72 @@ and check to see if the sum is 0 when you run out of tree.
 */
 
 #include<bits/stdc++.h>
-
 using namespace std;
 
-class Node
+class TreeNode
 {
     public:
-        int data;
-        Node *left, *right;
+        int val;
+        TreeNode *left, *right;
 };
 
-bool has_path_sum(Node *root, int sum)
+
+bool hasPathSum(TreeNode* root, int targetSum) {
+    if(root == NULL)
+    {
+        return false;
+    }
+
+
+    bool ans = false;
+
+    int remaining = targetSum - root->val;
+
+    if(remaining == 0 && root->left == NULL & root->right == NULL)
+    {
+        return true;
+    }
+
+    if(root->left)
+    {
+        ans = ans || hasPathSum(root->left, remaining);
+    }
+
+    if(root->right)
+    {
+        ans = ans || hasPathSum(root->right, remaining);
+    }
+
+    return ans;
+}
+
+// Find the maximum path sum in tree from root.
+
+int max_path_sum(TreeNode *root)
 {
     if(root == NULL)
     {
-        return (sum == 0);
+        return 0;
+    }
+
+    // if this is the leaf.
+    if(root->left == NULL && root->right == NULL)
+    {
+        return root->val;
+    }
+
+    int left = max_path_sum(root->left);
+    int right = max_path_sum(root->right);
+
+    if(left > right)
+    {
+        return left + root->val;
     }
 
     else
     {
-        bool ans = false;
-        int remaining = sum - root->data;
-
-        // if the remaining is 0 and we have reached end of path
-        if(remaining == 0 && root->left == NULL && root->right == NULL)
-        {
-            return true;
-        }
-
-        // Othwerwise check both tree. Since either will be left.
-        if(root->left)
-        {
-            ans = ans || has_path_sum(root->left, remaining);
-        }
-
-        if(root->right)
-        {
-            ans = ans || has_path_sum(root->right, remaining);
-        }
-        return ans;
+        return right + root->val;
     }
+
 }
-
-
-int main(int argc, char const *argv[])
-{
-    
-    return 0;
-}
-
 
