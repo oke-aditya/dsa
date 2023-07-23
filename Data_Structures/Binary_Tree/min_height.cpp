@@ -29,6 +29,7 @@ int minDepth(Node* root) {
     int min_r = 1 + minDepth(root->right);
     int min_l = 1 + minDepth(root->left);
     
+    // to handle a flat binary tree
     if(min(min_r, min_l) == 1)
         return max(min_r, min_l);
     else

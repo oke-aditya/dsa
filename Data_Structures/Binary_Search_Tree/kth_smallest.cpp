@@ -20,32 +20,26 @@ class Node
 
 int kthSmallest(Node* root, int k)
 {
-    stack<Node*> stk;
-    while (root != NULL || !stk.empty())
+    stack<Node *> stk;
+
+    // stk.push(root);
+
+    while(!stk.empty() || root != NULL)
     {
-        while (root != NULL)
+        while(root != NULL)
         {
             stk.push(root);
-            // Add the left.
             root = root->left;
         }
 
-        // Now the middle
         root = stk.top();
         stk.pop();
 
-        // Since the leftmost element is smallest.
-        // We can reduce k by 1.
         k -= 1;
-
-        // We have found kth smallest.
         if(k == 0)
-        {
-            break;
-        }
+            return root->data;
 
-        // Add the right.
         root = root->right;
     }
-    return root->data;
+    return -1;
 }
