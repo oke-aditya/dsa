@@ -19,67 +19,36 @@
 using namespace std;
 
 
-int solve_grid(int i, int j, int m, int n)
+int helper(int m, int n, vector<vector<int>> &dp)
 {
-    // If we go out or are at the perfect square
-    if (i >= n || j >= m)
-    {
-        return 0;
-    }
-    // Just one square behind some where.
-    if (i == (n - 1) || j == (m - 1))
+    if(m == 0 && n == 0)
     {
         return 1;
     }
-    else
+
+    if(m < 0 || n < 0)
     {
-        // Move either right or down.
-        return solve_grid(i + 1, j, m, n) + solve_grid(i, j + 1, m, n);
-    }
-}
-
-int grid_paths_rec(int m, int n)
-{
-    // Iniitial location.
-    int i = 0, j = 0;
-    int res = solve_grid(i, j, m, n);
-    return res;
-}
-
-int dp[1000][1000];
-
-int solve_grid_mem(int i, int j, int m, int n)
-{
-    if (dp[i][j] != -1)
-    {
-        return dp[i][j];
+        return 0;
     }
 
-    else
+    if(dp[m][n] != -1)
     {
-        // If we go out or are at the perfect square
-        if (i >= n || j >= m)
-        {
-            return 0;
-        }
-        // Just one square behind some where.
-        if (i == (n - 1) || j == (m - 1))
-        {
-            return 1;
-        }
-        else
-        {
-            // Move either right or down.
-            return solve_grid_mem(i + 1, j, m, n) + solve_grid_mem(i, j + 1, m, n);
-        }
+        return dp[m][n];
     }
+
+    int up = helper(m-1, n, dp);
+    int left = helper(m, n-1, dp);
+
+    dp[m][n] = up + left;
+    return dp[m][n];
+
 }
 
-int grid_paths_mem(int m, int n)
+
+int uniquePaths(int m, int n) 
 {
-    int i = 0, j = 0;
-    int res = solve_grid_mem(i, j, m, n);
-    return res;
+    vector<vector<int>> dp(m+1, vector<int> (n+1, -1));
+    return helper(m-1, n-1, dp);
 }
 
 int grid_paths_bu(int m, int n)
@@ -101,24 +70,4 @@ int grid_paths_bu(int m, int n)
         }
     }
     return dp[m-1][n-1];
-}
-
-int main()
-{
-    int m = 3, n = 7;
-    memset(dp, -1, sizeof(dp));
-    cout << grid_paths_rec(m, n) << endl;
-    cout << grid_paths_mem(m, n) << endl;
-
-    memset(dp, -1, sizeof(dp));
-    cout << grid_paths_bu(m, n)<<endl;
-
-    int m2 = 3, n2 = 2;
-    memset(dp, -1, sizeof(dp));
-    cout << grid_paths_rec(m2, n2) << endl;
-    cout << grid_paths_mem(m2, n2) << endl;
-
-    cout << grid_paths_bu(m2, n2)<<endl;
-
-    return (0);
 }

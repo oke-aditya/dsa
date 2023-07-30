@@ -27,53 +27,87 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int solve_rec(vector<vector<int>> grid, int i, int j, int m, int n)
+
+int helper(vector<vector<int>>& grid, int m, int n, vector<vector<int>> dp)
 {
-    // boundary check
-    if(i < 0 || j < 0 || i >= m || j >= n)
-        return 0;
-    
-    // starting point has an obstacle
-    if(grid[i][j] == 1)
-        return 0;
-
-    // If we are 1 step closer then there is just 1 path. (If unblocked)
-    if(i == m-1 && j == n-1 && grid[i][j] == 0)
-        return 1;
-    
-    return solve_rec(grid, i+1, j, m, n) + solve_rec(grid, i, j+1, m, n);
-
-}
-
-// iterative dp.
-
-int solve_bu(vector<vector<int>> grid, int i, int j, int m, int n)
-{
-    int dp[m+1][n+1];
-    dp[0][1] = 1;
-
-    for(int i=1; i<=m; i++)
+    if(m < 0 || n < 0)
     {
-        for(int j=1; j<=n; j++)
-        {
-            if(grid[i-1][j-1] != 1)
-                dp[i][j] = dp[i-1][j] + dp[i][j-1];
-            else
-                dp[i][j] = 0;
-        }
+        return 0;
     }
 
-    return dp[m][n];
+    if(grid[m][n] == 1 && m >=0 && n >=0)
+    {
+        return 0;
+    }
+
+    if(m == 0 && n == 0)
+    {
+        return 1;
+    }
+
+    if(dp[m][n] != -1)
+    {
+        return dp[m][n];
+    }
+
+    else
+    {
+        int left = helper(grid, m-1, n, dp);
+        int right = helper(grid, m, n-1, dp);
+        dp[m][n] = left + right;
+        return dp[m][n];
+    }
+
 }
 
 int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+    
+    int m = obstacleGrid.size(), n = obstacleGrid[0].size();
+    
+    vector<vector<int>> dp(m, vector<int> (n, -1));
 
-    // rows
-    int m = obstacleGrid.size();
+    int res = helper(obstacleGrid, m-1, n-1, dp);
 
-    // cols
-    int n = obstacleGrid[0].size();
+    return res % (2 * 1000000000);
+}
 
-    return solve_rec(obstacleGrid, 0, 0, m, n);
 
+// iterative dp.
+
+int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        
+    int m = obstacleGrid.size(), n = obstacleGrid[0].size();
+    
+    vector<vector<int>> dp(m, vector<int> (n, 0));
+
+    for(int i=0;i<m;i++)
+    {
+            for(int j=0;j<n;j++)
+            {
+                if(obstacleGrid[i][j]==1) 
+                {
+                    dp[i][j] = 0;
+                    // continue;
+                }
+                else if(i == 0 && j ==0)
+                {
+                    dp[i][j] = 1;
+                }
+                else
+                {
+                    int up = 0,left = 0;
+                    if(i > 0) 
+                    {
+                        up = dp[i-1][j];
+                    }
+                    if(j>0) 
+                    {
+                        left = dp[i][j-1];
+                    }
+                        
+                    dp[i][j] = up + left;
+                }
+            }
+        }
+        return dp[m-1][n-1] % (2 * 1000000000);
 }
