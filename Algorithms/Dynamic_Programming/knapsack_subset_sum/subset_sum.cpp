@@ -11,65 +11,63 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int dp[100][100];
 
-
-bool is_subeset_sum_rec(int set[], int sum, int n)
+bool subset_sum_rec(vector<int> arr, int n, int sum)
 {
-    // Base Cases
-    if(sum == 0)
-    {
-        return true;
-    }
-    if(n == 0)
+    if(n == 0 && sum != 0)
     {
         return false;
     }
 
-    // If the last element is greater, then we have to leave it
-    if(set[n-1] > sum)
+    if(sum == 0)
     {
-        return (is_subeset_sum_rec(set, sum, n-1));
+        return true;
     }
+
+    if(arr[n-1] > sum)
+    {
+        return subset_sum_rec(arr, n-1, sum);
+    }
+
     else
     {
-        return (is_subeset_sum_rec(set, sum, n-1) || is_subeset_sum_rec(set, sum-set[n - 1], n-1));
+        return subset_sum_rec(arr, n-1, sum-arr[n-1]) || subset_sum_rec(arr, n-1, sum);
     }
 }
 
-int is_subset_sum_mem(int set[], int sum, int n)
+
+bool subset_sum_mem(vector<int> arr, int n, int sum, vector<vector<int>> dp)
 {
     if(dp[n][sum] != -1)
     {
         return dp[n][sum];
     }
+
+    if(n == 0 && sum != 0)
+    {
+        return false;
+    }
+
     if(sum == 0)
     {
-        return 1;
+        return true;
     }
-    if(n == 0)
+
+    if(arr[n-1] > sum)
     {
-        return 0;
+        dp[n][sum] = subset_sum_mem(arr, n-1, sum, dp);
+        return dp[n][sum];
     }
+
     else
     {
-        if(set[n-1] > sum)
-        {
-            dp[n][sum] = is_subset_sum_mem(set, sum, n-1);
-            return dp[n][sum];
-        }
-        else
-        {
-            dp[n][sum] = is_subset_sum_mem(set, sum, n-1) || is_subset_sum_mem(set, sum-set[n-1], n-1);
-            return dp[n][sum];
-        }
+        dp[n][sum] = subset_sum_mem(arr, n-1, sum-arr[n-1], dp) || subset_sum_mem(arr, n-1, sum, dp);
+        return dp[n][sum];
     }
 }
 
-int is_subset_sum_bu(int set[], int sum, int n)
+bool subset_sum_bu(vector<int> arr, int n, int sum, vector<vector<int>> dp)
 {
-    bool dp[n+1][sum+1];
-
     // If sum is 0, then answer is true
     for(int i=0; i<n; i++)
     {
@@ -86,44 +84,42 @@ int is_subset_sum_bu(int set[], int sum, int n)
     {
         for(int j=1; j<sum+1; j++)
         {
-            if(j < set[i - 1])
+            if(arr[i-1] > j)
             {
-                dp[i][j] = dp[i - 1][j]; 
+                dp[i][j] = dp[i-1][j];
             }
+
             else
             {
-                dp[i][j] = dp[i-1][j] || dp[i-1][j - set[i - 1]];
+                dp[i][j] = dp[i-1][j-arr[i-1]] || dp[i-1][j];
             }
         }
     }
+
     return dp[n][sum];
+
 }
+
+
 
 int main(int argc, char const *argv[])
 {
-    int set[] = {3, 34, 4, 12, 5, 2};
-    int sum = 9;
+    vector<int> v = {5, 2,  5, 1, 3};
+    int n = v.size();
+    int sum = 15;
 
-    int n = sizeof(set) / sizeof(set[0]);
+    vector<vector<int>> dp(n+1, vector<int> (sum+1, -1));
 
-    if(is_subeset_sum_rec(set, sum, n))
+    if(subset_sum_rec(v, n, sum))
     {
         cout<<"Yes"<<endl;
     }
     else
     {
         cout<<"No"<<endl;
-    }
-
-    for(int i=0; i<100; i++)
-    {
-        for(int j=0;j<100; j++)
-        {
-            dp[i][j] = -1;
-        }
     }
     
-    if(is_subset_sum_mem(set, sum, n) == 1)
+    if(subset_sum_mem(v, n, sum, dp))
     {
         cout<<"Yes"<<endl;
     }
@@ -132,7 +128,7 @@ int main(int argc, char const *argv[])
         cout<<"No"<<endl;
     }
 
-    if(is_subset_sum_bu(set, sum, n) == 1)
+    if(subset_sum_bu(v, n, sum, dp))
     {
         cout<<"Yes"<<endl;
     }
