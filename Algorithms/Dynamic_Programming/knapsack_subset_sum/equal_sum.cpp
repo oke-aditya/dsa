@@ -20,14 +20,15 @@ bool is_subset_sum(int arr[], int sum, int n)
     {
         return dp[n][sum];
     }
-
-    if(sum == 0)
+    
+    // // base conditions
+    if(n == 0) 
     {
-        return true;
-    }
-    if(n == 0)
-    {
-        return false;
+        if(sum == 0) 
+        {
+            return 1;
+        }
+        return 0;
     }
 
     else

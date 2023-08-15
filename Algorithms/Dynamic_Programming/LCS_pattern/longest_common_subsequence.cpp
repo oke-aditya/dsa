@@ -36,8 +36,7 @@ int lcs_rec(string s1, string s2, int m, int n)
         else
         {
             // We should find maximum between the other possibilites
-            return(max(lcs_rec(s1, s2, m-1, n), 
-            lcs_rec(s1, s2, m, n-1)));
+            return(max(lcs_rec(s1, s2, m-1, n),  lcs_rec(s1, s2, m, n-1)));
         }
     }
 }

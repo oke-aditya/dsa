@@ -14,15 +14,17 @@ using namespace std;
 
 bool subset_sum_rec(vector<int> arr, int n, int sum)
 {
-    if(n == 0 && sum != 0)
+    
+    // // base conditions
+    if(n == 0) 
     {
-        return false;
+        if(sum == 0) 
+        {
+            return 1;
+        }
+        return 0;
     }
 
-    if(sum == 0)
-    {
-        return true;
-    }
 
     if(arr[n-1] > sum)
     {
@@ -69,7 +71,7 @@ bool subset_sum_mem(vector<int> arr, int n, int sum, vector<vector<int>> dp)
 bool subset_sum_bu(vector<int> arr, int n, int sum, vector<vector<int>> dp)
 {
     // If sum is 0, then answer is true
-    for(int i=0; i<n; i++)
+    for(int i=0; i<=n; i++)
     {
         dp[i][0] = true;
     }

@@ -1,3 +1,5 @@
+// Number of subsets with sum equal to k.
+
 // Given an array arr[] of length N and an integer X, 
 // the task is to find the number of subsets with sum equal to X.
 
@@ -20,15 +22,16 @@ int count_subset_sum(int arr[], int sum, int n)
         return dp[n][sum];
     }
 
-    if(sum == 0)
+    // // base conditions
+    if(n == 0) 
     {
-        return 1;
-    }
-
-    if(n == 0)
-    {
+        if(sum == 0) 
+        {
+            return 1;
+        }
         return 0;
     }
+
 
     else
     {
