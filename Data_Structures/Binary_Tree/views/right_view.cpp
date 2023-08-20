@@ -18,18 +18,17 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Node
+class TreeNode
 {
     public:
-        int data;
-        Node *left, *right;
+        int val;
+        TreeNode *left, *right;
 
 };
 
 
-vector <int> right_view(Node *root)
+vector<int> rightSideView(TreeNode* root) 
 {
-
     vector<int> res;
 
     if(root == NULL)
@@ -37,45 +36,34 @@ vector <int> right_view(Node *root)
         return res;
     }
 
-    queue<Node*> q;
+    queue<TreeNode *> q;
     q.push(root);
 
-    // BFS Like queue
-    while (!q.empty())
+    // res.push_back(root->val);
+
+    while(!q.empty())
     {
         int n = q.size();
-
-        // Traverse all nodes of current level 
-        for(int i=1; i<=n; i++)
+        for(int i=0; i<n; i++)
         {
-            Node *temp = q.front();
+
+            TreeNode *node = q.front();
             q.pop();
 
-            // Print the last element in the node.
-            if(i == n)
+            if(i == n-1)
             {
-                res.push_back(temp->data);
+                res.push_back(node->val);
             }
 
-            if(temp->left != NULL)
+            if(node->left != NULL)
             {
-                q.push(temp->left);
+                q.push(node->left);
             }
 
-            if(temp->right != NULL)
+            if(node->right != NULL)
             {
-                q.push(temp->right);
+                q.push(node->right);
             }
         }
     }
-    return res;
-
 }
-
-int main(int argc, char const *argv[])
-{
-    
-    return 0;
-}
-
-
