@@ -1,3 +1,19 @@
+// https://leetcode.com/problems/largest-divisible-subset/
+// 
+// Given a set of distinct positive integers nums, return the largest subset answer such 
+// that every pair (answer[i], answer[j]) of elements in this subset satisfies:
+
+//     answer[i] % answer[j] == 0, or
+//     answer[j] % answer[i] == 0
+
+// If there are multiple solutions, return any of them.
+// 
+// Example 1:
+// 
+// Input: nums = [1,2,3]
+// Output: [1,2]
+// Explanation: [1,3] is also accepted.
+
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -12,6 +28,7 @@ vector<int> largestDivisibleSubset(vector<int>& nums) {
     {
         for(int prev=0; prev<i; prev++)
         {
+            // same as LCS but this is the condiiton to check
             if(nums[i] % nums[prev] == 0)
             {
                 dp[i] = max(dp[i], 1 + dp[prev]);
@@ -25,6 +42,7 @@ vector<int> largestDivisibleSubset(vector<int>& nums) {
 
     for(int i=n-1; i>=0; i--)
     {
+        // extra thing to check as we want to keep only divisble elements.
         if(dp[i] == maxi && (prev == -1 ||  prev % nums[i] == 0))
         {
             res.push_back(nums[i]);

@@ -123,29 +123,5 @@ int lengthOfLIS3(vector<int>& nums) {
 // Output: 4
 // Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
 
-int main(int argc, char const *argv[])
-{
-    vector<int> nums = {10,9,2,5,3,7,101,18};
-    auto res = lengthOfLIS3(nums);
-    cout<<res;
-    return 0;
 
-    int n = nums.size();
-
-    vector<int> dp(n + 1);
-    int prev = -1;
-    int res = -1;
-    for(int i=0; i<n; i++)
-    {
-        for(prev = 0; prev<i; prev++)
-        {
-            if(nums[i] > nums[prev])
-            {
-                dp[i] = max(dp[i], 1 + dp[prev]);
-            }
-            res = max(res, dp[i]);
-        }
-    }
-
-}
 
