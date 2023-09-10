@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/copy-list-with-random-pointer/
 // A linked list of length n is given such that each node contains
 // an additional random pointer, which could point to any node in the list, or null.
 
@@ -22,7 +23,7 @@
 // Output: [[1,1],[2,1]]
 
 // Solution: -
-
+// https://leetcode.com/problems/copy-list-with-random-pointer/solutions/4003329/c-2-approaches-o-n-space-and-o-1-space/
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -30,7 +31,7 @@ using namespace std;
 class Node
 {
     public:
-        int data;
+        int val;
         Node *next;
         Node *bottom; 
 };
@@ -38,7 +39,7 @@ class Node
 void insert_head(Node **head_ref, int new_data)
 {
     Node *new_node = new Node();
-    new_node->data = new_data;
+    new_node->val = new_data;
     new_node->next = *head_ref;
     *head_ref = new_node;
 
@@ -48,11 +49,19 @@ void println(Node *node)
 {
     while(node != NULL)
     {
-        cout<<node->data<<" ";
+        cout<<node->val<<" ";
         node = node->next;
     }
     cout<<endl;
 }
+
+Node* copyRandomList(Node* head) 
+{
+    
+        
+}
+
+
 
 int main(int argc, char const *argv[])
 {
