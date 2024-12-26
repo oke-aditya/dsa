@@ -5,10 +5,10 @@
 using namespace std;
 
 
-
-// check paldindrome between two indices of string.
-bool is_palindrome(string s, int start, int end)
+// check paldindrome
+bool is_palindrome(string s)
 {
+    int start = 0; int end = s.size() - 1;
     while(start <= end)
     {
         if(s[start] != s[end])
@@ -22,10 +22,11 @@ bool is_palindrome(string s, int start, int end)
 }
 
 
-// Trick here is to capture every palindrome as wel iterate.
+// Trick here is to capture every palindrome as we iterate.
 // We can continously check if they are palindrome
 // Note the substring size here would be between start and where 'i' pointer is.
 // At the end we will have solutions
+
 
 void backtrack(string s, int start, vector<string> &sol, vector<vector<string>> &res)
 {
@@ -36,11 +37,13 @@ void backtrack(string s, int start, vector<string> &sol, vector<vector<string>> 
         return;
     }
 
+    string pal_string;
     for(int i=start; i<s.size(); i++)
     {
-        if(is_palindrome(s, start, i))
+        pal_string += s[i];
+        if(is_palindrome(pal_string))
         {
-            sol.push_back(s.substr(start, i - start + 1));
+            sol.push_back(pal_string);
             backtrack(s, i+1, sol, res);
             sol.pop_back();
         }
