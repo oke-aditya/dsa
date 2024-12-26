@@ -18,7 +18,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void print_vv(vector<string> vv)
+void print_vs(vector<string> vv)
 {
     for(auto s: vv)
     {
@@ -75,7 +75,7 @@ int main(int argc, char const *argv[])
     string s = "a1b2";
     // cout<<s.size()<<endl;
     auto res = letterCasePermutation(s);
-    print_vv(res);
+    print_vs(res);
 
     return 0;
 }
