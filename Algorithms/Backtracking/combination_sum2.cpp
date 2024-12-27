@@ -1,105 +1,89 @@
-// Given a collection of candidate numbers (candidates) and a target number (target),
-// find all unique combinations in candidates where the candidate numbers sum to target.
+// https://leetcode.com/problems/combination-sum/description/
 
-// Each number in candidates may only be used once in the combination.
+// Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. You may return the combinations in any order.
 
-// Note: The solution set must not contain duplicate combinations.
+// The same number may be chosen from candidates an unlimited number of times. Two combinations are unique if the
+// frequency
+// of at least one of the chosen numbers is different.
 
-// Input: candidates = [10,1,2,7,6,1,5], target = 8
-// Output: 
-// [
-// [1,1,6],
-// [1,2,5],
-// [1,7],
-// [2,6]
-// ]
+// The test cases are generated such that the number of unique combinations that sum up to target is less than 150 combinations for the given input. 
 
-// Input: candidates = [2,5,2,1,2], target = 5
-// Output: 
-// [
-// [1,2,2],
-// [5]
-// ]
+// Example 1:
 
-// Solution
-// Same appraoch as combination sum 1
-// We just have to increase i if we have picked the element.
-// Else we can avoid it.
+// Input: candidates = [2,3,6,7], target = 7
+// Output: [[2,2,3],[7]]
+// Explanation:
+// 2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
+// 7 is a candidate, and 7 = 7.
+// These are the only two combinations.
+
+// Example 2:
+
+// Input: candidates = [2,3,5], target = 8
+// Output: [[2,2,2,2],[2,3,3],[3,5]]
+
+// Example 3:
+
+// Input: candidates = [2], target = 1
+// Output: []
+
+
+
+// Note that we can pick multiple times the same number
+// We will need an extra temp array because we cannot do operations in place
+// We will backtrack the solution
 
 #include<bits/stdc++.h>
 using namespace std;
 
-void print_vv(vector <vector<int>> vv)
-{
-    for(auto v : vv)
-    {
-        cout<<"[";
-        for(auto ele: v)
-        {
-            cout<<ele<<" ";
-        }
-        cout<<"]";
-    }
-    cout<<endl;
-}
+class Solution {
+public:
 
-void backtrack(vector<vector<int>> &res, vector<int> temp,
-              vector<int> nums, int target, int start)
-{
-    if(target < 0)
+    void backtrack(vector<int> &candidates, int start, int target, vector<int> &temp, vector<vector<int>> &res)
     {
-        return;
-    }
-    // We have a solution!
-    else if(target == 0)
-    {
-        res.push_back(temp);
-    }
-    else
-    {
-        for(int i=start; i<nums.size(); i++)
+        // If target goes -ve. Discard the result, don't take it in res;
+        if(target < 0)
         {
-            if(i > start && nums[i] == nums[i-1])
+            return;
+        }
+
+        // if we hit the target we have found a result
+        if (target == 0)
+        {
+            res.push_back(temp);
+            // we need to return since we don't need duplicates
+            return;
+        }
+
+        // for all the choices from start coz of recursive calls
+        for(int i=start; i<candidates.size(); i++)
+        {
+            // note C++ the order is important first i > start and then the other condition
+            if(i > start && (candidates[i] == candidates[i-1]))
             {
-                // Skip this duplicate element
-                continue;
+                // no recerse
+                continue; 
             }
 
-            // We can choose this element
-            temp.push_back(nums[i]);
+            // backtrack by reducing target.
+            // take them in temp as possible result;
+            temp.push_back(candidates[i]);
 
-            // Now we have to reduce the target and backtrack.
-            // We can take element just once so move ahead.
-            backtrack(res, temp, nums, target-nums[i], i+1);
+            // backtrack we can't take again
+            backtrack(candidates, i+1, target - candidates[i], temp, res);
+            // undo backtrack
             temp.pop_back();
         }
     }
-}
 
-vector<vector<int>> print_combinations(vector <int> nums, int target)
-{
-    vector<int> temp;
-    vector<vector<int>> res;
-    sort(nums.begin(), nums.end());
-    backtrack(res, temp, nums, target, 0);
-    return res;
-}
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        vector<int> temp;
+        int start = 0;
+        sort(candidates.begin(), candidates.end());
+        backtrack(candidates, start, target, temp, res);
 
-
-int main(int argc, char const *argv[])
-{
-    vector <int> candidates1 = {10, 1, 2, 7, 6, 1, 5};
-    int target1 = 8;
-
-    vector <int> candidates2 = {2, 5, 2, 2, 1, 2};
-    int target2 = 5;
-
-    auto res1 = print_combinations(candidates1, target1);
-    auto res2 = print_combinations(candidates2, target2);
-
-    print_vv(res1);
-    print_vv(res2);
-
-    return 0;
-}
+        return res;
+    }
+};
 
