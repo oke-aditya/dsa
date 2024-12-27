@@ -4,38 +4,21 @@
 // Input: [2,2,3,2]
 // Output: 3
 
-// Solution strategy: -
-// Let our solution be X.
-// Let F[i] number of elements with ith bit = 1
+// https://leetcode.com/problems/single-number/solutions/1772139/c-explained-everything-w-why-xor-works-brute-force-to-optimized-step-by-step-dry-run/?envType=list&envId=503dr9s5
 
-// Claim: - If ith bit is 1 in X. Then F[i] would be of the form 3n + 1
+#include<bits/stdc++.h>
+using namespace std;
 
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int n = nums.size();
 
-int singleNumber(vector<int>& arr) 
-    {
-        int n = arr.size();
-        vector <int> f(32, 0);
-        
-        for(auto e: arr)
+        for(int i=0; i<n-1; i++)
         {
-            for(int i=0;i<32;i++)
-            {
-                if(e & (1<<i))
-                {
-                    f[i] += 1;
-                }
-            }
+            nums[i+1] = nums[i] ^ nums[i + 1];
         }
-        
-        int res = 0;
-        for(int i=0;i<32;i++)
-        {
-            if(f[i] % 3 == 1)
-            {
-//                 ith bit is set;
-                res += (1 << i);
-            }
-        }
-        return res;
-        
+
+        return nums[n-1];
     }
+};
