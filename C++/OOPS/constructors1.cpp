@@ -58,6 +58,7 @@ class cons2
 // Assigning objects using = will lead to shallow copy, changes would be reflect in each other.
 
 // Why argument to a copy constructor must be passed as a reference? 
+
 // A copy constructor is called when an object is passed by value.
 // Copy constructor itself is a function. So if we pass an argument
 // by value in a copy constructor, a call to copy constructor would

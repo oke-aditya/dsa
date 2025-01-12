@@ -1,4 +1,5 @@
 // Write Code to Determine if Two Trees are Identical
+// https://leetcode.com/problems/same-tree/description/
 
 // Two trees are identical when they have same data and arrangement of data is also same.
 
@@ -30,25 +31,28 @@ class Node
         Node *left, *right;
 };
 
-
-bool is_identical(Node *t, Node *s)
+bool isSameTree(Node* p, Node* q) 
 {
-    if(t == NULL && s == NULL)
+    if(p == NULL && q == NULL)
     {
         return true;
     }
-
-    if(t != NULL & s!= NULL)
+    else if(p == NULL && q != NULL)
     {
-        return
-        (
-            (t->data == s->data) &&
-            is_identical(t->left, s->left) &&
-            is_identical(t->right, s->right)
-        );
+        return false;
     }
-
-    return false;
+    else if(q == NULL && p != NULL)
+    {
+        return false;
+    }
+    else if(p->data != q->data)
+    {
+        return false;
+    }
+    else
+    {
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    }
 }
 
 
