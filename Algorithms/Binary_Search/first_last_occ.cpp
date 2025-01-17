@@ -31,7 +31,7 @@ int first_occurence(int arr[], int n, int tgt)
         if (tgt == arr[mid])
         {
             // return 1;
-            // We are unsure so search left for first occurence.
+            // continue searching left for better ans, reduce search space
             res = mid;
             right = mid - 1;
         }
@@ -58,7 +58,7 @@ int last_occurence(int arr[], int n, int tgt)
         int mid = (left + right) / 2;
         if (tgt == arr[mid])
         {
-            // continue search on right
+            // continue searching right for better ans, reduce search space
             res = mid;
             left = mid + 1;
         }

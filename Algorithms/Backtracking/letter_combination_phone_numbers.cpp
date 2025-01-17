@@ -13,6 +13,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+void print_vs(vector<string> vv)
+{
+    for(auto s: vv)
+    {
+        cout<<s<<", ";
+    }
+}
+
+
 void backtrack(string digits, int start, string &sol, vector<string> &res, vector<string> mapping)
 {
     // if we have explored all the digits
@@ -49,7 +58,10 @@ vector<string> letterCombinations(string digits)
 
 int main(int argc, char const *argv[])
 {
-    
+    string digits = "23";
+    auto res = letterCombinations(digits);
+    print_vs(res);
+
     return 0;
 }
 
