@@ -1,3 +1,4 @@
+// https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1
 // Given number of pages in n different books and m students.
 // The books are arranged in ascending order of number of pages.
 // Every student is assigned to read some consecutive books.
