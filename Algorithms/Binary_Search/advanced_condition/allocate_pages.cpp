@@ -1,3 +1,4 @@
+// https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1
 // Given number of pages in n different books and m students.
 // The books are arranged in ascending order of number of pages.
 // Every student is assigned to read some consecutive books.
@@ -23,10 +24,12 @@
 // Solution: -
 
 // The idea is to use Binary Search.
-// We fix a value for the number of pages as mid of current minimum and maximum.
 // We initialize minimum and maximum as 0 and sum-of-all-pages respectively.
+// We fix a value for the number of pages as mid of current minimum and maximum.
 // If a current mid can be a solution,
 // then we search on the lower half, else we search in higher half.
+// the main idea is to find a middle value, check if it can solve the problem.
+
 
 // we need to check if we can assign pages to all students in a way
 // that the maximum number doesn’t exceed current value.
@@ -39,82 +42,82 @@
 
 using namespace std;
 
-bool is_possible(int arr[], int n, int m, int curr_min)
+bool is_possible(vector<int> arr, int n, int k, int mid)
 {
     int curr_sum = 0;
     int stud_req = 1;
-
-    // iterate all over
-    for (int i = 0; i < n; i++)
+    
+    for(int i=0; i<n; i++)
     {
-        // check if current number of pages are greater.
-        // current min will get result
-        if (arr[i] > curr_min)
+            
+        // if the new book cannot be allocated.
+        // we need new student
+        if(curr_sum + arr[i] > mid)
         {
-            return false;
-        }
-
-        // count how many students are required
-        // to distribute current min
-        if (curr_sum + arr[i] > curr_min)
-        {
-            // increment student count
             stud_req += 1;
-
-            // if students required becomes greater than given no, return false
-            if (stud_req > m)
-            {
-                return false;
-            }
+            curr_sum = arr[i];
         }
         else
         {
             curr_sum += arr[i];
         }
     }
-    return true;
+    
+    if(stud_req <= k)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
 
-int find_pages(int arr[], int n, int m)
+int findPages(vector<int> &arr, int k) 
 {
+    
     int sum = 0;
-
-    // If no of books < no of students.
-    if (n < m)
+    int ans = INT_MAX;
+    int n = arr.size();
+    
+    // more students to allocate than books
+    if(k > n)
     {
-        return -1 ;
+        return -1;
     }
-    // Count total number of pages
-    for (int i = 0; i < n; i++)
+    
+    for(int i=0; i<n; i++)
     {
         sum += arr[i];
     }
-
-    // Initialize start as 0 and pages end as total pages
-    int start = 0, end = sum;
-    int result = INT_MAX;
-
-    // traverse until start <= end
-    while (start <= end)
+    
+    // The minimum number of pages a student can take is the largest book
+    int left = *max_element(arr.begin(), arr.end());
+    int right = sum;
+    
+    while(left <= right)
     {
-        // Check if it is possible to distribute
-        // Books by using mid as current min
-        int mid = (start + end) / 2;
-        if (is_possible(arr, n, m, mid))
+        
+        // consider allocating books = mid
+        // we want to allocate only these many
+        int mid = left + (right - left) / 2;
+        
+        // one of the solution, optimize further.
+        if(is_possible(arr, n, k, mid))
         {
-            // If yes then calculate minimum of result
-            result = min(result, mid);
-
-            // We are finding min and books are sorted so reduce end=mid-1
-            end = mid - 1;
+            ans = mid;
+            right = mid - 1;
         }
+        
+        // this is not a possible answer, so we can push left
         else
         {
-            start = mid + 1;
+            left = mid + 1;
         }
     }
-    // Return minimum no of pages.
-    return result;
+
+    return ans;
 }
 
 // Driver code
@@ -124,7 +127,5 @@ int main()
     int arr[] = {12, 34, 67, 90};
     int n = sizeof arr / sizeof arr[0];
     int m = 2; //No. of students
-
-    cout << "Minimum number of pages = " << find_pages(arr, n, m) << endl;
     return 0;
 }
