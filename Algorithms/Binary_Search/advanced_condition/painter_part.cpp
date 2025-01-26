@@ -1,3 +1,4 @@
+// https://www.naukri.com/code360/problems/painter-s-partition-problem_1089557
 // We have to paint n boards of length {A1, A2, .. An}. There are k painters available 
 // and each takes 1 unit time to paint 1 unit of board. 
 // The problem is to find the minimum time to get this job done 
