@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/description/
+
 // Given a string s, a k duplicate
 // removal consists of choosing k adjacent and equal letters from s
 // and removing them causing the left and the
@@ -29,53 +31,50 @@ string remove_adj(string s, int k)
 
     // Stack of Pair to store character and count.
     stack<pair<char, int>> stk;
-    string res = "";
-    
-    for(char ch: s)
+    int i=0;
+    int n = s.size();
+    while(i<n)
     {
-        // first occurence.
         if(stk.empty())
         {
-            stk.push({ch, 1});
+            stk.push(make_pair(s[i], 1));
         }
-        
-        else
+
+        else if(stk.top().first != s[i])
         {
-            // If character matches.
-            if(stk.top().first == ch)
-            {
-                // count is k - 1
-                if(stk.top().second == (k - 1))
-                {
-                    stk.pop();
-                }
-                else
-                {
-                    stk.top().second += 1;
-                }
-            }
-            // character did not match.
-            else
-            {
-                stk.push({ch, 1});
-            }
+            stk.push(make_pair(s[i], 1));
         }
+
+        else if(stk.top().first == s[i])
+        {
+            pair<char, int> top_pair = stk.top();
+            top_pair.second += 1;
+            stk.pop();
+            stk.push(top_pair);
+        }
+
+        // check and pop the top
+        pair<char, int> top_pair = stk.top();
+        if(top_pair.second == k)
+        {
+            stk.pop();
+        }
+        i += 1;
     }
-    
-    // just pop the stack and add
-    // character count number of times.
+
+    string res = "";
     while(!stk.empty())
     {
-        int count = stk.top().second;
-        while(count > 0)
+        // Add number of times the char was present
+        int count_pop = stk.top().second;
+        for(int i=0; i<count_pop; i++)
         {
             res += stk.top().first;
-            count -= 1;
         }
+        // Pop the char
         stk.pop();
     }
-    
-    reverse(res.begin(), res.end());
+    reverse(begin(res), end(res));
     return res;
 }
 

@@ -15,13 +15,7 @@ __pycache__/
 *.so
 
 # Practice files
-practice.cpp
-practice2.cpp
-practice3.cpp
-practice.c
-practice.py
-practice
-practice.java
+practice*.*
 *.class
 
 # Distribution / packaging
@@ -148,5 +142,4 @@ dmypy.json
 .vscode
 Data_Structures/Linked_lists/find_length.exe
 Data_Structures/Linked_lists/find_length.exe
-practice
-practice
+

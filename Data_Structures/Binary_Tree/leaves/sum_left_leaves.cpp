@@ -1,4 +1,7 @@
 // https://leetcode.com/problems/sum-of-left-leaves/
+// Given the root of a binary tree, return the sum of all left leaves.
+
+// A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -9,6 +12,30 @@ class TreeNode
         int val;
         TreeNode *left, *right;
 };
+
+int dfs(TreeNode* root, bool is_left)
+{
+    if(root == NULL)
+    {
+        return 0;
+    }
+
+    if(root->left == NULL && root->right == NULL)
+    {
+        if(is_left)
+        {
+            return root->val;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    int left_sum = dfs(root->left, true);
+    int right_sum = dfs(root->right, false);
+    return left_sum + right_sum;
+}
 
 
 int sumOfLeftLeaves(TreeNode* root) 

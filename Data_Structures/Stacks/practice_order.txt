@@ -1,3 +1,7 @@
-1. stacks_intro.cpp
-2. 
+1. stacks_intro.cpp, rev string
+2. valid_parantehsis
+3. next left greater etc
+4. remove adj elem1
+5. remove adj elem2
+6.
 

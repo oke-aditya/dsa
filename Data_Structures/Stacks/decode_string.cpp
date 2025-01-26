@@ -18,6 +18,62 @@
 // Input: s = "3[a2[c]]"
 // Output: "accaccacc"
 
+#include<bits/stdc++.h>
 
+using namespace std;
+
+string decodeString(string s) 
+{
+    stack<char> stk;
+
+    int n = s.size();
+
+    for(int i=0; i<n; i++)
+    {
+        if(s[i] != ']')
+        {
+            stk.push(s[i]);
+        }
+
+        else
+        {
+            string curr_str = "";
+            while(stk.top() != '[')
+            {
+                curr_str = stk.top() + curr_str;
+                stk.pop();
+            }
+            // for opening '['
+            stk.pop();
+
+            // Now number note that number can be2 digit number also don't forget.
+            string number = "";
+            while(!stk.empty() && isdigit(stk.top()))
+            {
+                number = stk.top() + number;
+                stk.pop();
+            }
+
+            int k_times = stoi(number);
+            while(k_times--)
+            {
+                // repeat the string these many times
+                for(int i=0; i<curr_str.size(); i++)
+                {
+                    stk.push(curr_str[i]);
+                }
+            }
+        }
+    }
+    string res = "";
+    while(!stk.empty())
+    {
+        res += stk.top();
+        stk.pop();
+    }
+
+    reverse(begin(res), end(res));
+    return res;
+}
 
 

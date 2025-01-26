@@ -52,48 +52,40 @@ void print_v(vector <int> v)
     cout<<endl;
 }
 
-vector <int> freq_sort_heap(vector <int> v)
+vector <int> freq_sort_heap(vector <int> nums)
 {
-    // Create a hashmap and store the frequencies
-    unordered_map <int, int> mp;
-    for(int i=0; i<v.size(); i++)
+
+    unordered_map<int, int> mp;
+
+    for(auto num: nums)
     {
-        mp[v[i]] += 1;
+        mp[num] += 1;
     }
 
-    // Print the map once to check
-    // for(auto i=mp.begin(); i!= mp.end(); i++)
-    // {
-    //     cout<<i->first<<" "<<i->second;
-    //     cout<<endl;
-    // }
+    // To handle the edge case of having higher frequency number in descending order
+    // Trick is to create max heap with -ve frequency
+    priority_queue<pair<int, int>> maxh;
 
-    // Push to min heap
-    priority_queue <pii, vector<pii>, greater<pii>> minh;
-
-    // Add the comparator declaration
-    // priority_queue <pii, vector<pii>, compare> minh2;
-
-    // We need pair to put a map into heap.
-
-    for(auto i=mp.begin(); i!= mp.end(); i++)
+    for(auto itr = begin(mp); itr != end(mp); itr++)
     {
-        minh.push({i->second, i->first});
+        // num and freq;
+        int num = itr->first;
+        int freq = -1 * itr->second;
+
+        maxh.push(make_pair(freq, num));
     }
 
-    vector <int> res;
-
-    while(!minh.empty())
+    vector<int> res;
+    while(!maxh.empty())
     {
-        int freq = minh.top().first;
-        int ele = minh.top().second;
-
-        for(int i=1; i<=freq; i++)
+        int freq = -1 * maxh.top().first;
+        int num = maxh.top().second;
+        while(freq--)
         {
-            res.push_back(ele);
+            res.push_back(num);
         }
-
-        minh.pop();
+        
+        maxh.pop();
     }
 
     return res;
@@ -108,9 +100,6 @@ int main(int argc, char const *argv[])
     auto res = freq_sort_heap(v);
 
     print_v(res);
-
-    // auto res = freq_sort_md(v);
-
 
     return 0;
 }
