@@ -29,4 +29,7 @@ L = 1, R = 3
 We can easily do prefix: prefix[R + 1] - prefix[L]
 
 
+Refer
+
+https://leetcode.com/discuss/study-guide/5119937/prefix-sum-problems
 
