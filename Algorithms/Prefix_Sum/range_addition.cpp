@@ -61,5 +61,20 @@ vector<int> getModifiedArray(int length, vector<vector<int>>& updates)
 
 }
 
+int main(int argc, char const *argv[])
+{
+    int length = 5;
+    vector<vector<int>> updates = {{1,3,2},{2,4,3},{0,2,-2}};
+
+    vector<int> res = getModifiedArray(length, updates);
+
+    for(auto x: res)
+    {
+        cout<<x<<" ";
+    }
+    cout<<"\n";
+
+    return 0;
+}
 
 
