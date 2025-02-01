@@ -32,7 +32,7 @@ Refer
 
 https://leetcode.com/discuss/study-guide/5119937/prefix-sum-problems
 
-2D Prefix Sum Problems
+2. 2D Prefix Sum Problems
 
 Sometime we see problems where we have to do some operations on sub-matrix, like finding max/min in range of matrix or sum.
 We use prefix in two dimensional way to find them.
@@ -52,5 +52,9 @@ psum[i][j] = psum[i-1] [j] + psum[i] [j-1] - psum [i-1][j-1]
 and finally add current element.
 
 psum[i+1][j+1] = psum[i+1] [j] + psum[i] [j+1] - psum[i][j] + arr[i][j]
+
+3. Range sum Problem
+
+We need to update a range of numbers in array.
 
 
