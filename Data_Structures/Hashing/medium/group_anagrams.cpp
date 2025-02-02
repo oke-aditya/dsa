@@ -27,18 +27,33 @@ using namespace std;
 vector<vector<string>> group_anagrams(vector<string>& strs)
 {
     vector<vector<string>> res;
-    unordered_map<string, vector<string>> mp;
 
-    for(string &s: strs)
+    map<string, vector<string>> mp;
+
+    for(auto word: strs)
     {
-        string temp = s;
-        sort(temp.begin(), temp.end());
-        mp[temp].push_back(s);
+        string original_word = word;
+        sort(begin(word), end(word));
+        
+        // we have found it
+        if(mp.find(word) != mp.end())
+        {
+            vector<string> group = mp[word];
+            group.push_back(original_word);
+            mp[word] = group;
+        }
+
+        else
+        {
+            vector<string> group;
+            group.push_back(original_word);
+            mp[word] = group;
+        }
     }
 
-    for(auto &e: mp)
+    for(auto itr=mp.begin(); itr != mp.end(); itr++)
     {
-        res.push_back(e.second);
+        res.push_back(itr->second);
     }
 
     return res;

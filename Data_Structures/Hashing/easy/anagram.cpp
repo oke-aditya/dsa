@@ -45,6 +45,31 @@ bool is_anagram(string s1, string s2)
 
 }
 
+// altenate with single map
+bool isAnagram(string s, string t) 
+{
+    unordered_map<char, int> mp;
+
+    for(auto ch: s)
+    {
+        mp[ch] += 1;
+    }
+
+    for(auto ch: t)
+    {
+        mp[ch] -= 1;
+        if(mp[ch] == -1)
+        {
+            return false;
+        }
+        if(mp[ch] == 0)
+        {
+            mp.erase(ch);
+        }
+    }
+    cout<<mp.size();
+    return mp.size() == 0;
+}
 
 
 int main(int argc, char const *argv[])
