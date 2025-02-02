@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/longest-consecutive-sequence/
 // Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
 
 // Input: nums = [100,4,200,1,3,2]
@@ -11,33 +12,45 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int longest_cons_seq_brute(vector <int> v)
+int longest_cons_seq_brute(vector <int> nums)
 {
     // Simple sorting solution.
-    sort(v.begin(), v.end());
+    if(nums.size() == 0)
+    {
+        return 0;
+    }
 
-    int n = v.size();
-    int max_streak = 1, current_streak = 1;
+    sort(begin(nums), end(nums));
+    int current_streak = 1;
+    int max_streak = 0;
 
-    // Start one step ahead as streak is 1.
+    int n = nums.size();
+
     for(int i=1; i<n; i++)
     {
-        // If numbers are equal there is no effect on streak
-        if(v[i] != v[i-1])
+        // same numbers don't do anything
+        if(nums[i] == nums[i-1])
         {
-            // Left than 1.
-            if(v[i] == (v[i-1] + 1))
-            {
-                current_streak += 1;
-            }
-            else
-            {
-                // Well the streak is broken.
-                max_streak = max(max_streak, current_streak);
-                current_streak = 1;
-            }
+            continue;
+        }
+        
+        // add to streak
+        if(nums[i] == nums[i-1] + 1)
+        {
+            current_streak += 1;
+        }
+        
+        // new result and reset the streak
+        else
+        {
+            max_streak = max(max_streak, current_streak);
+            current_streak = 1;
         }
     }
+
+    // finally if we have a remaining streak
+    max_streak = max(max_streak, current_streak);
+
     return max_streak;
 }
 
