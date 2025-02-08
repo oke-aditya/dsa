@@ -23,7 +23,19 @@
 // Output
 // [null, -1, null, null, null, null, 1, null, 2]
 
+// here we use to unordered maps. First is the index map, storing at what index the number is.
+// Simple case, we can add to index map, if the number does not exists
+// otherwise, we need to find the previously allocated number, erase it and add a new one.
+// erase the map key if there are no occurences.
 
+// to find a number, we keep the finder_map
+// this captures a given number occured at which indices.
+// we keep a set to remove duplicate indices and ordering. sets in C++ are ascending.
+// finding simply checks if this number exists in finder map.
+// if it does so then return the first occurence using begin.
+
+// Time complexity: change O(logn)
+// Time complexity: find O(1)
 
 
 #include<bits/stdc++.h>

@@ -13,6 +13,14 @@
 // Input: limit = 4, queries = [[1,4],[2,5],[1,3],[3,4]]
 // Output: [1,2,2,3]
 
+// Trick here is to use 2 hashmaps and concurrently update them
+// First map maintains the index of ball, ball_map.
+// Second map maintains colors of balls at indices.
+// if we already have color and want to update, we assign it, decrease the colormap
+// cleanup the colormap if color is 0.
+// if the color is new add to the ballmap and add color to color map
+// at end of every query the number of colors in colormap is the answer.
+
 
 #include<bits/stdc++.h>
 using namespace std;
