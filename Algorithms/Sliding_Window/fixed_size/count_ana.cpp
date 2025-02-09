@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/find-all-anagrams-in-a-string/
+// https://leetcode.com/problems/permutation-in-string/
 
 // Given two strings s and p, return an array of all the start indices of p's anagrams in s.
 // You may return the answer in any order.
@@ -23,69 +24,82 @@
 // The substring with start index = 1 is "ba", which is an anagram of "ab".
 // The substring with start index = 2 is "ab", which is an anagram of "ab".
 
+// We use a sliding window of size k, where k is length of p.
+// Populate frequency array for p.
+// Create a frequency array for s.
+// for each element in s populate frequency array
+// Process each window of size k
+// cleanup from left side, append from right
+// wherever maps match, add this to result
+// 
+//
+// Note that this solution also works for permutations! 
+// https://leetcode.com/problems/permutation-in-string/
+// As long as we find one solution, result size > 0
+// We have a solution!
+
+
 #include<bits/stdc++.h>
 
 using namespace std;
 
 
 vector<int> findAnagrams(string s, string p) {
+    // use the size of p as size of sliding window
+    int m = s.size();
+    int k = p.size();
 
     vector<int> res;
 
-    int k = p.size();
-    int n = s.size();
-
-    if(n < k)
+    // trying to check a bigger string for anagram
+    if(k > m)
     {
         return res;
     }
 
-    map<char, int> mp2;
-
-    for(int i=0; i<k;i++)
+    // mapping of string p to compare
+    unordered_map<char, int> p_map;
+    for(auto ch: p)
     {
-        mp2[p[i]] += 1;
+        p_map[ch] += 1;
     }
 
-    int i=0, j=0; 
+    // also maintain a mapping of s, we will use this to compare
+    unordered_map<char, int> s_map;
 
-    map<char, int> mp;
+    int i = 0, j = 0;
 
-    // string s2 = "";
-
-    for(j=0;j<k;j++)
+    for(j=0; j<k; j++)
     {
-        mp[s[j]] += 1; 
+        s_map[s[j]] += 1;
     }
 
-    if(mp2 == mp)
+    // if these 2 maps are equal we have a result. we need the index i
+    if(s_map == p_map)
     {
         res.push_back(i);
     }
 
-    for(j=k;j<n;j++)
+    for(j=k; j<m; j++)
     {
-        // process j
-        // s2 += s[j];
-        mp[s[j]] += 1;
-        // cout<<s2<<endl;
-        // cout<<i<<endl;
+        s_map[s[j]] += 1;
+        
         // cleanup i
-        // s2.erase(s2.begin());
-        mp[s[i]] -= 1;
-        if(mp[s[i]] == 0)
+        s_map[s[i]] -= 1;
+        
+        if(s_map[s[i]] == 0)
         {
-            mp.erase(s[i]);
+            s_map.erase(s[i]);
         }
         i += 1;
 
-        // validate after cleanup
-        if(mp2 == mp)
+        // if these 2 maps are equal we have a result. we need the index i
+        if(s_map == p_map)
         {
             res.push_back(i);
-        }
+        }   
     }
-
     return res;
+
 }
 
