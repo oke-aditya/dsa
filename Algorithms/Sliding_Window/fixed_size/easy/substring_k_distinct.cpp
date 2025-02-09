@@ -34,44 +34,42 @@ using namespace std;
 int subsdistinct(string s, int k)
     {
         map<char, int> mp;
-        int i = 0, j = 0, count = 0,  n = s.size();
-        
-        if(s.size() < k)
-        {
-            return 0;
-        }
+        int j = 0;
+        int count = 0;
+        int k = 3;
+        int n = s.size();
 
-        // Process the first window
         for(j=0; j<k; j++)
         {
             mp[s[j]] += 1;
+
+            if(mp.size() == k)
+            {
+                count += 1;
+            }
         }
 
-        // cout<<mp.size()<<endl;
+        int i = 0;
 
-        if(mp.size() == k){
-            // cout<<"YES"<<endl;
-            count += 1;
-        }
-            
-
-        for(j=k; j<n; j++)
+        for(j=k;j<n;j++)
         {
-            // do j;
-            
-            mp[s[j]] += 1;
-
-            // cleanup i
             mp[s[i]] -= 1;
+            
             if(mp[s[i]] == 0)
             {
                 mp.erase(s[i]);
             }
+            
             i += 1;
+            mp[s[j]] += 1;
 
+            // cout<<mp.size()<<endl;
+
+            // now check the size
             if(mp.size() == k)
+            {
                 count += 1;
-
+            }
         }
 
         return count;
