@@ -11,6 +11,15 @@
 // - 0 → 1 → 2
 // - 0 → 2
 
+
+// Solution:
+
+// Note that in this question we need to build the adjacency list.
+// without building it we cannot find if path exists.
+// To check if path exists we can do either dfs or bfs.
+// we just need to check if the destination was visited.
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
