@@ -29,9 +29,15 @@ bool dfs(vector<vector<int>> &adj, vector<int> &visited, int source, int parent)
                 return true;
         }
         
-        else if(visited[neigh] && parent != neigh)
+        // we have visited it
+        else
         {
-            return true;
+            // parent node is not neigh
+            // there is one more connection
+            if(parent != neigh)
+            {
+                return true;
+            }
         }
     }
     return false;
