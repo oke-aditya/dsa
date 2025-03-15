@@ -24,6 +24,13 @@
 // Explanation: There are 7 substrings of size 3: "aab", "aba", "bab", "abc", "bca", "cab", and "abc".
 // The good substrings are "abc", "bca", "cab", and "abc".
 
+// solution:
+// process the first sub array, find if the map size == k
+// for subsequent reduce the count in map, erase if 0
+// add the new index to map.
+// if map.size() == k. increment the count
+// return the count.
+
 
 #include<bits/stdc++.h>
 
