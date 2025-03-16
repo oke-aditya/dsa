@@ -22,7 +22,7 @@
 // 
 // 
 // Solution: -
-// In this method, level order traversal based solution is discussed.
+
 // If we observe carefully, we will see that our main task is to print the left most node of every level.
 // So, we will do a level order traversal on the tree and
 // print the leftmost node at every level. Below is the implementation of above approach:
@@ -32,66 +32,45 @@
 
 using namespace std;
 
-class Node
+class TreeNode
 {
     public:
-        int data;
-        Node *left, *right;
+        int val;
+        TreeNode *left, *right;
 };
 
 
-vector <int> left_view(Node *root)
-{
-    vector<int> res;
-
-    // Do a level order (like BFS)
-    if(root == NULL)
-    {
-        return res;
-    }
-
-    // q for bfs
-    queue<Node*> q;
-
-    q.push(root);
-
-    while (!q.empty())
-    {
-        // Number of nodes in current level
-        int n = q.size();
-
-        // Traverse all nodes of current level
-        for(int i=1; i<=n; i++)
-        {
-            Node *node = q.front();
-            q.pop();
-
-            // Left most node.
-            if(i == 1)
-            {
-                res.push_back(node->data);
-            }
-
-            if(node->left != NULL)
-            {
-                q.push(node->left);
-            }
-
-            if(node->right != NULL)
-            {
-                q.push(node->right);
-            }
-        }
-    }
-    return res;
-
-}
-
-
-int main(int argc, char const *argv[])
-{
+class Solution {
+    public:
+        vector<int> leftSideView(TreeNode* root) {
+            vector<int> res;
     
-    return 0;
-}
-
-
+            if(root == nullptr) {
+                return res;
+            }
+    
+            queue<TreeNode *> q;
+            q.push(root);
+    
+            while(!q.empty()) {
+                int ln = q.size();
+                while(ln--) {
+                    TreeNode *node = q.front();
+                    q.pop();
+    
+                    if(ln == 1) {
+                        res.push_back(node->val);
+                    }
+    
+                    if(node->left != NULL) {
+                        q.push(node->left);
+                    }
+    
+                    if(node->right != NULL) {
+                        q.push(node->right);
+                    }
+                }
+            }
+            return res;
+        }
+    };
