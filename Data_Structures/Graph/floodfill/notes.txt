@@ -1,0 +1,40 @@
+Basic idea here is to dfs on matrix
+Imagine matrix to be connected.
+Either 4 ways or 8 ways, depending on the question
+
+Now we need to do dfs to explore all 4 / 8 directions
+Use this trick. 
+
+This captures all possible x and y moves.
+
+vector<int> x_moves = {-1, 1, 0, 0}
+vector<int> y_moves = {0, 0, -1, 1}
+
+now for this 4 combo do do dfs 
+
+for(int i=0; i<4; i++)
+{
+    int new_x = old_x + x_moves[i];
+    int new_y = old_y + y_moves[i];
+
+    if(is_safe())
+    {
+        dfs(new_x, new_y);
+    }
+
+}
+
+safe condition check is obvious
+
+if(new_x >= 0 && new_x < m && new_y >= 0 && new_y < n && !visited[new_x][new_y] && some more)
+
+Note we need to keep track of visited! 
+
+Use a matrix of size m x n to track it! 
+vector<vector<int>> visited(m, vector<int>(n));
+
+Since it's a graph! remember to do DFS on EVERY VERTEX. If needed!
+Here every vertex is every cell of matrix 
+loop over the matrix and do dfs on every cell
+take care that cell is not visited or any extra condition.
+

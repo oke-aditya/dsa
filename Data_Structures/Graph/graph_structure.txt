@@ -1,0 +1,24 @@
+Remember structure of graph by adjacency list
+is a map<int, vector<int>>
+
+{
+    0: [3, 4, 5],
+    3: [0],
+    4: [0],
+    5: [0]
+}
+
+This could also be represeneted via vector of vector
+here ith index will mark to ith node.
+
+[[3, 5, 5], [], [], [0], [0], [0]]
+
+Note the trick in graph is to construct this and understand the given representation
+
+Keep in mind if graph is given from 0 indexing or 1. 
+Accordingly we will need visited vector.
+
+Graph is just a tree, with extra counting for visited.
+Keep track correctly.
+
+
