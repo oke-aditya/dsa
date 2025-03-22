@@ -21,57 +21,46 @@
 // In this way, we keep on calculating the lengths of the valid substrings,
 // and return the length of the longest valid string at the end.
 
-
 #include <bits/stdc++.h>
 
 using namespace std;
 
-int longest_valid_paran(string s1)
-{
-    if (s1.length() == 0)
-    {
-        return 0;
+int longest_valid_paran(string s1) {
+  if (s1.length() == 0) {
+    return 0;
+  }
+
+  int i = 0, length, max_length = 0;
+
+  // Stack stores indices.
+  stack<int> stk;
+
+  // Dummy.
+  stk.push(-1);
+
+  for (i = 0; i < s1.length(); i++) {
+    // If brace is open, we accept it.
+
+    if (s1[i] == '(') {
+      stk.push(i);
+    } else {
+      stk.pop();
+      // If stack is empty, length = 0;
+      if (stk.empty()) {
+        stk.push(i);
+      } else {
+        max_length = max(max_length, i - stk.top());
+      }
     }
-
-    int i = 0, length, max_length = 0;
-    
-    // Stack stores indices.
-    stack<int> stk;
-
-    // Dummy.
-    stk.push(-1);
-
-    for (i = 0; i < s1.length(); i++)
-    {
-        // If brace is open, we accept it.
-
-        if (s1[i] == '(')
-        {
-            stk.push(i);
-        }
-        else
-        {
-            stk.pop();
-            // If stack is empty, length = 0;
-            if(stk.empty())
-            {
-                stk.push(i);
-            }
-            else
-            {
-                max_length = max(max_length, i - stk.top());
-            }
-        }
-    }
-    return max_length;
+  }
+  return max_length;
 }
 
-int main(int argc, char const *argv[])
-{
-    string s1 = "(())()((()";
-    auto res = longest_valid_paran(s1);
+int main(int argc, char const *argv[]) {
+  string s1 = "(())()((()";
+  auto res = longest_valid_paran(s1);
 
-    cout << res << endl;
+  cout << res << endl;
 
-    return 0;
+  return 0;
 }

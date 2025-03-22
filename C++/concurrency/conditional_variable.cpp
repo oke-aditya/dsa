@@ -19,35 +19,30 @@ condition_variable cv;
 
 // In this function, a thread increments the count variable by
 // 1. It also will notify one waiting thread if the count value is 2.
-// It is ran by two of the threads in the main function. 
+// It is ran by two of the threads in the main function.
 void add_count_notify() {
-    scoped_lock slk(m);
-    count += 1;
-    if(count == 2) {
-        cv.notify_one();
-    }
+  scoped_lock slk(m);
+  count += 1;
+  if (count == 2) {
+    cv.notify_one();
+  }
 }
 
 void waiter_thread() {
-    unique_lock lk(m);
-    cv.wait(lk, []{return count == 2;});
+  unique_lock lk(m);
+  cv.wait(lk, [] { return count == 2; });
 
-    cout<<"Count value = "<<count;
+  cout << "Count value = " << count;
 }
 
-int main(int argc, char const *argv[])
-{
-    thread t1(add_count_notify);
-    thread t2(add_count_notify);
-    thread t3(waiter_thread);
+int main(int argc, char const *argv[]) {
+  thread t1(add_count_notify);
+  thread t2(add_count_notify);
+  thread t3(waiter_thread);
 
-    t1.join();
-    t2.join();
-    t3.join();
-    
-    return 0;
+  t1.join();
+  t2.join();
+  t3.join();
+
+  return 0;
 }
-
-
-
-

@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 /*
@@ -25,27 +25,20 @@ GCD(A, B) = GCD(A+B, B) = GCD(A, B+A)
 
 */
 
-int gcd(int a, int b)
-{
-    // Complexity = log(max(a, b))
-    
-    if(b == 0)
-    {
-        return a;
-    }
-    else
-    {
-        return(gcd(b, a % b));
-    }
-    
+int gcd(int a, int b) {
+  // Complexity = log(max(a, b))
+
+  if (b == 0) {
+    return a;
+  } else {
+    return (gcd(b, a % b));
+  }
 }
 
-
-int main()
-{
-    int a,b,gc;
-    cin>>a>>b;
-    gc = gcd(a,b);
-    cout<<"GCD = "<<gc<<endl;
-    return(0);
+int main() {
+  int a, b, gc;
+  cin >> a >> b;
+  gc = gcd(a, b);
+  cout << "GCD = " << gc << endl;
+  return (0);
 }

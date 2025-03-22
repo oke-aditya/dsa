@@ -19,62 +19,54 @@
 
 using namespace std;
 
-vector<int> k_freq(vector<int> v, int k)
-{
-    // Create a hashmap
-    unordered_map<int, int> mp;
-    for (int i = 0; i < v.size(); i++)
-    {
-        mp[v[i]] += 1;
+vector<int> k_freq(vector<int> v, int k) {
+  // Create a hashmap
+  unordered_map<int, int> mp;
+  for (int i = 0; i < v.size(); i++) {
+    mp[v[i]] += 1;
+  }
+
+  // for (auto i = mp.begin(); i != mp.end(); i++)
+  // {
+  //     cout<<i->first<<" "<<i->second<<" ";
+  //     cout<<endl;
+  // }
+
+  // Now create a min heap
+  priority_queue<pii, vector<pii>, greater<pii>> minh;
+
+  for (auto i = mp.begin(); i != mp.end(); i++) {
+    minh.push({i->second, i->first});
+    if (minh.size() > k) {
+      minh.pop();
     }
+  }
 
-    // for (auto i = mp.begin(); i != mp.end(); i++)
-    // {
-    //     cout<<i->first<<" "<<i->second<<" ";
-    //     cout<<endl;
-    // }
+  // Now store the answer one by one in result
+  vector<int> res;
 
-    // Now create a min heap
-    priority_queue<pii, vector<pii>, greater<pii>> minh;
+  while (!minh.empty()) {
+    res.push_back(minh.top().second);
+    minh.pop();
+  }
 
-    for (auto i = mp.begin(); i != mp.end(); i++)
-    {
-        minh.push({i->second, i->first});
-        if (minh.size() > k)
-        {
-            minh.pop();
-        }
-    }
-
-    // Now store the answer one by one in result
-    vector<int> res;
-
-    while (!minh.empty())
-    {
-        res.push_back(minh.top().second);
-        minh.pop();
-    }
-
-    return res;
+  return res;
 }
 
-void print_v(vector<int> v)
-{
-    for (auto x : v)
-    {
-        cout << x << " ";
-    }
-    cout << endl;
+void print_v(vector<int> v) {
+  for (auto x : v) {
+    cout << x << " ";
+  }
+  cout << endl;
 }
 
-int main(int argc, char const *argv[])
-{
-    vector<int> v{1, 1, 1, 2, 2, 3};
-    int k = 2;
+int main(int argc, char const *argv[]) {
+  vector<int> v{1, 1, 1, 2, 2, 3};
+  int k = 2;
 
-    auto res = k_freq(v, k);
+  auto res = k_freq(v, k);
 
-    print_v(res);
+  print_v(res);
 
-    return 0;
+  return 0;
 }

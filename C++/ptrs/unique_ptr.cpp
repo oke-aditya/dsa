@@ -13,7 +13,6 @@
 // object This means that no two instances of std::unique_ptr can manage the
 // same object.
 
-
 // Includes std::cout (printing) for demo purposes.
 #include <iostream>
 // Includes std::unique_ptr functionality.
@@ -26,40 +25,28 @@
 using namespace std;
 
 class Point {
-public:
+ public:
+  // this is initializer list snytax. Instead of doing this->x = x and this-> y
+  // = y; one can just pass these values
+  Point() : x_(0), y_(0) {}
+  Point(int x, int y) : x_(x), y_(y) {}
 
-    // this is initializer list snytax. Instead of doing this->x = x and this-> y = y; 
-    // one can just pass these values
-    Point(): x_(0), y_(0) {}
-    Point(int x, int y): x_(x), y_(y) {}
-    
-    inline int GetX() {
-        return x_;
-    }
+  inline int GetX() { return x_; }
 
-    inline int GetY() {
-        return y_;
-    }
+  inline int GetY() { return y_; }
 
-    inline void SetX(int x) {
-        x_ = x;
-    }
+  inline void SetX(int x) { x_ = x; }
 
-    inline void SetY(int y) {
-        y_ = y;
-    }   
+  inline void SetY(int y) { y_ = y; }
 
-private:
-    int x_;
-    int y_;
+ private:
+  int x_;
+  int y_;
 };
 
-void setXto45(unique_ptr<Point> &ptr) {
-    ptr->SetX(45);
-}
+void setXto45(unique_ptr<Point> &ptr) { ptr->SetX(45); }
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
   // This is how to initialize an empty unique pointer of type
   // std::unique_ptr<Point>.
   std::unique_ptr<Point> u1;
@@ -113,10 +100,6 @@ int main(int argc, char const *argv[])
   // Now, let's print the x value of u4 to confirm that the change occured, but
   // the ownership of the Point instance has been retained to u4.
   std::cout << "Pointer u4's x value is " << u4->GetX() << std::endl;
-    
-    return 0;
+
+  return 0;
 }
-
-
-
-

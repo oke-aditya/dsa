@@ -3,9 +3,8 @@
 // subsequences
 // of s which equals t.
 
-// The test cases are generated so that the answer fits on a 32-bit signed integer.
-
- 
+// The test cases are generated so that the answer fits on a 32-bit signed
+// integer.
 
 // Example 1:
 
@@ -17,52 +16,40 @@
 // rabbbit
 // rabbbit
 
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
+int helper(string &s, int m, string &t, int n, vector<vector<int>> &dp) {
+  if (n == 0) {
+    return 1;
+  }
 
-int helper (string &s, int m, string &t, int n, vector<vector<int>> &dp)
-{
+  if (m == 0) {
+    return 0;
+  }
 
-    if(n == 0)
-    {
-        return 1;
-    }
-
-    if(m == 0)
-    {
-        return 0;
-    }
-
-    if(dp[m][n] != -1)
-    {
-        return dp[m][n];
-    }
-
-    else
-    {
-        if(s[m-1] == t[n-1])
-        {
-            dp[m][n] = helper(s, m-1, t, n-1, dp) + helper(s, m-1, t, n, dp);
-        }
-        else
-        {
-            dp[m][n] = helper(s, m-1, t, n, dp);
-        }
-    }
-
+  if (dp[m][n] != -1) {
     return dp[m][n];
+  }
+
+  else {
+    if (s[m - 1] == t[n - 1]) {
+      dp[m][n] = helper(s, m - 1, t, n - 1, dp) + helper(s, m - 1, t, n, dp);
+    } else {
+      dp[m][n] = helper(s, m - 1, t, n, dp);
+    }
+  }
+
+  return dp[m][n];
 }
 
 int numDistinct(string s, string t) {
-    int m = s.size();
-    int n = t.size();
+  int m = s.size();
+  int n = t.size();
 
-    vector<vector<int>> dp(m+1, vector<int> (n+1, -1));
-    // memset(dp, sizeof(dp), -1)
+  vector<vector<int>> dp(m + 1, vector<int>(n + 1, -1));
+  // memset(dp, sizeof(dp), -1)
 
-    int res = helper(s, m, t, n, dp);
-    return res;
-
+  int res = helper(s, m, t, n, dp);
+  return res;
 }

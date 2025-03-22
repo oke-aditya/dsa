@@ -8,82 +8,69 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> k_larg_sort(int arr[], int n, int k)
-{
-    sort(arr, arr + n);
-    vector<int> res;
-    for (int i = n - 1; i > k; i--)
-    {
-        res.push_back(arr[i]);
-    }
-    return res;
+vector<int> k_larg_sort(int arr[], int n, int k) {
+  sort(arr, arr + n);
+  vector<int> res;
+  for (int i = n - 1; i > k; i--) {
+    res.push_back(arr[i]);
+  }
+  return res;
 }
 
-vector<int> k_larg_heap(int arr[], int n, int k)
-{
-    priority_queue<int, vector<int>, greater<int>> minh;
+vector<int> k_larg_heap(int arr[], int n, int k) {
+  priority_queue<int, vector<int>, greater<int>> minh;
 
-    for (int i = 0; i < n; i++)
-    {
-        minh.push(arr[i]);
-        if (minh.size() > k)
-        {
-            minh.pop();
-        }
+  for (int i = 0; i < n; i++) {
+    minh.push(arr[i]);
+    if (minh.size() > k) {
+      minh.pop();
     }
+  }
 
-    vector<int> res;
-    while (!minh.empty())
-    {
-        res.push_back(minh.top());
-        minh.pop();
-    }
-    return res;
+  vector<int> res;
+  while (!minh.empty()) {
+    res.push_back(minh.top());
+    minh.pop();
+  }
+  return res;
 }
 
 // Using max heap too we can do this.
-int sol(vector<int> v, int k)
-{
-    // kth largest element
-    // max heap
-    priority_queue <int> pk;
+int sol(vector<int> v, int k) {
+  // kth largest element
+  // max heap
+  priority_queue<int> pk;
 
-    for(auto x: v)
-    {
-        pk.push(x);
-    }
+  for (auto x : v) {
+    pk.push(x);
+  }
 
-    for(int i=0; i<k-1; i++)
-    {
-        pk.pop();
-    }
+  for (int i = 0; i < k - 1; i++) {
+    pk.pop();
+  }
 
-    return pk.top();
-
+  return pk.top();
 }
 
-void print_vec(vector<int> v)
-{
-    for (auto x : v)
-    {
-        cout << x << " ";
-    }
-    cout << endl;
+void print_vec(vector<int> v) {
+  for (auto x : v) {
+    cout << x << " ";
+  }
+  cout << endl;
 }
 
-int main(int argc, char const *argv[])
-{
-    int arr[] = {1, 23, 12, 9, 30, 2, 50};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int k = 3;
+int main(int argc, char const *argv[]) {
+  int arr[] = {1, 23, 12, 9, 30, 2, 50};
+  int n = sizeof(arr) / sizeof(arr[0]);
+  int k = 3;
 
-    auto res = k_larg_sort(arr, n, k);
+  auto res = k_larg_sort(arr, n, k);
 
-    print_vec(res);
+  print_vec(res);
 
-    auto res2 = k_larg_heap(arr, n, k);
+  auto res2 = k_larg_heap(arr, n, k);
 
-    print_vec(res2);
+  print_vec(res2);
 
-    return 0;
+  return 0;
 }

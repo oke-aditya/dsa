@@ -12,38 +12,29 @@ mutex m;
 
 // normal mutex
 void update() {
-
-    m.lock();
-    count += 1;
-    m.unlock();
-
+  m.lock();
+  count += 1;
+  m.unlock();
 }
 
 void better_update() {
-  
-    // The constructor of std::scoped_lock allows for the thread to acquire the
-    // mutex m.
-    std::scoped_lock slk(m);
-    count += 1;
+  // The constructor of std::scoped_lock allows for the thread to acquire the
+  // mutex m.
+  std::scoped_lock slk(m);
+  count += 1;
 
-    // Once the function add_count finishes, the object slk is out of scope, and
-    // in its destructor, the mutex m is released.
-
+  // Once the function add_count finishes, the object slk is out of scope, and
+  // in its destructor, the mutex m is released.
 }
 
-int main(int argc, char const *argv[])
-{
-    thread t1(better_update);
-    thread t2(better_update);
+int main(int argc, char const *argv[]) {
+  thread t1(better_update);
+  thread t2(better_update);
 
-    t1.join();
-    t2.join();
+  t1.join();
+  t2.join();
 
-    cout<<"Count = "<<count;
+  cout << "Count = " << count;
 
-    return 0;
+  return 0;
 }
-
-
-
-

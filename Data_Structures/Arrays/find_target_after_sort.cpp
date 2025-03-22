@@ -6,8 +6,9 @@
 
 // A target index is an index i such that nums[i] == target.
 
-// Return a list of the target indices of nums after sorting nums in non-decreasing order. If there are no target indices, return an empty list. The returned list must be sorted in increasing order.
-
+// Return a list of the target indices of nums after sorting nums in
+// non-decreasing order. If there are no target indices, return an empty list.
+// The returned list must be sorted in increasing order.
 
 // Example 1:
 
@@ -30,45 +31,36 @@
 // Explanation: After sorting, nums is [1,2,2,3,5].
 // The index where nums[i] == 5 is 4.
 
-
 // Solution:
 
 // Count number of elements less than the target.
-// Count number of elements equal to the target. 
+// Count number of elements equal to the target.
 // Use these to determine indices in sorted array.
 
-
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
- vector<int> targetIndices(vector<int>& nums, int target) {
+vector<int> targetIndices(vector<int>& nums, int target) {
+  int count_less = 0, count_equal = 0;
 
-    int count_less = 0, count_equal = 0;
-
-
-    for(auto num: nums) {
-
-        if(num < target) {
-            count_less += 1;
-        }
-
-        else if (num == target) {
-            count_equal += 1;
-        }
+  for (auto num : nums) {
+    if (num < target) {
+      count_less += 1;
     }
 
-    int target_index_start = count_less;
-    int target_index_end = target_index_start + count_equal;
-
-    vector<int> res;
-
-    for(int i=target_index_start; i<target_index_end; i++) {
-        res.push_back(i);
+    else if (num == target) {
+      count_equal += 1;
     }
+  }
 
-    return res;
+  int target_index_start = count_less;
+  int target_index_end = target_index_start + count_equal;
 
+  vector<int> res;
+
+  for (int i = target_index_start; i < target_index_end; i++) {
+    res.push_back(i);
+  }
+
+  return res;
 }
-
-

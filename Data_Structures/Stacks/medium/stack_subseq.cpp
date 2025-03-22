@@ -15,36 +15,30 @@
 // and pop them while the top of the stack equals pop[j].
 // In the end, if the stack is empty then the sequence is valid.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-bool validate_stack_subseq(vector <int> &pushed, vector<int> &popped)
-{
-    stack <int> stk;
-    for(int i=0, j=0; i<pushed.size(); i++)
-    {
-        stk.push(pushed[i]);
-    
-        while(!stk.empty() && stk.top() == popped[j])
-        {
-            stk.pop();
-            j += 1;
-        }
+bool validate_stack_subseq(vector<int> &pushed, vector<int> &popped) {
+  stack<int> stk;
+  for (int i = 0, j = 0; i < pushed.size(); i++) {
+    stk.push(pushed[i]);
+
+    while (!stk.empty() && stk.top() == popped[j]) {
+      stk.pop();
+      j += 1;
     }
+  }
 
-    return stk.empty();
+  return stk.empty();
 }
 
+int main(int argc, char const *argv[]) {
+  vector<int> pushed = {1, 2, 3, 4, 5};
+  vector<int> popped = {4, 5, 3, 2, 1};
 
-int main(int argc, char const *argv[])
-{
-    vector <int> pushed = {1, 2, 3, 4, 5};
-    vector <int> popped = {4, 5, 3, 2, 1};
+  auto res = validate_stack_subseq(pushed, popped);
 
-    auto res = validate_stack_subseq(pushed, popped);
-    
-    cout<<res;
+  cout << res;
 
-    return 0;
+  return 0;
 }
-

@@ -11,49 +11,38 @@
 
 // Algorithm:
 
-
 // Trick with DFS!
 // DFS always goes to node that has maximum dependency!
-// We can do dfs and then reverse the result! 
+// We can do dfs and then reverse the result!
 
 // Viz
 // https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-void dfs(int source, vector<vector<int>> &adj, vector<int> &visited, vector<int> &res)
-{
-    visited[source] = 1;
+void dfs(int source, vector<vector<int>> &adj, vector<int> &visited,
+         vector<int> &res) {
+  visited[source] = 1;
 
-    for(int neigh: adj[source])
-    {
-        if(!visited[neigh])
-        {
-            dfs(neigh, adj, visited, res);
-        }
+  for (int neigh : adj[source]) {
+    if (!visited[neigh]) {
+      dfs(neigh, adj, visited, res);
     }
-    res.push_back(source);
-
+  }
+  res.push_back(source);
 }
 
+vector<int> topologicalSort(vector<vector<int>> &adj) {
+  int n = adj.size();
+  vector<int> visited(n, 0);
+  vector<int> res;
 
-vector<int> topologicalSort(vector<vector<int>>& adj) 
-{
-    int n = adj.size();
-    vector<int> visited(n, 0);
-    vector<int> res;
-
-    for(int i=0; i<n; i++)
-    {
-        if(!visited[i])
-        {
-            dfs(i, adj, visited, res);
-        }
+  for (int i = 0; i < n; i++) {
+    if (!visited[i]) {
+      dfs(i, adj, visited, res);
     }
-    reverse(begin(res), end(res));
-    return res;
+  }
+  reverse(begin(res), end(res));
+  return res;
 }
-
-
-

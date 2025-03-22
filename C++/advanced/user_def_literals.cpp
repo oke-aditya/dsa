@@ -2,7 +2,7 @@
 // With UDL, we attach units to the values which has
 // following advantages
 // 1) The code becomes readable.
-// 2) Conversion computations are done at compile time. 
+// 2) Conversion computations are done at compile time.
 // weight = 2.3kg;
 // ratio = 2.3kg/1.2lb
 
@@ -27,8 +27,9 @@
 // But return value can be of any types.
 // We use _ to define literal operator suffixes.
 
-#include<bits/stdc++.h>
-#include<iostream>
+#include <bits/stdc++.h>
+
+#include <iostream>
 
 using namespace std;
 
@@ -37,35 +38,23 @@ using namespace std;
 
 // Kilograms
 // We want to convert x kgs to gms.
-long double operator "" _kg(long double x)
-{
-    return (x * 1000);
-}
+long double operator"" _kg(long double x) { return (x * 1000); }
 
 // Here we want to convert x gms to gms
 // So we simply return.
-long double operator "" _g (long double x)
-{
-    return (x);
-
-}
+long double operator"" _g(long double x) { return (x); }
 
 // Here we want to convert x gms to mg
 
-long double operator "" _mg (long double x)
-{
-    return (x / 1000);
+long double operator"" _mg(long double x) { return (x / 1000); }
+
+int main(int argc, char const *argv[]) {
+  long double weight = 3.6_kg;
+
+  cout << weight << endl;
+  cout << (weight + 2500.0_g) << endl;
+
+  cout << (32.0_kg / 16000.0_g) << endl;
+
+  return 0;
 }
-
-int main(int argc, char const *argv[])
-{
-    long double weight = 3.6_kg;
-
-    cout<<weight<<endl;
-    cout<<(weight + 2500.0_g)<<endl;
-
-    cout<<(32.0_kg / 16000.0_g)<<endl;
-    
-    return 0;
-}
-
