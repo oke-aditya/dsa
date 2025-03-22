@@ -6,16 +6,13 @@
 #include <iostream>
 using namespace std;
 
-namespace ns1
-{
-    inline namespace ns2
-    {
-        int var = 10;
-    }
+namespace ns1 {
+inline namespace ns2 {
+int var = 10;
 }
+}  // namespace ns1
 
-int main()
-{
-    cout << ns1::var;
-    return 0;
+int main() {
+  cout << ns1::var;
+  return 0;
 }

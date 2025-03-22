@@ -8,35 +8,29 @@
 // A destructor should be declared in the public section of the class.
 // The programmer cannot access the address of destructor.
 
-// (1) the function ends 
-// (2) the program ends 
-// (3) a block containing local variables ends 
+// (1) the function ends
+// (2) the program ends
+// (3) a block containing local variables ends
 // (4) a delete operator is called
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class cons2
-{
-    public:
-        int x, y;
+class cons2 {
+ public:
+  int x, y;
 
-    cons2()
-    {
-        this->x = x;
-        this->y = y;
-    }
+  cons2() {
+    this->x = x;
+    this->y = y;
+  }
 
-    // Destructor.
-    ~cons2();
+  // Destructor.
+  ~cons2();
 };
 
+int main(int argc, char const *argv[]) {
+  cons2 a;
 
-int main(int argc, char const *argv[])
-{
-    cons2 a;
-
-    return 0;
+  return 0;
 }
-
-

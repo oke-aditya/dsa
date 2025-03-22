@@ -4,29 +4,25 @@
 //     Pointer to left child
 //     Pointer to right child
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Node
-{
-    public:
-        int data;
-        Node *left, *right;
+class Node {
+ public:
+  int data;
+  Node *left, *right;
 };
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
+  Node *root = new Node();
+  root->data = 1;
 
-    Node *root = new Node();
-    root->data = 1;
+  root->left->data = 2;
 
-    root->left->data = 2;
+  root->right->data = 3;
 
-    root->right->data = 3;
+  root->left = new Node();
+  root->left->data = 4;
 
-    root->left = new Node();
-    root->left->data = 4;
-    
-    return 0;
+  return 0;
 }
-

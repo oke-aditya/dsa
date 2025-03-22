@@ -9,49 +9,41 @@ using namespace std;
 
 vector<string> res;
 
-void print_v(vector<string> v)
-{
-    for (auto x : v)
-    {
-        cout << x << " ";
-    }
-    cout << endl;
+void print_v(vector<string> v) {
+  for (auto x : v) {
+    cout << x << " ";
+  }
+  cout << endl;
 }
 
-void solve(int open, int close, string op)
-{
-    if (open == 0 && close == 0)
-    {
-        // cout<<op<<" ";
-        res.push_back(op);
-        return;
-    }
-    if (open != 0)
-    {
-        op += "(";
-        solve(open - 1, close, op);
-    }
-    if (close > open)
-    {
-        op += ")";
-        solve(open, close - 1, op);
-    }
+void solve(int open, int close, string op) {
+  if (open == 0 && close == 0) {
+    // cout<<op<<" ";
+    res.push_back(op);
     return;
+  }
+  if (open != 0) {
+    op += "(";
+    solve(open - 1, close, op);
+  }
+  if (close > open) {
+    op += ")";
+    solve(open, close - 1, op);
+  }
+  return;
 }
 
-void generate_paran(int n)
-{
-    int close = n;
-    int open = n;
-    string op = "";
-    solve(open, close, op);
+void generate_paran(int n) {
+  int close = n;
+  int open = n;
+  string op = "";
+  solve(open, close, op);
 }
 
-int main(int argc, char const *argv[])
-{
-    int n = 3;
-    generate_paran(n);
-    print_v(res);
+int main(int argc, char const *argv[]) {
+  int n = 3;
+  generate_paran(n);
+  print_v(res);
 
-    return 0;
+  return 0;
 }

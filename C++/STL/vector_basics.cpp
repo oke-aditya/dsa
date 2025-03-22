@@ -1,71 +1,63 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-void print_vec(vector <int> vec)
-{
-    for(auto x : vec)
-    {
-        cout<<x<<" ";
-    }
-    cout<<endl;
+void print_vec(vector<int> vec) {
+  for (auto x : vec) {
+    cout << x << " ";
+  }
+  cout << endl;
 }
 
-int main(int argc, char const *argv[])
-{
-    int arr[] = {10, 20, 2, 3, -10, 4};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    
-    vector <int> vec(arr, arr+n);
-    print_vec(vec);
+int main(int argc, char const *argv[]) {
+  int arr[] = {10, 20, 2, 3, -10, 4};
+  int n = sizeof(arr) / sizeof(arr[0]);
 
-    sort(vec.begin(), vec.end());
+  vector<int> vec(arr, arr + n);
+  print_vec(vec);
 
-    print_vec(vec);
+  sort(vec.begin(), vec.end());
 
-    int max = *max_element(vec.begin(), vec.end());
-    int min = *min_element(vec.begin(), vec.end());
+  print_vec(vec);
 
-    cout<<endl<<"Maximum value: "<<max<<endl;
-    cout<<"Minimum value: "<<min<<endl;
+  int max = *max_element(vec.begin(), vec.end());
+  int min = *min_element(vec.begin(), vec.end());
 
-    reverse(vec.begin(), vec.end());
-    print_vec(vec);
+  cout << endl << "Maximum value: " << max << endl;
+  cout << "Minimum value: " << min << endl;
 
-    // Sum till from xth element.
-    cout<<endl<<"Summation of vector elements is: "<<endl;
-    // Starts summation from 0.
-    cout<<accumulate(vec.begin(), vec.end(), 0);
+  reverse(vec.begin(), vec.end());
+  print_vec(vec);
 
-    // Count occurences of x in vector.
-    cout<<"Occurence of 20 in vector"<<endl;
-    cout<<count(vec.begin(), vec.end(), 20)<<endl;
+  // Sum till from xth element.
+  cout << endl << "Summation of vector elements is: " << endl;
+  // Starts summation from 0.
+  cout << accumulate(vec.begin(), vec.end(), 0);
 
-    // find() returns iterator to address or end if it is not found
-    auto itr = find(vec.begin(), vec.end(), -1);
-    
-    if(itr == vec.end())
-    {
-        cout<<"Could not find required element"<<endl;
-    }
-    else
-    {
-        cout<<itr - vec.begin() << "Found at Counting from zero"<<endl;
-    }
+  // Count occurences of x in vector.
+  cout << "Occurence of 20 in vector" << endl;
+  cout << count(vec.begin(), vec.end(), 20) << endl;
 
-    // Erase a value from position in vector.
-    vec.erase(vec.begin()+1);
+  // find() returns iterator to address or end if it is not found
+  auto itr = find(vec.begin(), vec.end(), -1);
 
-    print_vec(vec);
+  if (itr == vec.end()) {
+    cout << "Could not find required element" << endl;
+  } else {
+    cout << itr - vec.begin() << "Found at Counting from zero" << endl;
+  }
 
-    // Delete the duplicate occurences of vector.
-    vec.erase(unique(vec.begin(), vec.end()), vec.end());
-    print_vec(vec);
+  // Erase a value from position in vector.
+  vec.erase(vec.begin() + 1);
 
-    // Find distance between desired position from first iterator.
-    cout<<distance(vec.begin(), min_element(vec.begin(), vec.end()));
+  print_vec(vec);
 
-    return 0;
+  // Delete the duplicate occurences of vector.
+  vec.erase(unique(vec.begin(), vec.end()), vec.end());
+  print_vec(vec);
+
+  // Find distance between desired position from first iterator.
+  cout << distance(vec.begin(), min_element(vec.begin(), vec.end()));
+
+  return 0;
 }
-
-

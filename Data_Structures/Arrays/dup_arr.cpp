@@ -2,7 +2,8 @@
 
 // https://leetcode.com/problems/find-the-duplicate-number/
 
-// Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+// Given an array of integers nums containing n + 1 integers where each integer
+// is in the range [1, n] inclusive.
 
 // There is only one repeated number in nums, return this repeated number.
 
@@ -30,18 +31,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int find_miss_sort(vector<int> v)
-{
-    sort(v.begin(), v.end());
+int find_miss_sort(vector<int> v) {
+  sort(v.begin(), v.end());
 
-    for (int i = 0; i < v.size(); i++)
-    {
-        if (i == v[i])
-        {
-            return v[i];
-        }
+  for (int i = 0; i < v.size(); i++) {
+    if (i == v[i]) {
+      return v[i];
     }
-    return -1;
+  }
+  return -1;
 }
 
 // 2. Hashmap: -
@@ -51,22 +49,17 @@ int find_miss_sort(vector<int> v)
 // Time complexity = O(n)
 // Space complexity = O(n)
 
-int find_miss_map(vector<int> v)
-{
-    map<int, int> mp;
+int find_miss_map(vector<int> v) {
+  map<int, int> mp;
 
-    for (int i = 0; i < v.size(); i++)
-    {
-        if (mp[v[i]] == 1)
-        {
-            return v[i];
-        }
-        else
-        {
-            mp[v[i]] += 1;
-        }
+  for (int i = 0; i < v.size(); i++) {
+    if (mp[v[i]] == 1) {
+      return v[i];
+    } else {
+      mp[v[i]] += 1;
     }
-    return -1;
+  }
+  return -1;
 }
 
 // 3. Linked List style slow and fast pointer.
@@ -76,33 +69,29 @@ int find_miss_map(vector<int> v)
 // Finally both will converge at an element say el.
 // Return element at index el.
 
-int find_miss_opt(vector<int> v)
-{
-    int slow = v[0];
-    int fast = v[0];
+int find_miss_opt(vector<int> v) {
+  int slow = v[0];
+  int fast = v[0];
 
-    do
-    {
-        slow = v[slow];
-        fast = v[v[fast]];
-    } while (slow != fast);
+  do {
+    slow = v[slow];
+    fast = v[v[fast]];
+  } while (slow != fast);
 
-    fast = v[0];
-    while (slow != fast)
-    {
-        slow = v[slow];
-        fast = v[fast];
-    }
-    return fast;
+  fast = v[0];
+  while (slow != fast) {
+    slow = v[slow];
+    fast = v[fast];
+  }
+  return fast;
 }
 
-int main(int argc, char const *argv[])
-{
-    vector<int> v = {1, 3, 4, 2, 2};
+int main(int argc, char const *argv[]) {
+  vector<int> v = {1, 3, 4, 2, 2};
 
-    cout << find_miss_sort(v) << endl;
-    cout << find_miss_map(v) << endl;
-    cout << find_miss_opt(v) << endl;
+  cout << find_miss_sort(v) << endl;
+  cout << find_miss_map(v) << endl;
+  cout << find_miss_opt(v) << endl;
 
-    return 0;
+  return 0;
 }

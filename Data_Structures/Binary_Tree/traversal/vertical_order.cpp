@@ -1,16 +1,17 @@
 // https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
 
-// Given the root of a binary tree, calculate the vertical order traversal of the binary tree.
+// Given the root of a binary tree, calculate the vertical order traversal of
+// the binary tree.
 
-// For each node at position (row, col), its left and right children 
-// will be at positions (row + 1, col - 1) and (row + 1, col + 1) respectively. 
+// For each node at position (row, col), its left and right children
+// will be at positions (row + 1, col - 1) and (row + 1, col + 1) respectively.
 // The root of the tree is at (0, 0).
 
-// The vertical order traversal of a binary tree is a 
-// list of top-to-bottom orderings for each column index 
-// starting from the leftmost column and ending on the 
-// rightmost column. There may be multiple nodes in the same row and same column. 
-// In such a case, sort these nodes by their values.
+// The vertical order traversal of a binary tree is a
+// list of top-to-bottom orderings for each column index
+// starting from the leftmost column and ending on the
+// rightmost column. There may be multiple nodes in the same row and same
+// column. In such a case, sort these nodes by their values.
 
 // Return the vertical order traversal of the binary tree.
 
@@ -22,63 +23,53 @@
 // Column 1: Only node 20 is in this column.
 // Column 2: Only node 7 is in this column.
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Node 
-{
-    public:
-        int data;
-        Node *left, *right;
+class Node {
+ public:
+  int data;
+  Node *left, *right;
 };
 
-vector<vector<int>> verticalTraversal(Node* root) {
+vector<vector<int>> verticalTraversal(Node *root) {
+  // Map to store node and it's value
+  map<int, map<int, multiset<int>>> mp;
 
-    // Map to store node and it's value
-    map<int, map<int, multiset<int>>> mp;
+  // This queue stores each element as cordinates relative to root.
+  // First being how left the node is and second being how down.
+  queue<pair<Node *, pair<int, int>>> todo;
 
-    // This queue stores each element as cordinates relative to root.
-    // First being how left the node is and second being how down.
-    queue<pair<Node*, pair<int, int>>> todo;
+  // Since root has cordinates (0, 0)
+  todo.push({root, {0, 0}});
 
-    // Since root has cordinates (0, 0)
-    todo.push({root, {0, 0}});
+  // BFS
+  while (!todo.empty()) {
+    auto pr = todo.front();
+    todo.pop();
 
-    // BFS
-    while (!todo.empty())
-    {
-        auto pr = todo.front();
-        todo.pop();
+    Node *node = pr.first;
 
-        Node *node = pr.first;
+    int x = pr.second.first;
+    int y = pr.second.second;
+    mp[x][y].insert(node->data);
 
-        int x = pr.second.first;
-        int y = pr.second.second;
-        mp[x][y].insert(node->data);
+    if (node->left) todo.push({node->left, {x - 1, y + 1}});
 
+    if (node->right) todo.push({node->right, {x + 1, y + 1}});
+  }
 
-        if(node->left)
-            todo.push({node->left, {x - 1, y + 1}});
-        
-        if(node->right)
-            todo.push({node->right, {x + 1, y + 1}});
+  vector<vector<int>> res;
+
+  // Since we have to return sorted result
+
+  for (auto p : mp) {
+    vector<int> col;
+    for (auto ele : p.second) {
+      col.insert(col.end(), ele.second.begin(), ele.second.end());
     }
+    res.push_back(col);
+  }
 
-    vector<vector<int>> res;
-
-    // Since we have to return sorted result
-    
-    for(auto p: mp)
-    {
-        vector<int> col;
-        for(auto ele: p.second)
-        {
-            col.insert(col.end(), ele.second.begin(), ele.second.end());
-        }
-        res.push_back(col);
-    }
-
-    return res;
-
+  return res;
 }
-

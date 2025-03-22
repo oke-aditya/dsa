@@ -21,75 +21,59 @@
 // odd xor 1 = odd-1
 // even xor 1 = even+1
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
-using namespace std; 
+using namespace std;
 
-int singleNonDuplicate(vector<int>& nums) 
-{
+int singleNonDuplicate(vector<int>& nums) {
+  int left = 0;
+  int n = nums.size();
+  int right = n - 1;
 
-    int left = 0;
-    int n = nums.size();
-    int right = n - 1;
+  int ans = -1;
 
-    int ans = -1;
+  if (n == 1) {
+    return nums[0];
+  }
 
-    if (n == 1)
-    {
-        return nums[0];
+  while (left <= right) {
+    int mid = left + (right - left) / 2;
+
+    if (mid == 0) {
+      if (nums[mid + 1] != nums[mid]) {
+        return nums[mid];
+      }
     }
 
-    while(left <= right)
-    {
-        int mid = left + (right - left) / 2;
-
-        if(mid == 0)
-        {
-            if(nums[mid +1] != nums[mid])
-            {
-                return nums[mid];
-            }
-        }
-
-        else if(mid == n - 1)
-        {
-            if(nums[mid -1] != nums[mid])
-            {
-                return nums[mid];
-            }
-        }
-
-        // even index / odd position.
-        // it's not same in either direction
-        else if(mid % 2 == 0 && nums[mid - 1] != nums[mid] && nums[mid + 1] != nums[mid])
-        {
-            return nums[mid];
-        }
-
-
-        // even index / odd position. it is the first occurence
-        // no faults here
-        else if(mid % 2 == 0 && nums[mid + 1] == nums[mid])
-        {
-            left = mid + 1;
-        }
-
-
-        // odd index / even position
-        // this is the 2nd occurence.
-        // then there are no issues here, move right
-        else if(mid % 2 == 1 && nums[mid - 1] == nums[mid])
-        {
-            left = mid + 1;
-        }
-
-        else
-        {
-            right = mid - 1;
-        }
+    else if (mid == n - 1) {
+      if (nums[mid - 1] != nums[mid]) {
+        return nums[mid];
+      }
     }
-    return ans;
 
+    // even index / odd position.
+    // it's not same in either direction
+    else if (mid % 2 == 0 && nums[mid - 1] != nums[mid] &&
+             nums[mid + 1] != nums[mid]) {
+      return nums[mid];
+    }
 
+    // even index / odd position. it is the first occurence
+    // no faults here
+    else if (mid % 2 == 0 && nums[mid + 1] == nums[mid]) {
+      left = mid + 1;
+    }
+
+    // odd index / even position
+    // this is the 2nd occurence.
+    // then there are no issues here, move right
+    else if (mid % 2 == 1 && nums[mid - 1] == nums[mid]) {
+      left = mid + 1;
+    }
+
+    else {
+      right = mid - 1;
+    }
+  }
+  return ans;
 }
-

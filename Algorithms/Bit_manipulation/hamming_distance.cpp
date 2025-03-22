@@ -1,7 +1,8 @@
 // https://leetcode.com/problems/hamming-distance/
 // Hamming Distance
 
-// The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+// The Hamming distance between two integers is the number of positions at which
+// the corresponding bits are different.
 
 // Given two integers x and y, return the Hamming distance between them.
 
@@ -11,7 +12,8 @@
 // 1   (0 0 0 1)
 // 4   (0 1 0 0)
 //        ↑   ↑
-// The above arrows point to positions where the corresponding bits are different.
+// The above arrows point to positions where the corresponding bits are
+// different.
 
 // Example 2:
 
@@ -19,25 +21,20 @@
 // Output: 1
 
 // Solution: -
-// The basic idea here is to discuss the usage of xor operator (^) ,and operator(&) and
-// right shift operator(>>).When we take xor of two numbers the bits with
-// same numbers become zero and with different numbers become 1.
-// Then we can right shift all the 1's and use & to find the number of ones .
+// The basic idea here is to discuss the usage of xor operator (^) ,and
+// operator(&) and right shift operator(>>).When we take xor of two numbers the
+// bits with same numbers become zero and with different numbers become 1. Then
+// we can right shift all the 1's and use & to find the number of ones .
 
-
-int hammingDistance(int x, int y)
-{
-    int z = x ^ y;
-    int count = 0;
-    while (z)
-    {
-        if(z & 1)
-        {
-            count += 1;
-        }
-        z = z >> 1;
+int hammingDistance(int x, int y) {
+  int z = x ^ y;
+  int count = 0;
+  while (z) {
+    if (z & 1) {
+      count += 1;
     }
-    
-    return count;
-}
+    z = z >> 1;
+  }
 
+  return count;
+}

@@ -19,28 +19,22 @@
 
 using namespace std;
 
-bool isSubsequence(string s, string t)
-{
-    int m = s.size();
-    int n = t.size();
+bool isSubsequence(string s, string t) {
+  int m = s.size();
+  int n = t.size();
 
-    int i = 0, j = 0;
+  int i = 0, j = 0;
 
-    while (i < m && j < n)
-    {
-        if(s[i] == t[j])
-        {
-            i += 1;
-        }
-        j += 1;
+  while (i < m && j < n) {
+    if (s[i] == t[j]) {
+      i += 1;
     }
-    
-    if(i == m)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
+    j += 1;
+  }
+
+  if (i == m) {
+    return 1;
+  } else {
+    return 0;
+  }
 }

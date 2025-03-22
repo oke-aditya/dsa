@@ -20,39 +20,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int find_floor(int arr[], int tgt, int n)
-{
-    int left = 0;
-    int right = n - 1;
-    int res;
-    while (left <= right)
-    {
-        int mid = (left + right) / 2;
-        if (arr[mid] == tgt)
-        {
-            return arr[mid];
-        }
-        else if (tgt > arr[mid])
-        {
-            res = arr[mid];
-            left = mid + 1;
-        }
-        else if (tgt < arr[mid])
-        {
-            right = mid - 1;
-        }
+int find_floor(int arr[], int tgt, int n) {
+  int left = 0;
+  int right = n - 1;
+  int res;
+  while (left <= right) {
+    int mid = (left + right) / 2;
+    if (arr[mid] == tgt) {
+      return arr[mid];
+    } else if (tgt > arr[mid]) {
+      res = arr[mid];
+      left = mid + 1;
+    } else if (tgt < arr[mid]) {
+      right = mid - 1;
     }
-    return res;
+  }
+  return res;
 }
 
-int main(int argc, char const *argv[])
-{
-    int arr[] = {1, 2, 8, 10, 10, 12, 19};
-    int tgt = 5;
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int res = find_floor(arr, tgt, n);
+int main(int argc, char const *argv[]) {
+  int arr[] = {1, 2, 8, 10, 10, 12, 19};
+  int tgt = 5;
+  int n = sizeof(arr) / sizeof(arr[0]);
+  int res = find_floor(arr, tgt, n);
 
-    cout << res << endl;
+  cout << res << endl;
 
-    return 0;
+  return 0;
 }
