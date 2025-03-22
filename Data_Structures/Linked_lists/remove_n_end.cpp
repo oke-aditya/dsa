@@ -1,7 +1,8 @@
-// Given the head of a linked list, remove the nth node from the end of the list and return its head.
+// Given the head of a linked list, remove the nth node from the end of the list
+// and return its head.
 
 // Follow up: Could you do this in one pass?
-// 
+//
 // Input: head = [1,2,3,4,5], n = 2
 // Output: [1,2,3,5]
 
@@ -18,87 +19,73 @@
 // Delete the node located at slow.
 // Return temp->next as temp is attached extra to head.
 
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Node
-{
-    public:
-        int data;
-        Node *next;  
+class Node {
+ public:
+  int data;
+  Node *next;
 };
 
-void insert_head(Node **head_ref, int new_data)
-{
-    Node *new_node = new Node();
-    new_node->data = new_data;
-    new_node->next = *head_ref;
-    *head_ref = new_node;
-
+void insert_head(Node **head_ref, int new_data) {
+  Node *new_node = new Node();
+  new_node->data = new_data;
+  new_node->next = *head_ref;
+  *head_ref = new_node;
 }
 
-void println(Node *node)
-{
-    while(node != NULL)
-    {
-        cout<<node->data<<" ";
-        node = node->next;
-    }
+void println(Node *node) {
+  while (node != NULL) {
+    cout << node->data << " ";
+    node = node->next;
+  }
 }
 
-Node* delete_at_n(Node *head, int n)
-{
-    // Create a dummy node in beginning to avoid overflow
+Node *delete_at_n(Node *head, int n) {
+  // Create a dummy node in beginning to avoid overflow
 
-    Node *temp = new Node();
-    temp->next = head;
+  Node *temp = new Node();
+  temp->next = head;
 
-    Node *fast = temp;
-    Node *slow = temp;
+  Node *fast = temp;
+  Node *slow = temp;
 
-    for(int i=1; i<=n; i++)
-    {
-        fast = fast->next;
-    }
+  for (int i = 1; i <= n; i++) {
+    fast = fast->next;
+  }
 
-    while(fast->next != NULL)
-    {
-        fast = fast->next;
-        slow = slow->next;
-    }
+  while (fast->next != NULL) {
+    fast = fast->next;
+    slow = slow->next;
+  }
 
-    slow->next = slow->next->next;
+  slow->next = slow->next->next;
 
-    // Return temp->next as temp is attached extra to head.
-    return temp->next;
-
+  // Return temp->next as temp is attached extra to head.
+  return temp->next;
 }
 
+int main(int argc, char const *argv[]) {
+  Node *head = new Node();
+  head->data = 5;
+  insert_head(&head, 4);
+  insert_head(&head, 3);
+  insert_head(&head, 2);
+  insert_head(&head, 1);
 
+  println(head);
 
-int main(int argc, char const *argv[])
-{
-    Node *head = new Node();
-    head->data = 5;
-    insert_head(&head, 4);
-    insert_head(&head, 3);
-    insert_head(&head, 2);
-    insert_head(&head, 1);
+  cout << endl;
 
-    println(head);
+  int n = 4;
 
-    cout<<endl;
+  // delete_at_n(&head, n);
+  auto head2 = delete_at_n(head, n);
 
-    int n = 4;
+  println(head2);
 
-    // delete_at_n(&head, n);
-    auto head2 = delete_at_n(head, n);
+  cout << endl;
 
-    println(head2);
-
-    cout<<endl;
-
-    return 0;
+  return 0;
 }
-

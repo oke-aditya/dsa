@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/score-of-parentheses/
-// Given a balanced parentheses string S, compute the score of the string based on the following rule:
+// Given a balanced parentheses string S, compute the score of the string based
+// on the following rule:
 
 // () has score 1
 // AB has score A + B, where A and B are balanced parentheses strings.
@@ -20,7 +21,6 @@
 // S is a balanced parentheses string, containing only ( and ).
 // 2 <= S.length <= 50
 
-
 // Solution:
 // When travel through S, only meets ')', we need to calculate the score of
 // this pair of parenthese. If we know the score of inner parentheses, such
@@ -38,7 +38,8 @@
 
 // stack: 0->1->
 // string_traveled: "( ( )"
-// First time meets ')', it balance the last '(', so pop the stack. But 0 indicates no inner parentheses exists, so just pass 1 to parent parenthese.
+// First time meets ')', it balance the last '(', so pop the stack. But 0
+// indicates no inner parentheses exists, so just pass 1 to parent parenthese.
 
 // stack: 0->1->0->0->
 // string_traveled: "( ( ) ( ("
@@ -50,79 +51,70 @@
 
 // stack 0->3->
 // string_traveled: "( ( ) ( ( ) )"
-// Balance another '(', but the inner is not zero, so double it and add to parent's score
+// Balance another '(', but the inner is not zero, so double it and add to
+// parent's score
 
 // stack 6->
 // string_traveled: "( ( ) ( ( ) ) )"
 // Same as last step, double the inner score and add to parent's
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int score_par(string s)
-{
-    // Stack stores scores of prans
-    stack <int> stk;
+int score_par(string s) {
+  // Stack stores scores of prans
+  stack<int> stk;
 
-    // To keep the total score.
-    stk.push(0);
+  // To keep the total score.
+  stk.push(0);
 
-    for(char c: s)
-    {
-        if(c == '(')
-        {
-            // Opening brace does not contribute to score
-            stk.push(0);
-        }
-        // Closing brace
-        else
-        {
-            // Current score
-            int tmp = stk.top();
-
-            stk.pop();
-
-            int val = 0;
-            if(tmp > 0) // This means paranthesis exists.
-            {
-                val = tmp * 2;
-            }
-
-            else  /// tmp value is 0, we got first matching brace.
-            {
-                val += 1;
-            }
-
-            // Add the score to top
-            stk.top() += val;
-        }
+  for (char c : s) {
+    if (c == '(') {
+      // Opening brace does not contribute to score
+      stk.push(0);
     }
+    // Closing brace
+    else {
+      // Current score
+      int tmp = stk.top();
 
-    // Final score left.
-    return stk.top();
+      stk.pop();
 
+      int val = 0;
+      if (tmp > 0)  // This means paranthesis exists.
+      {
+        val = tmp * 2;
+      }
+
+      else  /// tmp value is 0, we got first matching brace.
+      {
+        val += 1;
+      }
+
+      // Add the score to top
+      stk.top() += val;
+    }
+  }
+
+  // Final score left.
+  return stk.top();
 }
 
+int main(int argc, char const *argv[]) {
+  string s1 = "()";
+  string s2 = "(())";
+  string s3 = "()()";
+  string s4 = "(()(()))";
 
+  auto res1 = score_par(s1);
+  auto res2 = score_par(s2);
+  auto res3 = score_par(s3);
+  auto res4 = score_par(s4);
 
-int main(int argc, char const *argv[])
-{
+  cout << res1 << endl;
+  cout << res2 << endl;
+  cout << res3 << endl;
+  cout << res4 << endl;
 
-    string s1 = "()";
-    string s2 = "(())";
-    string s3 = "()()";
-    string s4 = "(()(()))";
-
-    auto res1 = score_par(s1);
-    auto res2 = score_par(s2);
-    auto res3 = score_par(s3);
-    auto res4 = score_par(s4);
-
-    cout<<res1<<endl;
-    cout<<res2<<endl;
-    cout<<res3<<endl;
-    cout<<res4<<endl;
-    
-    return 0;
+  return 0;
 }
-

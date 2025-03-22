@@ -1,11 +1,12 @@
 // https://leetcode.com/problems/find-all-anagrams-in-a-string/
 // https://leetcode.com/problems/permutation-in-string/
 
-// Given two strings s and p, return an array of all the start indices of p's anagrams in s.
-// You may return the answer in any order.
+// Given two strings s and p, return an array of all the start indices of p's
+// anagrams in s. You may return the answer in any order.
 
-// An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, 
-// typically using all the original letters exactly once.
+// An Anagram is a word or phrase formed by rearranging the letters of a
+// different word or phrase, typically using all the original letters exactly
+// once.
 
 // Example 1:
 
@@ -31,75 +32,64 @@
 // Process each window of size k
 // cleanup from left side, append from right
 // wherever maps match, add this to result
-// 
 //
-// Note that this solution also works for permutations! 
+//
+// Note that this solution also works for permutations!
 // https://leetcode.com/problems/permutation-in-string/
 // As long as we find one solution, result size > 0
 // We have a solution!
 
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-
 vector<int> findAnagrams(string s, string p) {
-    // use the size of p as size of sliding window
-    int m = s.size();
-    int k = p.size();
+  // use the size of p as size of sliding window
+  int m = s.size();
+  int k = p.size();
 
-    vector<int> res;
+  vector<int> res;
 
-    // trying to check a bigger string for anagram
-    if(k > m)
-    {
-        return res;
+  // trying to check a bigger string for anagram
+  if (k > m) {
+    return res;
+  }
+
+  // mapping of string p to compare
+  unordered_map<char, int> p_map;
+  for (auto ch : p) {
+    p_map[ch] += 1;
+  }
+
+  // also maintain a mapping of s, we will use this to compare
+  unordered_map<char, int> s_map;
+
+  int i = 0, j = 0;
+
+  for (j = 0; j < k; j++) {
+    s_map[s[j]] += 1;
+  }
+
+  // if these 2 maps are equal we have a result. we need the index i
+  if (s_map == p_map) {
+    res.push_back(i);
+  }
+
+  for (j = k; j < m; j++) {
+    s_map[s[j]] += 1;
+
+    // cleanup i
+    s_map[s[i]] -= 1;
+
+    if (s_map[s[i]] == 0) {
+      s_map.erase(s[i]);
     }
-
-    // mapping of string p to compare
-    unordered_map<char, int> p_map;
-    for(auto ch: p)
-    {
-        p_map[ch] += 1;
-    }
-
-    // also maintain a mapping of s, we will use this to compare
-    unordered_map<char, int> s_map;
-
-    int i = 0, j = 0;
-
-    for(j=0; j<k; j++)
-    {
-        s_map[s[j]] += 1;
-    }
+    i += 1;
 
     // if these 2 maps are equal we have a result. we need the index i
-    if(s_map == p_map)
-    {
-        res.push_back(i);
+    if (s_map == p_map) {
+      res.push_back(i);
     }
-
-    for(j=k; j<m; j++)
-    {
-        s_map[s[j]] += 1;
-        
-        // cleanup i
-        s_map[s[i]] -= 1;
-        
-        if(s_map[s[i]] == 0)
-        {
-            s_map.erase(s[i]);
-        }
-        i += 1;
-
-        // if these 2 maps are equal we have a result. we need the index i
-        if(s_map == p_map)
-        {
-            res.push_back(i);
-        }   
-    }
-    return res;
-
+  }
+  return res;
 }
-

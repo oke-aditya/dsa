@@ -4,39 +4,31 @@
 //   Class B                  Class C
 //              Class D
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class A
-{
-    public:
-        int a;
+class A {
+ public:
+  int a;
 };
 
-class B : public A
-{
-    public:
-        int b;
+class B : public A {
+ public:
+  int b;
 };
 
-class C : public A
-{
-    public:
-        int c;
+class C : public A {
+ public:
+  int c;
 };
 
-class D : public B, public C
-{
-    public:
-        int d;
+class D : public B, public C {
+ public:
+  int d;
 };
 
+int main(int argc, char const *argv[]) {
+  D obj;
 
-int main(int argc, char const *argv[])
-{
-    D obj;
-    
-
-    return 0;
+  return 0;
 }
-

@@ -2,11 +2,13 @@
 // Unique Number of Occurrences
 
 // Given an array of integers arr, write a function that
-// returns true if and only if the number of occurrences of each value in the array is unique.
+// returns true if and only if the number of occurrences of each value in the
+// array is unique.
 
 // Input: arr = [1,2,2,1,1,3]
 // Output: true
-// Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+// Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two
+// values have the same number of occurrences.
 
 // Example 2:
 
@@ -27,29 +29,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool uniqueOccurrences(vector<int> &arr)
-{
-    unordered_map<int, int> mp;
+bool uniqueOccurrences(vector<int> &arr) {
+  unordered_map<int, int> mp;
 
-    for (int ele : arr)
-    {
-        mp[ele]++;
+  for (int ele : arr) {
+    mp[ele]++;
+  }
+
+  unordered_map<int, int> mp2;
+
+  for (auto itr = mp.begin(); itr != mp.end(); itr++) {
+    mp2[itr->second]++;
+  }
+
+  for (auto itr2 = mp2.begin(); itr2 != mp2.end(); itr2++) {
+    if (itr2->second > 1) {
+      return false;
     }
+  }
 
-    unordered_map<int, int> mp2;
-
-    for (auto itr = mp.begin(); itr != mp.end(); itr++)
-    {
-        mp2[itr->second]++;
-    }
-
-    for (auto itr2 = mp2.begin(); itr2 != mp2.end(); itr2++)
-    {
-        if (itr2->second > 1)
-        {
-            return false;
-        }
-    }
-
-    return true;
+  return true;
 }

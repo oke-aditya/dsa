@@ -1,6 +1,8 @@
-// Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+// Given an array of integers nums and an integer target, return indices of the
+// two numbers such that they add up to target.
 
-// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+// You may assume that each input would have exactly one solution, and you may
+// not use the same element twice.
 
 // You can return the answer in any order.
 
@@ -17,43 +19,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void print_v(vector <int> v)
-{
-    for(auto x : v)
-    {
-        cout<<x<<" ";
-    }
-    cout<<endl;
+void print_v(vector<int> v) {
+  for (auto x : v) {
+    cout << x << " ";
+  }
+  cout << endl;
 }
 
-vector<int> two_sum_mp(vector<int> v, int target)
-{
-    unordered_map<int, int> mp;
-    int diff = 0;
-    vector<int> res;
+vector<int> two_sum_mp(vector<int> v, int target) {
+  unordered_map<int, int> mp;
+  int diff = 0;
+  vector<int> res;
 
-    for (int i=0; i<v.size(); i++)
-    {
-        diff = target - v[i];
-        if(mp.find(diff) == mp.end())
-        {
-            mp[v[i]] = i; 
-        }
-        else
-        {
-            res.push_back(mp[target - v[i]]);
-            res.push_back(i);
-        }   
+  for (int i = 0; i < v.size(); i++) {
+    diff = target - v[i];
+    if (mp.find(diff) == mp.end()) {
+      mp[v[i]] = i;
+    } else {
+      res.push_back(mp[target - v[i]]);
+      res.push_back(i);
     }
-    return res;
+  }
+  return res;
 }
 
-int main(int argc, char const *argv[])
-{
-    vector<int> v = {2, 7, 11, 15};
-    int target = 9;
-    auto res =  two_sum_mp(v, target);
-    print_v(res);
+int main(int argc, char const *argv[]) {
+  vector<int> v = {2, 7, 11, 15};
+  int target = 9;
+  auto res = two_sum_mp(v, target);
+  print_v(res);
 
-    return 0;
+  return 0;
 }

@@ -24,81 +24,63 @@
 // Use a set cache to drop duplicates
 // First write the backtrack solution then add set cache
 
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-void print_vv(vector<vector<int>> vv)
-{
-    for(auto v: vv)
-    {
-        cout<<"[";
-        for(auto x: v)
-        {
-            cout<<x<<",";
-        }
-        cout<<"],";
+void print_vv(vector<vector<int>> vv) {
+  for (auto v : vv) {
+    cout << "[";
+    for (auto x : v) {
+      cout << x << ",";
     }
+    cout << "],";
+  }
 }
 
+// Adding cache is optional that will only limit the backtrack for more
+// efficient Note all are passed via pass by reference
+void backtrack(vector<int> &nums, int begin, vector<vector<int>> &res) {
+  // Base case if when we reach last in permute, begin reaches n-1
+  if (begin == nums.size() - 1) {
+    // One perumte cases
+    res.push_back(nums);
+    return;
+  }
+  // Permute is swapping nums in all combinations.
+  // Standard for loop to iterate over every element
 
+  unordered_set<int> cache;
 
-
-// Adding cache is optional that will only limit the backtrack for more efficient
-// Note all are passed via pass by reference
-void backtrack(vector<int> &nums, int begin, vector<vector<int>> &res)
-{
-
-    // Base case if when we reach last in permute, begin reaches n-1
-    if (begin == nums.size() - 1) {
-        // One perumte cases
-        res.push_back(nums);
-        return;
-    }
-    // Permute is swapping nums in all combinations.
-    // Standard for loop to iterate over every element
-
-    unordered_set<int> cache;
-
-    for(int i=begin; i<nums.size(); i++)
-    {
-        // it is found in cache. set only has 1.
-        if(cache.count(nums[i]) == 1)
-        {
-            cout<<"hit the cache";
-            continue;
-        }
-
-        cache.insert(nums[i]);
-
-        swap(nums[begin], nums[i]);
-        // Recurse it from next step
-        backtrack(nums, begin+1, res);
-        // Reverse the o/p
-        swap(nums[begin], nums[i]);
-
-        // cache.pop_back();
-
+  for (int i = begin; i < nums.size(); i++) {
+    // it is found in cache. set only has 1.
+    if (cache.count(nums[i]) == 1) {
+      cout << "hit the cache";
+      continue;
     }
 
+    cache.insert(nums[i]);
+
+    swap(nums[begin], nums[i]);
+    // Recurse it from next step
+    backtrack(nums, begin + 1, res);
+    // Reverse the o/p
+    swap(nums[begin], nums[i]);
+
+    // cache.pop_back();
+  }
 }
 
-vector<vector<int>> permute(vector<int>& nums) 
-{
-    vector<vector<int>> res;
-    // vector<int> cache;
+vector<vector<int>> permute(vector<int> &nums) {
+  vector<vector<int>> res;
+  // vector<int> cache;
 
-    backtrack(nums, 0, res);
+  backtrack(nums, 0, res);
 
-    return res;
-        
+  return res;
 }
-int main(int argc, char const *argv[])
-{
-    vector<int> nums = {1, 2, 3, 3, 4};
-    auto ret = permute(nums);
-    print_vv(ret);
-    return 0;
+int main(int argc, char const *argv[]) {
+  vector<int> nums = {1, 2, 3, 3, 4};
+  auto ret = permute(nums);
+  print_vv(ret);
+  return 0;
 }
-
-

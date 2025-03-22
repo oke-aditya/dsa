@@ -2,8 +2,8 @@
 
 // Consecutive Characters
 
-// Given a string s, the power of the string is the maximum length of a non-empty
-// substring that contains only one unique character.
+// Given a string s, the power of the string is the maximum length of a
+// non-empty substring that contains only one unique character.
 
 // Return the power of the string.
 
@@ -13,7 +13,8 @@
 
 // Input: s = "abbcccddddeeeeedcba"
 // Output: 5
-// Explanation: The substring "eeeee" is of length 5 with the character 'e' only.
+// Explanation: The substring "eeeee" is of length 5 with the character 'e'
+// only.
 
 // Input: s = "triplepillooooow"
 // Output: 5
@@ -24,8 +25,7 @@
 // Input: s = "tourist"
 // Output: 1
 
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 // Solutino
@@ -44,31 +44,20 @@ using namespace std;
 // since we reset the count when that substring starts,
 // and increase count when iterate that substring
 
-int maxPower(string s)
-{
-    int count = 0, max_count = 0;
-    char prev = s[0];
-    for(char c: s)
-    {
-        if(c == prev)
-        {
-            count += 1;
-        }
-        else
-        {
-            // No length
-            prev = c;
-            count = 1;
-        }
-        max_count = max(count, max_count);
+int maxPower(string s) {
+  int count = 0, max_count = 0;
+  char prev = s[0];
+  for (char c : s) {
+    if (c == prev) {
+      count += 1;
+    } else {
+      // No length
+      prev = c;
+      count = 1;
     }
-    return max_count;
-        
+    max_count = max(count, max_count);
+  }
+  return max_count;
 }
 
-int main(int argc, char const *argv[])
-{
-    
-    return 0;
-}
-
+int main(int argc, char const *argv[]) { return 0; }

@@ -14,48 +14,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Node
-{
-public:
-    int data;
-    Node *left;
-    Node *right;
+class Node {
+ public:
+  int data;
+  Node *left;
+  Node *right;
 };
 
-Node *newNode(int data)
-{
-    Node *new_node = new Node();
-    new_node->left = NULL;
-    new_node->right = NULL;
-    new_node->data = data;
+Node *newNode(int data) {
+  Node *new_node = new Node();
+  new_node->left = NULL;
+  new_node->right = NULL;
+  new_node->data = data;
 
-    return new_node;
+  return new_node;
 }
 
-int height_rec(Node *root)
-{
-    if (root == NULL)
-    {
-        return 0;
-    }
-    else
-    {
-        int l_depth = height_rec(root->left);
-        int r_depth = height_rec(root->right);
-
-        return max(l_depth, r_depth) + 1;
-    }
-}
-
-int main(int argc, char const *argv[])
-{
-    Node *root = newNode(1);
-    root->left = newNode(2);
-    root->right = newNode(3);
-    root->left->left = newNode(4);
-    root->left->right = newNode(5);
-
-    cout << "Height of tree " << height_rec(root) << endl;
-
+int height_rec(Node *root) {
+  if (root == NULL) {
     return 0;
+  } else {
+    int l_depth = height_rec(root->left);
+    int r_depth = height_rec(root->right);
+
+    return max(l_depth, r_depth) + 1;
+  }
+}
+
+int main(int argc, char const *argv[]) {
+  Node *root = newNode(1);
+  root->left = newNode(2);
+  root->right = newNode(3);
+  root->left->left = newNode(4);
+  root->left->right = newNode(5);
+
+  cout << "Height of tree " << height_rec(root) << endl;
+
+  return 0;
 }

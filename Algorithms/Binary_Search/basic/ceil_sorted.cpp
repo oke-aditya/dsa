@@ -20,37 +20,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int ceil_arr(int arr[], int n, int tgt)
-{
-    int left = 0, right = n - 1;
-    int res;
-    while (left <= right)
-    {
-        int mid = (left + right) / 2;
-        if (arr[mid] == tgt)
-        {
-            return arr[mid];
-        }
-        else if (tgt > arr[mid])
-        {
-            left = mid + 1;
-        }
-        else if (tgt < arr[mid])
-        {
-            right = mid - 1;
-            res = arr[mid];
-        }
+int ceil_arr(int arr[], int n, int tgt) {
+  int left = 0, right = n - 1;
+  int res;
+  while (left <= right) {
+    int mid = (left + right) / 2;
+    if (arr[mid] == tgt) {
+      return arr[mid];
+    } else if (tgt > arr[mid]) {
+      left = mid + 1;
+    } else if (tgt < arr[mid]) {
+      right = mid - 1;
+      res = arr[mid];
     }
-    return res;
+  }
+  return res;
 }
 
-int main(int argc, char const *argv[])
-{
-    int arr[] = {1, 2, 8, 10, 10, 12, 19};
-    int x = 5;
-    int n = sizeof(arr) / sizeof(arr[0]);
+int main(int argc, char const *argv[]) {
+  int arr[] = {1, 2, 8, 10, 10, 12, 19};
+  int x = 5;
+  int n = sizeof(arr) / sizeof(arr[0]);
 
-    cout << ceil_arr(arr, n, x) << endl;
+  cout << ceil_arr(arr, n, x) << endl;
 
-    return 0;
+  return 0;
 }

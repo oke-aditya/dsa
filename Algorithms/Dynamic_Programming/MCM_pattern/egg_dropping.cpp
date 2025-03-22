@@ -7,15 +7,16 @@
 // Assumptions of the problem:
 
 //     If egg breaks at ith floor then it also breaks at all greater floors.
-//     If egg does not break at ith floor then it does not break at all lower floors.
-//     Unbroken egg can be used again.
+//     If egg does not break at ith floor then it does not break at all lower
+//     floors. Unbroken egg can be used again.
 
-// Note: You have to find minimum trials required to find the critical floor not the critical floor.
+// Note: You have to find minimum trials required to find the critical floor not
+// the critical floor.
 
 // Input:
 //     4
 //     2
-    
+
 // Output:
 // Number of trials when number of eggs is 2 and number of floors is 4: 3
 
@@ -29,9 +30,4 @@
 
 using namespace std;
 
-int main()
-{
-    cout
-    return(0);
-}
-
+int main() { cout return (0); }

@@ -17,28 +17,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int max_sub_arr(vector<int> &nums)
-{
-    int sum = 0, smax = INT_MIN;
+int max_sub_arr(vector<int> &nums) {
+  int sum = 0, smax = INT_MIN;
 
-    for(int num: nums)
-    {
-        sum += num;
-        smax = max(sum, smax);
-        if(sum < 0)
-        {
-            sum = 0;
-        }
+  for (int num : nums) {
+    sum += num;
+    smax = max(sum, smax);
+    if (sum < 0) {
+      sum = 0;
     }
-    return smax;
+  }
+  return smax;
 }
 
-int main(int argc, char const *argv[])
-{
-    vector<int> v = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+int main(int argc, char const *argv[]) {
+  vector<int> v = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
 
-    auto res = max_sub_arr(v);
-    cout << res << endl;
+  auto res = max_sub_arr(v);
+  cout << res << endl;
 
-    return 0;
+  return 0;
 }

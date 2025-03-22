@@ -34,78 +34,63 @@ using namespace std;
 // Similar conditiion for right and move right behind.
 // Avoid duplicates of i and j similarly.
 
-vector<vector<int>> four_sum(vector<int> v, int target)
-{
-    vector<vector<int>> res;
+vector<vector<int>> four_sum(vector<int> v, int target) {
+  vector<vector<int>> res;
 
-    if (v.empty())
-    {
-        return res;
-    }
-
-    int n = v.size();
-    sort(v.begin(), v.end());
-
-    for (int i = 0; i < n; i++)
-    {
-        int target3 = target - v[i];
-        for (int j = i + 1; j < n; j++)
-        {
-            int target2 = target3 - v[j];
-            int left = j + 1;
-            int right = n - 1;
-            while (left < right)
-            {
-                int two_sum = v[left] + v[right];
-                if (two_sum < target2)
-                {
-                    left += 1;
-                }
-                else if (two_sum > target2)
-                {
-                    right -= 1;
-                }
-                else
-                {
-                    // This is the perfect sum, add to result
-                    vector<int> temp(4, 0);
-                    temp[0] = v[i];
-                    temp[1] = v[j];
-                    temp[2] = v[left];
-                    temp[3] = v[right];
-                    res.push_back(temp);
-
-                    // Skip all the numbers which are same to left.
-                    while (left < right && v[left] == temp[2])
-                    {
-                        left += 1;
-                    }
-                    while (left < right && v[right] == temp[3])
-                    {
-                        right -= 1;
-                    }
-                }
-            }
-            // Process duplicates of same number.
-            while (j + 1 < n && v[j + 1] == v[j])
-            {
-                j += 1;
-            }
-            // Process duplicates of same number.
-            while (i + 1 < n && v[i + 1] == v[i])
-            {
-                i += 1;
-            }
-        }
-    }
+  if (v.empty()) {
     return res;
+  }
+
+  int n = v.size();
+  sort(v.begin(), v.end());
+
+  for (int i = 0; i < n; i++) {
+    int target3 = target - v[i];
+    for (int j = i + 1; j < n; j++) {
+      int target2 = target3 - v[j];
+      int left = j + 1;
+      int right = n - 1;
+      while (left < right) {
+        int two_sum = v[left] + v[right];
+        if (two_sum < target2) {
+          left += 1;
+        } else if (two_sum > target2) {
+          right -= 1;
+        } else {
+          // This is the perfect sum, add to result
+          vector<int> temp(4, 0);
+          temp[0] = v[i];
+          temp[1] = v[j];
+          temp[2] = v[left];
+          temp[3] = v[right];
+          res.push_back(temp);
+
+          // Skip all the numbers which are same to left.
+          while (left < right && v[left] == temp[2]) {
+            left += 1;
+          }
+          while (left < right && v[right] == temp[3]) {
+            right -= 1;
+          }
+        }
+      }
+      // Process duplicates of same number.
+      while (j + 1 < n && v[j + 1] == v[j]) {
+        j += 1;
+      }
+      // Process duplicates of same number.
+      while (i + 1 < n && v[i + 1] == v[i]) {
+        i += 1;
+      }
+    }
+  }
+  return res;
 }
 
-int main(int argc, char const *argv[])
-{
-    vector<int> v = {1, 0, -1, 0, -2, 2};
-    int target = 0;
-    auto res = four_sum(v, target);
+int main(int argc, char const *argv[]) {
+  vector<int> v = {1, 0, -1, 0, -2, 2};
+  int target = 0;
+  auto res = four_sum(v, target);
 
-    return 0;
+  return 0;
 }

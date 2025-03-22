@@ -1,21 +1,20 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int g_count = 0;
 shared_mutex sm;
 
 void read_value() {
-    shared_lock sl(sm);
-    cout<<"count = "<<to_string(g_count);
+  shared_lock sl(sm);
+  cout << "count = " << to_string(g_count);
 }
 
 void write_value() {
-    unique_lock ul(sm);
-    g_count += 3;
+  unique_lock ul(sm);
+  g_count += 3;
 }
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
   thread t1(read_value);
   thread t2(write_value);
   thread t3(read_value);
@@ -30,8 +29,5 @@ int main(int argc, char const *argv[])
   t5.join();
   t6.join();
 
-    
-    return 0;
+  return 0;
 }
-
-

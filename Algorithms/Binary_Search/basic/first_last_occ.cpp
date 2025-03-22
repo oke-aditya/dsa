@@ -1,6 +1,7 @@
 // https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 // Given a SORTED array with possibly duplicate elements,
-// the task is to find indexes of first and last occurrences of an element x in the given array.
+// the task is to find indexes of first and last occurrences of an element x in
+// the given array.
 
 // Input : arr[] = {1, 3, 5, 5, 5, 5, 67, 123, 125}
 //         x = 5
@@ -21,69 +22,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int first_occurence(int arr[], int n, int tgt)
-{
-    int left = 0, right = n - 1;
-    int res;
-    while (left <= right)
-    {
-        int mid = (left + right) / 2;
-        if (tgt == arr[mid])
-        {
-            // return 1;
-            // continue searching left for better ans, reduce search space
-            res = mid;
-            right = mid - 1;
-        }
-        else if (tgt > arr[mid])
-        {
-            // Target on right, search right
-            left = mid + 1;
-        }
-        else if (tgt < arr[mid])
-        {
-            // Target on left, search left
-            right = mid - 1;
-        }
+int first_occurence(int arr[], int n, int tgt) {
+  int left = 0, right = n - 1;
+  int res;
+  while (left <= right) {
+    int mid = (left + right) / 2;
+    if (tgt == arr[mid]) {
+      // return 1;
+      // continue searching left for better ans, reduce search space
+      res = mid;
+      right = mid - 1;
+    } else if (tgt > arr[mid]) {
+      // Target on right, search right
+      left = mid + 1;
+    } else if (tgt < arr[mid]) {
+      // Target on left, search left
+      right = mid - 1;
     }
-    return res;
+  }
+  return res;
 }
 
-int last_occurence(int arr[], int n, int tgt)
-{
-    int left = 0, right = n - 1;
-    int res;
-    while (left <= right)
-    {
-        int mid = (left + right) / 2;
-        if (tgt == arr[mid])
-        {
-            // continue searching right for better ans, reduce search space
-            res = mid;
-            left = mid + 1;
-        }
-        else if (tgt > arr[mid])
-        {
-            // search right
-            left = mid + 1;
-        }
-        else if (tgt < arr[mid])
-        {
-            // search left
-            right = mid - 1;
-        }
+int last_occurence(int arr[], int n, int tgt) {
+  int left = 0, right = n - 1;
+  int res;
+  while (left <= right) {
+    int mid = (left + right) / 2;
+    if (tgt == arr[mid]) {
+      // continue searching right for better ans, reduce search space
+      res = mid;
+      left = mid + 1;
+    } else if (tgt > arr[mid]) {
+      // search right
+      left = mid + 1;
+    } else if (tgt < arr[mid]) {
+      // search left
+      right = mid - 1;
     }
-    return res;
+  }
+  return res;
 }
 
-int main(int argc, char const *argv[])
-{
-    int arr[] = {1, 3, 5, 5, 5, 5, 67, 123, 125};
-    int n = sizeof(arr) / sizeof(int);
-    int x = 5;
+int main(int argc, char const *argv[]) {
+  int arr[] = {1, 3, 5, 5, 5, 5, 67, 123, 125};
+  int n = sizeof(arr) / sizeof(int);
+  int x = 5;
 
-    cout << first_occurence(arr, n, x) << endl;
-    cout << last_occurence(arr, n, x) << endl;
+  cout << first_occurence(arr, n, x) << endl;
+  cout << last_occurence(arr, n, x) << endl;
 
-    return 0;
+  return 0;
 }

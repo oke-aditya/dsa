@@ -4,44 +4,31 @@
 
 // Class can also be declared inside namespace and defined outside namespace
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-namespace ns1
-{
-    class Simple
-    {
-        public:
-            void display()
-            {
-                cout<<"Hello from simple"<<endl;
-            }
-    };
+namespace ns1 {
+class Simple {
+ public:
+  void display() { cout << "Hello from simple" << endl; }
+};
+}  // namespace ns1
+
+namespace ns2 {
+class Complic;
 }
 
-namespace ns2
-{
-    class Complic;
-}
-
-class ns2 :: Complic
-{
-    public:
-        void display()
-        {
-            cout<<"Hi from Complic"<<endl;
-        }
+class ns2 ::Complic {
+ public:
+  void display() { cout << "Hi from Complic" << endl; }
 };
 
+int main(int argc, char const *argv[]) {
+  ns1::Simple obj;
+  obj.display();
 
-int main(int argc, char const *argv[])
-{
-    ns1::Simple obj;
-    obj.display();
+  ns2::Complic obj2;
+  obj2.display();
 
-    ns2::Complic obj2;
-    obj2.display();
-
-    return 0;
+  return 0;
 }
-

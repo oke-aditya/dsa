@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 /*
@@ -60,8 +60,7 @@ then ((13 % 5) * (9 % 5)) % 5 = (117 % 5)
 
 */
 
-int main()
-{
-    std::cout << "Hello" << '\n';
-    return(0);
+int main() {
+  std::cout << "Hello" << '\n';
+  return (0);
 }

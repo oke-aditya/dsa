@@ -7,50 +7,41 @@
 
 using namespace std;
 
-class Complex
-{
-private:
-    int real, img;
+class Complex {
+ private:
+  int real, img;
 
-public:
-    Complex(int real = 0, int img = 0)
-    {
-        this->real = real;
-        this->img = img;
-    }
+ public:
+  Complex(int real = 0, int img = 0) {
+    this->real = real;
+    this->img = img;
+  }
 
-    // Overloaded operator must have either zero or one argument
-    Complex operator + (Complex const &c2)
-    {
-        Complex res;
-        res.real = this->real + c2.real;
-        res.img = this->img + c2.img;
+  // Overloaded operator must have either zero or one argument
+  Complex operator+(Complex const &c2) {
+    Complex res;
+    res.real = this->real + c2.real;
+    res.img = this->img + c2.img;
 
-        return res;
-    }
+    return res;
+  }
 
-
-    void print()
-    {
-        cout<<this->real<<" "<<this->img<<"i"<<endl;
-    }
-
+  void print() { cout << this->real << " " << this->img << "i" << endl; }
 };
 
 // We cannot overload
-//    . (dot) 
-//    :: 
-//    ?: 
-//    sizeof 
+//    . (dot)
+//    ::
+//    ?:
+//    sizeof
 
-int main(int argc, char const *argv[])
-{
-    Complex c1(10, 2);
-    Complex c2(10, 3);
+int main(int argc, char const *argv[]) {
+  Complex c1(10, 2);
+  Complex c2(10, 3);
 
-    auto res = c1 + c2;
+  auto res = c1 + c2;
 
-    res.print();
+  res.print();
 
-    return 0;
+  return 0;
 }

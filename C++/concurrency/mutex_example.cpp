@@ -11,23 +11,19 @@ int count = 0;
 mutex m;
 
 void add_count() {
-    m.lock();
-    count += 1;
-    m.unlock();
+  m.lock();
+  count += 1;
+  m.unlock();
 }
 
-int main(int argc, char const *argv[])
-{
-    thread t1(add_count);
-    thread t2(add_count);
+int main(int argc, char const *argv[]) {
+  thread t1(add_count);
+  thread t2(add_count);
 
-    t1.join();
-    t2.join();
+  t1.join();
+  t2.join();
 
-    cout<<"Current count = "<<count<<endl;
+  cout << "Current count = " << count << endl;
 
-    return 0;
+  return 0;
 }
-
-
-

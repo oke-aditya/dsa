@@ -1,60 +1,56 @@
-// In C++, files are mainly dealt by using three classes fstream, ifstream, ofstream available in fstream headerfile.
-// ofstream: Stream class to write on files
-// ifstream: Stream class to read from files
-// fstream: Stream class to both read and write from/to files.
+// In C++, files are mainly dealt by using three classes fstream, ifstream,
+// ofstream available in fstream headerfile. ofstream: Stream class to write on
+// files ifstream: Stream class to read from files fstream: Stream class to both
+// read and write from/to files.
 
-// Now the first step to open the particular file for read or write operation. We can open file by
+// Now the first step to open the particular file for read or write operation.
+// We can open file by
 // 1. passing file name in constructor at the time of object creation
 // 2. using the open method
 // ifstream	ios::in
 // ofstream	ios::out
 // fstream	ios::in | ios::out
 
-#include<iostream>
-#include<fstream>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
-int main(int argc, char const *argv[])
-{
-    // ofstream object
-    ofstream fout;
+int main(int argc, char const *argv[]) {
+  // ofstream object
+  ofstream fout;
 
-    string line="hello world";
+  string line = "hello world";
 
-    // by default ios::out mode, automatically deletes
-    // the content of file. To append the content, open in ios:app
-    // fout.open("sample.txt", ios::app)
-    
-    fout.open("hello.txt");
+  // by default ios::out mode, automatically deletes
+  // the content of file. To append the content, open in ios:app
+  // fout.open("sample.txt", ios::app)
 
-    // While the file is open
-    while(fout)
-    {
-        // Write line to the file
-        fout<<line<<endl;
-        // Close the file
-        fout.close();
-    }
+  fout.open("hello.txt");
 
-    // Creation of istream class to read the file
-    ifstream fin;
+  // While the file is open
+  while (fout) {
+    // Write line to the file
+    fout << line << endl;
+    // Close the file
+    fout.close();
+  }
 
-    fin.open("hello.txt");
+  // Creation of istream class to read the file
+  ifstream fin;
 
-    // Execute till endo of file is reached.
-    while(fin)
-    {
-        // Read line from the file
-        getline(fin, line);
+  fin.open("hello.txt");
 
-        cout<<line<<endl;
-    }
+  // Execute till endo of file is reached.
+  while (fin) {
+    // Read line from the file
+    getline(fin, line);
 
-    // Close the file.
-    fin.close();
+    cout << line << endl;
+  }
 
-    return 0;
+  // Close the file.
+  fin.close();
+
+  return 0;
 }
-
-
