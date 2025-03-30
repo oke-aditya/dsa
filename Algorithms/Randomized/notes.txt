@@ -1,0 +1,15 @@
+How to solve randomized Algorithms ?
+
+Watch errichto's lecture
+
+https://www.youtube.com/watch?v=0r2D32esF3Y&list=PLl0KD3g-oDOHpWRyyGBUJ9jmul0lUOD80&index=9&pp=iAQB
+
+
+https://www.youtube.com/watch?v=0r2D32esF3Y&list=PLl0KD3g-oDOHpWRyyGBUJ9jmul0lUOD80&index=9&pp=iAQB
+
+https://codeforces.com/blog/entry/71097
+https://codeforces.com/blog/entry/61587
+
+
+
+

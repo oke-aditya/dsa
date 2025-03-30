@@ -1,7 +1,7 @@
 // Trapping Rain Water
 // Given n non-negative integers representing an elevation map where
 // the width of each bar is 1, compute how much water it can trap after raining.
-// https://leetcode.com/problems/container-with-most-water/
+// https://leetcode.com/problems/trapping-rain-water/description/
 
 // Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
 // Output: 6
@@ -20,19 +20,31 @@ using namespace std;
 // For every element, find maximum to right.
 // trapped water = min(max_left, max_right) - current height.
 
-int trap_brute(vector<int> &height) {
-  int trapped_water = 0, n = height.size();
-  for (int i = 0; i < n; i++) {
-    int left_max = 0, right_max = 0;
-    for (int j = i; j > 0; j--) {
-      left_max = max(left_max, height[j]);
-    }
-    for (int j = i; j < n; j++) {
-      right_max = max(right_max, height[j]);
-    }
-    trapped_water += min(left_max, right_max) - height[i];
+int trap_brute(vector<int>& arr) {
+        
+  // brute force approach to find left max and right max
+  int n = arr.size(), trapped_water = 0;
+
+
+  for(int i=0; i<n; i++) {
+
+      int left_max = 0, right_max = 0;
+
+      // this one goes to right
+      for(int j=i; j>=0; j--) {
+          left_max = max(left_max, arr[j]);
+      }
+
+      // this will go to left
+      for(int j=i; j<n; j++) {
+          right_max = max(right_max, arr[j]);
+      }
+
+      trapped_water += min(right_max, left_max) - arr[i];
   }
+
   return trapped_water;
+
 }
 
 // Solution: -
