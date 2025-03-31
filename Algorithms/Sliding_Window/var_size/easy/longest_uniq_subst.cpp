@@ -37,6 +37,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 int longest_uniq_subst(string s) {
   int i = 0, j = 0;
   int max_win_size = -1;
@@ -55,9 +56,9 @@ int longest_uniq_subst(string s) {
     }
 
     // If number of unique chars < current window length.
-    else if ((mp.size() < (j - i + 1))) {
+    else {
       // Cleanup left side.
-      while ((mp.size() < (j - i + 1))) {
+      while ((mp.size() != (j - i + 1))) {
         // Cleanup left side i.
         // Remove counts from map.
 
@@ -68,10 +69,10 @@ int longest_uniq_subst(string s) {
         }
         i += 1;
       }
-      if ((mp.size() == (j - i + 1))) {
-        // Store the answer
-        max_win_size = max(max_win_size, (j - i + 1));
-      }
+
+      // if after erasing everythwe get a clean window?
+      max_win_size = max(max_win_size, (j - i + 1));
+    
     }
   }
   return max_win_size;
@@ -85,6 +86,10 @@ int main(int argc, char const *argv[]) {
   string s2 = "bbbbb";
 
   cout << longest_uniq_subst(s2) << endl;
+
+  string s3 = "pwwkew";
+
+  cout << longest_uniq_subst(s3) << endl;
 
   return 0;
 }
