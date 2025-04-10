@@ -1,101 +1,90 @@
-// The stock span problem is a financial problem
-// where we have a series of n daily price quotes
-// for a stock and we need to calculate the span of stock’s price for all n
-// days. The span Si of the stock’s price on a given day i is defined as the
-// maximum number of consecutive days just before the given day, for which the
-// price of the stock on the current day is greater than its price on the
-// previous days. For example, if an array of 7 days prices is given as {100,
-// 80, 60, 70, 60, 75, 85}, then the span values for corresponding 7 days are
-// {1, 1, 1, 2, 1, 4, 6}. https://www.geeksforgeeks.org/the-stock-span-problem/
+// https://leetcode.com/problems/online-stock-span/description/
+// Design an algorithm that collects daily price quotes for some stock and returns the span of that stock's price for the current day.
 
-// Solution: -
-// Brute force
-// Iterate twice over the array.
-// Find days when stock was greater, add result to array.
+// The span of the stock's price in one day is the maximum number of consecutive days (starting from that day and going backward) for which the stock price was less than or equal to the price of that day.
 
-#include <bits/stdc++.h>
+//     For example, if the prices of the stock in the last four days is [7,2,1,2] and the price of the stock today is 2, then the span of today is 4 because starting from today, the price of the stock was less than or equal 2 for 4 consecutive days.
+//     Also, if the prices of the stock in the last four days is [7,34,1,2] and the price of the stock today is 8, then the span of today is 3 because starting from today, the price of the stock was less than or equal 8 for 3 consecutive days.
+
+// Implement the StockSpanner class:
+
+//     StockSpanner() Initializes the object of the class.
+//     int next(int price) Returns the span of the stock's price given that today's price is price.
+
+ 
+
+// Example 1:
+
+// Input
+// ["StockSpanner", "next", "next", "next", "next", "next", "next", "next"]
+// [[], [100], [80], [60], [70], [60], [75], [85]]
+// Output
+// [null, 1, 1, 1, 2, 1, 4, 6]
+
+
+// Solution
+// Brute force Two Stacks, TLE on test cases 10**4
+// We maintain two stacks, one to keep track of prices that are > 
+// one to keep track track of prices that would be popped
+
+#include <stack>
 using namespace std;
 
-void print_v(vector<int> v) {
-  for (auto x : v) {
-    cout << x << " ";
-  }
-  cout << endl;
-}
-
-vector<int> stock_span_brute(vector<int> v) {
-  vector<int> span;
-  int n = v.size();
-  // Span of first day is always 1.
-  span.push_back(1);
-
-  for (int i = 1; i < n; i++) {
-    int span_count = 1;
-    // cout<<span_count<<endl;
-
-    cout << v[i] << endl;
-
-    for (int j = i - 1; j >= 0; j--) {
-      if (v[i] >= v[j]) {
-        span_count += 1;
-      } else {
-        // The span other stock is greater, so break;
-        break;
+class StockSpannerBrute {
+  public:
+      stack<int> stk;
+      stack<int> stk2;
+      
+      StockSpannerBrute() {
       }
-    }
-    // cout<<span_count<<endl;
-    span.push_back(span_count);
-  }
-  return span;
-}
+      
+      int next(int price) {
+          int count = 1;
+          while(!stk.empty() && stk.top() <= price) {
+              stk2.push(stk.top());
+              stk.pop();
+              count += 1;
+          }
+  
+          while(!stk2.empty()) {
+              stk.push(stk2.top());
+              stk2.pop();
+          }
+  
+          stk.push(price);
+  
+          return count;
+      }
+  };
+  
+// optimal solution
+// use stack as pair<int, int>
+// represent <number, span>
 
-// Optimal solution.
-// We just need to find the nearest element greater to left.
-// Keep a counter to track it as well.
+class StockSpanner {
+  public:
+      // number, span
+      stack<pair<int, int>> stk;
+      
+      StockSpanner() {
+      }
+      
+      int next(int price) {
+          int span = 1;
+          while(!stk.empty() && stk.top().first <= price) {
+              span += stk.top().second;
+              stk.pop();
+          }
+  
+          stk.push({price, span});
+  
+          return span;
+      }
+  };
+  
 
-vector<int> stock_span_stack(vector<int> v) {
-  // Use stack as temp buffer to store indices.
-  stack<int> st;
-  // First index
-  st.push(0);
 
-  vector<int> span;
-  // Span of first is always 1.
-  span.push_back(1);
 
-  // For next elements.
-  for (int i = 1; i < v.size(); i++) {
-    // Pop elements from stack while stack is not
-    // empty and top of stack is smaller than
-    // price[i]
-    while (!st.empty() && v[st.top()] <= v[i]) {
-      st.pop();
-    }
 
-    // Either stack will be empty
-    if (st.empty()) {
-      // Then current index is span.
-      span.push_back(i + 1);
-    }
-    // v[st.top() > v[i]]
-    else {
-      // Span is indices traversed till here.
-      span.push_back(i - st.top());
-    }
-    // Add this index to process.
-    st.push(i);
-  }
-  return span;
-}
 
-int main(int argc, char const *argv[]) {
-  vector<int> v = {10, 4, 5, 90, 120, 80};
 
-  auto res = stock_span_brute(v);
-  print_v(res);
-
-  auto res2 = stock_span_stack(v);
-  print_v(res2);
-
-  return 0;
-}

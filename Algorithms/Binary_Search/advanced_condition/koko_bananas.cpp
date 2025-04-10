@@ -28,52 +28,40 @@
 
 using namespace std;
 
-bool is_possible(vector<int> piles, int n, int mid, int h) {
-  // we need to check if at this rate we can finish in h steps
-  int n_steps = 0;
-  // cout<<mid<<endl;
-
-  for (int i = 0; i < n; i++) {
-    int to_eat = piles[i];
-    // cout<<to_eat<<endl;
-    // number of steps needed to eat this one
-    n_steps = n_steps + ceil((double)to_eat / mid);
-    // cout<<"n_steps = "<<n_steps<<endl;
-    // float calc = (to_eat / mid);
-    // cout<<calc<<endl;
-
-    if (n_steps > h) {
-      return false;
-    }
+bool is_possible(int eat_rate, vector<int> piles, int h) {
+  // cout<<" eat_rate: "<<eat_rate<<endl;
+  long long int time_taken = 0;
+  for(auto num: piles) {
+      time_taken = time_taken + ceil((double) num / eat_rate);
   }
 
-  return true;
+  // cout<<" tk: "<<time_taken<<endl;
+  // are we eating in sufficient hours?
+  return (time_taken <= h);
 }
 
 int minEatingSpeed(vector<int>& piles, int h) {
-  int n = piles.size();
-
-  // bare minimum eating speed should be a tleast one.
   int left = 1;
+  int ans = 0;
   int right = *max_element(begin(piles), end(piles));
-  int ans = -1;
 
-  while (left <= right) {
-    int mid = left + (right - left) / 2;
+  while(left <= right) {
+      int mid = left + (right - left) / 2;
 
-    // cout<<mid<<endl;
-    // if we can eat in this, we should minimize;
-    if (is_possible(piles, n, mid, h)) {
-      // we have an answer.
-      ans = mid;
-      right = mid - 1;
-    }
+      // one possible answer
+      // we need better answer, we can reduce the right
+      
+      if(is_possible(mid, piles, h)) {
+          ans = mid;
+          // cout<<"ans: "<<ans<<endl;
+          right = mid - 1;
+      }
 
-    // otherwise we can eat at more pace.
-    else {
-      left = mid + 1;
-    }
+      // we took more hours than intended
+      // we are too slow
+      else {
+          left = mid + 1;
+      }
   }
-
   return ans;
 }
