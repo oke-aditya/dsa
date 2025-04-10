@@ -58,6 +58,57 @@ int findMin(vector<int>& nums) {
   return ans;
 }
 
+// alternate long cut
+
+int findMin2(vector<int>& nums) {
+  int left = 0;
+  int n = nums.size();
+  int right = n - 1, ans = 0;
+
+  if(n == 1) {
+      return nums[0];
+  }
+
+  while(left <= right) {
+      int mid = left + (right - left) / 2;
+
+      if(mid == 0) {
+          if(nums[mid+1] > nums[mid]) {
+              return nums[mid];
+          }
+          else {
+              return nums[mid+1];
+          }
+      }
+
+      else if(mid == (n - 1)) {
+          if(nums[mid-1] > nums[mid]) {
+              return nums[mid];
+          }
+          else {
+              return nums[mid-1];
+          }
+      }
+
+      // smaller on both sides.
+      else if((nums[mid - 1] > nums[mid]) && nums[mid + 1] > nums[mid]) {
+          return nums[mid];
+      }
+
+      // there are smaller number to the right and no smaller numbers on left
+      // move right
+      else if (nums[n-1] < nums[mid] && nums[mid] > nums[0]) {
+          left = mid + 1;
+      }
+
+      else {
+          right = mid - 1;
+      }
+  }
+
+  return ans;
+}
+
 int main(int argc, char const* argv[]) {
   vector<int> arr = {15, 18, 2, 3, 6, 12};
   int n = sizeof(arr) / sizeof(arr[0]);

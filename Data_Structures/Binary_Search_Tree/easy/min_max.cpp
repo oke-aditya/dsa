@@ -1,6 +1,6 @@
 // Finding minimum and maximum value in BST.
 
-// We can explot the structural property of BST.
+// We can exploit the structural property of BST.
 
 #include <bits/stdc++.h>
 
