@@ -32,17 +32,22 @@ class Node {
 };
 
 bool isSameTree(Node* p, Node* q) {
-  if (p == NULL && q == NULL) {
-    return true;
-  } else if (p == NULL && q != NULL) {
-    return false;
-  } else if (q == NULL && p != NULL) {
-    return false;
-  } else if (p->data != q->data) {
-    return false;
-  } else {
-    return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
-  }
+      if(p == nullptr && q == nullptr) {
+          return true;
+      }
+      
+      else if(p == nullptr && q != nullptr) {
+          return false;
+      }
+
+      else if(p != nullptr && q == nullptr) {
+          return false;
+      }
+      
+      else if(p->data != q->data) {
+          return false;
+      }
+      return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
 }
 
 bool are_identical2(Node* root1, Node* root2) {
