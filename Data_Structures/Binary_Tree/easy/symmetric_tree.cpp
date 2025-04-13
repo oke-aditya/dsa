@@ -52,7 +52,7 @@ bool isSymmetric(TreeNode *root) { return isMirror(root, root); }
 // The algorithm is done when either the queue is empty, or we detect that the
 // tree is not symmetric
 
-bool isSymmetric(TreeNode *root) {
+bool isSymmetric2(TreeNode *root) {
   queue<TreeNode *> q;
 
   q.push(root);
