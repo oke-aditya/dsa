@@ -7,103 +7,58 @@
 // Explanation: The longest increasing subsequence is [2,3,7,101], therefore the
 // length is 4.
 
+// keep this pattern very simple
+// do not overthink 2D DP or reversing the LIS etc
+// THink of this array
+
+// [1, 4, 2, 3]
+
+// What is the LIS of last element? Obviously 1?
+// What is LIS of 2nd last element? if that is smaller than elements after it, it is 1 + LIS ?
+// Notice how base case offered here is from last element
+// Think if we start processing from last element we can dp
+// what would be LIS at 1? it could be 2 if we take path of 4, or 3 if we take path of 2
+// THat is max() of lis of next elements
+// LIS will look like this
+// [3, 1, 2, 1]
+// TC O(N2) SC O(N)
+
 #include <bits/stdc++.h>
+#include <algorithm>
+#include <vector>
 using namespace std;
 
-int helper(int idx, int prev_idx, vector<int> &nums, int n,
-           vector<vector<int>> dp) {
-  if (idx == n) {
-    return 0;
-  }
 
-  if (dp[idx][prev_idx + 1] != -1) {
-    return dp[idx][prev_idx + 1];
-  }
+class Solution {
+  public:
 
-  // don't take
-  // simply advance the index without updating the previous index.
-  int res1 = 0, res2 = 0;
 
-  res1 = helper(idx + 1, prev_idx, nums, n, dp);
-  if (prev_idx == -1 || nums[idx] > nums[prev_idx]) {
-    res2 = 1 + helper(idx + 1, idx, nums, n, dp);
-  }
-
-  dp[idx][prev_idx + 1] = max(res1, res2);
-  return dp[idx][prev_idx + 1];
-}
-
-int lengthOfLIS(vector<int> &nums) {
-  int idx = 0, prev = -1, n = nums.size();
-
-  // since we started the previous index from -1. We need 1 extra.
-  vector<vector<int>> dp(n + 1, vector<int>(n + 1, -1));
-
-  int res = helper(idx, prev, nums, n, dp);
-  return res;
-}
-
-int lengthOfLIS2(vector<int> &nums) {
-  int idx = 0, prev = -1, n = nums.size();
-
-  // since we started the previous index from -1. We need 1 extra.
-  vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
-
-  for (int i = n - 1; i >= 0; i--) {
-    for (int j = i - 1; j >= -1; j--) {
-      int res1 = dp[i + 1][j + 1];
-      int res2 = 0;
-      if (j == -1 || nums[i] > nums[j]) {
-        res2 = 1 + dp[i + 1][j + 1];
+      void print_v(vector<int> v) {
+        for (auto x : v) {
+          cout << x << " ";
+        }
+        cout << endl;
       }
-      dp[i][j + 1] = max(res1, res2);
-    }
-  }
-  return dp[0][0];
-}
 
-void print_v(vector<int> v) {
-  for (auto x : v) {
-    cout << x << " ";
-  }
-  cout << endl;
-}
+      int lengthOfLIS(vector<int>& nums) {
 
-int lengthOfLIS3(vector<int> &nums) {
-  int idx = 0, prev = -1, n = nums.size();
-  vector<int> dp(n, 1);
-
-  int res = 1;
-
-  for (int i = 0; i < n; i++) {
-    for (int prev = 0; prev < i; prev++) {
-      if (nums[prev] < nums[i]) {
-        dp[i] = max(dp[i], 1 + dp[prev]);
+        int n = nums.size();
+        // minimum LIS is 1
+        vector<int>dp(n, 1);
+        
+        for(int i=n-1; i>=0; i--) {
+          for(int j=n-1; j>i; j--) {
+            
+            if(nums[j] > nums[i]) {
+              dp[i] = max(dp[i], 1 + dp[j]);
+            }
+          }
+        }
+        
+        // print_v(dp);
+        return *max_element(dp.begin(), dp.end());
+         
       }
-    }
-    res = max(dp[i], res);
-  }
+  };
 
-  print_v(dp);
 
-  // to print LIS
-
-  int mx = res;
-
-  vector<int> lis;
-
-  for (int i = n - 1; i >= 0; --i) {
-    if (dp[i] == mx) {
-      lis.push_back(nums[i]);
-      mx--;
-    }
-  }
-  reverse(begin(lis), end(lis));
-
-  return res;
-}
-
-// Input: nums = [10,9,2,5,3,7,101,18]
-// Output: 4
-// Explanation: The longest increasing subsequence is [2,3,7,101], therefore the
-// length is 4.
