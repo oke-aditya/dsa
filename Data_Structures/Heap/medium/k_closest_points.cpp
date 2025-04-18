@@ -30,41 +30,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define piii pair<int, pair<int, int>>
-#define pii pair<int, int>
-
-vector<vector<int>> k_closest(vector<vector<int>> points, int k) {
-  priority_queue<piii> maxh;
-
-  // int nrows = points.size();
-  // int ncols = points[0].size();
-
-  for (int i = 0; i < points.size(); i++) {
-    int dist = (points[i][0] * points[i][0]) + (points[i][1] * points[i][1]);
-    maxh.push({dist, {points[i][0], points[i][1]}});
-
-    if (maxh.size() > k) {
-      maxh.pop();
-    }
-  }
-
-  // Pop the max heap results and push them to vector of vector
-  vector<vector<int>> res;
-
-  while (!maxh.empty()) {
-    vector<int> temp{maxh.top().second.first, maxh.top().second.second};
-    res.push_back(temp);
-    maxh.pop();
-  }
-
-  return res;
-}
-
-int main(int argc, char const *argv[]) {
-  vector<vector<int>> points{{3, 3}, {5, -1}, {-2, 4}};
-  int k = 2;
-
-  auto res = k_closest(points, k);
-
-  return 0;
-}
+class Solution {
+  public:
+      vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+          // find distance from origin for each point, ignore the sqrt
+          // points with minimum distance are needed
+          // store in a maxheap.
+          // store as {distance, {x, y}}
+          
+          priority_queue<pair<int, pair<int, int>>> maxh;
+  
+          for(auto point: points) {
+              int x = point[0];
+              int y = point[1];
+  
+              int distance = (x * x + y * y);
+              maxh.push(make_pair(distance, make_pair(x, y)));
+  
+              if(maxh.size() > k) {
+                  maxh.pop();
+              }
+          }
+  
+          // cout<<"D";
+  
+          // result vector
+          vector<vector<int>> res;
+          while(!maxh.empty()) {
+              int x = maxh.top().second.first;
+              int y = maxh.top().second.second;
+              maxh.pop();
+              res.push_back(vector<int> {x, y});
+          }
+  
+          return res;
+  
+      }
+  };
+  

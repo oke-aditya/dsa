@@ -21,42 +21,40 @@
 // Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
 // Total amount you can rob = 1 + 3 = 4.
 
+// Input: nums = [2,7,9,3,1]
+// Output: 12
+// Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
+// Total amount you can rob = 2 + 9 + 1 = 12.
+
+// Think iterative directly
+// If there is just one house to rob we can take it 
+// If there are 2 houses to rob, we can take max of either
+// Otherwise we have to make a choice, to rob this house nums[i] and 2 previous or pick the previous best house.
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
-int helper(vector<int> nums, int n, vector<int> &dp) {
-  if (n < 0) {
-    return 0;
-  }
-
-  if (dp[n] != -1) {
-    return dp[n];
-  }
-
-  else {
-    dp[n] = max(nums[n] + helper(nums, n - 2, dp), helper(nums, n - 1, dp));
-    return dp[n];
-  }
-}
-
-int rob(vector<int> &nums) {
-  // return 1;
-
-  int n = nums.size();
-  vector<int> dp(n + 2, -1);
-  int res = helper(nums, n - 1, dp);
-  return res;
-}
-
-int rob(vector<int> &nums) {
-  int n = nums.size();
-  vector<int> dp(n + 2, -1);
-  dp[0] = 0;
-  dp[1] = nums[0];
-
-  for (int i = 2; i <= n; i++) {
-    dp[i] = max(nums[i - 1] + dp[i - 2], dp[i - 1]);
-  }
-
-  return dp[n];
-}
+class Solution {
+  public:
+      int rob(vector<int>& nums) {
+          int n = nums.size();
+          
+          if(n == 1) {
+              return nums[0];
+          }
+  
+          vector<int> dp(n, 0);
+  
+          dp[0] = nums[0];
+          dp[1] = max(nums[0], nums[1]);
+          
+          for(int i=2; i<n; i++) {
+              // rob or avoid
+              dp[i] = max(nums[i] + dp[i-2], dp[i-1]);
+          }
+  
+          return dp[n-1];
+  
+      }
+  };
