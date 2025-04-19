@@ -11,6 +11,8 @@ Order of solving
 4.  LDS (Longest Decreasing subsequence)
 5.  Longest Bitonic subsequence
 6.  Number of LIS
-
-
-
+7.  Best Team
+8.  Delete Earn
+9.  Longest String Chain
+10. Russian Doll Envelopes
+11. Longest Divisible Subset

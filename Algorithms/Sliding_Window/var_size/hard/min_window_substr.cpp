@@ -22,7 +22,9 @@ using namespace std;
 string minWindow(string s, string t) {
     // slide the window keeping track of have and required;
     int i=0, j=0, n=s.size(); 
+    // will keep track of required
     unordered_map<char, int> mp1;
+    // will keep track of have
     unordered_map<char, int> mp2;
     int min_window_start = 0;
     int min_window_end = 0;
