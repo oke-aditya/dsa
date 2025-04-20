@@ -24,12 +24,42 @@
 
 #include<algorithm>
 #include<string>
+#include<vector>
 
 using namespace std;
  
 class Solution {
   public:
+  
+      int lcs(string s1, string s2) {
+          int m = s1.size();
+          int n = s2.size();
+  
+          vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+          // fill the grid
+          for(int i=1; i<=m; i++) {
+              for(int j=1; j<=n; j++) {
+                  if(s1[i-1] == s2[j-1]) {
+                      dp[i][j] = 1 + dp[i-1][j-1];
+                  }
+                  else {
+                      dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+                  }
+              }
+          }
+          return dp[m][n];
+  
+      }
+  
       int minInsertions(string s) {
-          
+         // find LPS for this
+          string rev_s = s;
+          reverse(begin(rev_s), end(rev_s));
+  
+          // lcs this
+          int lcs_len = lcs(s, rev_s);
+          return s.size() - lcs_len;
+  
+  
       }
   };
