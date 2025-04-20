@@ -14,5 +14,7 @@ Order of solving
 7.  Best Team
 8.  Delete Earn
 9.  Longest String Chain
-10. Russian Doll Envelopes
-11. Longest Divisible Subset
+10. Longest Divisible Subset
+11. Russian Doll Envelopes
+12. Maximum Height Stacking Cuboids
+
