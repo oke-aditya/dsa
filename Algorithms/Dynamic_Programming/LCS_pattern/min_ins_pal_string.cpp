@@ -1,91 +1,65 @@
-#include <bits/stdc++.h>
+// https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/description/
+
+// Given a string s. In one step you can insert any character at any index of the string.
+// Return the minimum number of steps to make s palindrome.
+// A Palindrome String is one that reads the same backward as well as forward.
+
+// Example 1:
+
+// Input: s = "zzazz"
+// Output: 0
+// Explanation: The string "zzazz" is already palindrome we do not need any insertions.
+
+// Example 2:
+
+// Input: s = "mbadm"
+// Output: 2
+// Explanation: String can be "mbdadbm" or "mdbabdm".
+
+// Example 3:
+
+// Input: s = "leetcode"
+// Output: 5
+// Explanation: Inserting 5 characters the string becomes "leetcodocteel".
+
+#include<algorithm>
+#include<string>
+#include<vector>
+
 using namespace std;
-
-// Given a string str, the task is to find the minimum number of characters to
-// be inserted to convert it to palindrome. ab: Number of insertions required is
-// 1 i.e. bab aa: Number of insertions required is 0 i.e. aa abcd: Number of
-// insertions required is 3 i.e. dcbabcd
-
-// Solution
-// https://www.geeksforgeeks.org/minimum-insertions-to-form-a-palindrome-dp-28/
-
-// This problem is very similar to minimum number of deletions to make a string
-// plaindrome. No of insertions = no of deletions as we can insert the
-// characters in other places instead of deleting.
-
-int dp[100][100];
-
-int lcs_mem(string s1, int m, string s2, int n) {
-  if (m == 0) {
-    return (0);
-  }
-  if (n == 0) {
-    return (0);
-  }
-
-  if (dp[m][n] != -1) {
-    return (dp[m][n]);
-  }
-
-  else {
-    if (s1[m - 1] == s2[m - 1]) {
-      dp[m][n] = (1 + lcs_mem(s1, m - 1, s2, n - 1));
-    } else {
-      dp[m][n] = (max(lcs_mem(s1, m - 1, s2, n), lcs_mem(s1, m, s2, n - 1)));
-    }
-    return dp[m][n];
-  }
-}
-
-int lcs_bu(string s1, int m, string s2, int n) {
-  if (m == 0) {
-    return 0;
-  }
-  if (n == 0) {
-    return 0;
-  }
-
-  int dp[m + 1][n + 1];
-  for (int i = 0; i <= m; i++) {
-    for (int j = 0; j <= n; j++) {
-      if (i == 0 || j == 0) {
-        dp[i][j] = 0;
+ 
+class Solution {
+  public:
+  
+      int lcs(string s1, string s2) {
+          int m = s1.size();
+          int n = s2.size();
+  
+          vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+          // fill the grid
+          for(int i=1; i<=m; i++) {
+              for(int j=1; j<=n; j++) {
+                  if(s1[i-1] == s2[j-1]) {
+                      dp[i][j] = 1 + dp[i-1][j-1];
+                  }
+                  else {
+                      dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+                  }
+              }
+          }
+          return dp[m][n];
+  
       }
-    }
-  }
-  for (int i = 1; i <= m; i++) {
-    for (int j = 1; j <= n; j++) {
-      if (s1[i - 1] == s2[j - 1]) {
-        dp[i][j] = 1 + dp[i - 1][j - 1];
-      } else {
-        dp[i][j] = max(dp[i - 1][j - 1], dp[i - 1][j - 1]);
+  
+      int minInsertions(string s) {
+         // find LPS for this
+          string rev_s = s;
+          reverse(begin(rev_s), end(rev_s));
+  
+          // lcs this
+          int lcs_len = lcs(s, rev_s);
+          return s.size() - lcs_len;
+  
+  
       }
-    }
-  }
-  return (dp[m][n]);
-}
-
-int min_ins_pal_mem(string str, int m) {
-  string rev_str = str;
-  reverse(rev_str.begin(), rev_str.end());
-  int n = rev_str.length();
-  int lcs = lcs_mem(str, n, rev_str, m);
-  return (n - lcs);
-}
-
-int min_ins_pal_bu(string str, int m) {
-  string rev_str = str;
-  reverse(rev_str.begin(), rev_str.end());
-  int n = rev_str.length();
-  int lcs = lcs_bu(str, n, rev_str, m);
-  return (n - lcs);
-}
-
-int main(int argc, char const *argv[]) {
-  string str = "geeks";
-  int m = str.length();
-  memset(dp, -1, sizeof(dp));
-  cout << min_ins_pal_mem << (str, m) << endl;
-  cout << min_ins_pal_bu << (str, m) << endl;
-  return 0;
-}
+  };
