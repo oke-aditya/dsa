@@ -20,12 +20,12 @@ class Solution {
         
             vector<vector<bool>> dp(n+1, vector<bool>(sum+1));
         
-            // if n is 0
+            // if sum is 0
             for(int i=0; i<=n; i++) {
                 dp[i][0] = true;
             }
         
-            // if sum is 0;
+            // if n is 0;
             for(int i=0; i<=sum; i++) {
                 dp[0][i] = false;
             }
