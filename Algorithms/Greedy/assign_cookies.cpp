@@ -34,33 +34,38 @@
 // big enough to gratify all of the children,
 // You need to output 2.
 
-#include <bits/stdc++.h>
+#include<vector>
+#include<algorithm>
 
 using namespace std;
 
 int findContentChildren(vector<int>& g, vector<int>& s) {
+  // find the smallest cookie that satisfies the greed
+  // give that cookie
+
+  // basically find upper bound on each greed g.
+  // we can sort both and then do as well
+
   sort(begin(g), end(g));
   sort(begin(s), end(s));
 
-  int i = 0, j = 0;
-  int m = g.size(), n = s.size();
+  int i = 0, j = 0, m = g.size(), n = s.size(), count = 0;
 
-  int satisfied = 0;
+  while(i < m && j < n) {
+      
+      // greed is smaller than cookie
+      if(g[i] <= s[j]) {
+          count += 1;
+          i += 1;
+          j += 1;
+      }
 
-  while (i < m && j < n) {
-    // cout<<g[i]<<" "<<s[i]<<endl;
-
-    if (g[i] <= s[j]) {
-      satisfied += 1;
-      i += 1;
-      j += 1;
-    }
-
-    // greed is bigger than cookie
-    else {
-      j += 1;
-    }
+      // greed is bigger, 
+      // cookie is useless
+      else {
+          j += 1;
+      }
   }
 
-  return satisfied;
+  return count;
 }
