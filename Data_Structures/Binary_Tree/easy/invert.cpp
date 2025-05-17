@@ -14,38 +14,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Node {
+class TreeNode {
  public:
   int data;
-  Node *left, *right;
+  TreeNode *left, *right;
 };
 
-Node *mirror(Node *root) {
-  if (root == NULL) {
-    return;
-  } else {
-    // Call mirror on left sub tree
-    mirror(root->left);
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if (root == NULL) {
+            return root;
+        } 
+        // Call mirror on left sub tree
+        root->left = invertTree(root->left);
 
-    // Call mirror on right.
-    mirror(root->right);
+        // Call invertTree on right.
+        root->right = invertTree(root->right);
 
-    // Swap
-    swap(root->left, root->right);
-  }
-  return root;
-}
+        // Swap
+        swap(root->left, root->right);
+    
+        return root;
+    }
+};
 
-Node *mirror2(Node *root) {
+TreeNode *mirror2(TreeNode *root) {
   if (root == NULL) {
     return root;
   }
 
-  queue<Node *> q;
+  queue<TreeNode *> q;
   q.push(root);
 
   while (!q.empty()) {
-    Node *node = q.front();
+    TreeNode *node = q.front();
     q.pop();
     swap(node->left, node->right);
 
