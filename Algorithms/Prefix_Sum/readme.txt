@@ -16,9 +16,11 @@ sum = [0, 1, 3, 6, 10, 15]
 
 we fill prefix sum with 0 to simplify a bit, prefix sum of 0th = 0
 
-Hence we can fill remaining as 
+Hence we can fill remaining as, 
 
-sum[i] = arr[i-1] + sum[i-1];
+for i = 0 to n-1;
+
+sum[i+1] = arr[i] + sum[i];
 
 
 How do we answer a range query now? 

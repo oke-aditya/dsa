@@ -1,0 +1,19 @@
+https://codeforces.com/blog/entry/78762
+
+Read this blog then do
+
+CLassic question is asking the range addition.
+Given a set of ranges we need to update a range
+
+https://leetcode.com/problems/range-addition/description/
+
+Here we would accumulate the result on left and on right.
+Eventually we would just sum up for final answer
+
+A difference array can be used to perform multiple range update where we need to find the answer only after performing all the queries. 
+We can do this in O(N) time and space. 
+We can update an arbitrary range in O(1). 
+It is only when we need to print our final answer that we perform an O(N) computation. 
+
+
+
