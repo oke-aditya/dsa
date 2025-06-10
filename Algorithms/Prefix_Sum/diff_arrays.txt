@@ -15,5 +15,7 @@ We can do this in O(N) time and space.
 We can update an arbitrary range in O(1). 
 It is only when we need to print our final answer that we perform an O(N) computation. 
 
+https://leetcode.com/problems/corporate-flight-bookings/description/
+https://leetcode.com/problems/zero-array-transformation-i/description/
 
 
