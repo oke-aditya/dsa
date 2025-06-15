@@ -26,6 +26,7 @@ int longestCommonSubstr(string& s1, string& s2) {
         dp[i][j] = 1 + dp[i-1][j-1];
       }
       else {
+        // this is the difference
         dp[i][j] = 0;
       }
     }
