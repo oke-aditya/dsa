@@ -15,56 +15,44 @@
 using namespace std;
 
 class Solution {
-    public:
-        bool is_subset_sum(int sum, vector<int> nums, int n) {
-        
-            vector<vector<bool>> dp(n+1, vector<bool>(sum+1));
-        
-            // if sum is 0
-            for(int i=0; i<=n; i++) {
-                dp[i][0] = true;
-            }
-        
-            // if n is 0;
-            for(int i=0; i<=sum; i++) {
-                dp[0][i] = false;
-            }
-        
-            dp[0][0] = true;
-            for(int i=1; i<=n; i++) {
-                for(int j=1; j<=sum; j++) {
-                    
-                    if(nums[i-1] > j) {
-                        dp[i][j] = dp[i-1][j];
-                    }
-        
-                    else {
-                        dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i-1]];
-                    }
-                }
-            }
-        
-            return dp[n][sum];
-        
-        }
-    
-    
-        bool canPartition(vector<int>& nums) {
-        // find the sum of the element first
+    bool canPartition(vector<int>& nums) {
+        // get half of the sum;
+
         int sum = accumulate(begin(nums), end(nums), 0);
-    
-        // now if the half sum is achievable as subset sum, we are good
-        // we can't achieve odd sums of course
-        if(sum % 2) {
+
+        if(sum % 2)
             return false;
-        }
-    
-        // guaranteed divisible
+
+
         int half_sum = sum / 2;
         int n = nums.size();
-    
-        
-        return is_subset_sum(half_sum, nums, n);
-    
+        // subset sum dp;
+        vector<vector<bool>> dp(n+1, vector<bool>(half_sum+1, false));
+
+        for(int i=0; i<=n; i++) {
+            for(int j=0; j<=half_sum; j++) {
+                // if sum == 0, j == 0;
+                if(j == 0) {
+                    dp[i][j] = true;
+                }
+            }
         }
-    };
+
+        // if n == 0 and sum == 0
+        dp[0][0] = true;
+
+        for(int i=1; i<=n; i++) {
+            for(int j=1; j<=half_sum; j++) {
+                
+                if(nums[i-1] > j) {
+                    dp[i][j] = dp[i-1][j];
+                }
+                else {
+                    dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i-1]];
+                }
+            }
+        }
+
+        return dp[n][half_sum];
+    }
+};

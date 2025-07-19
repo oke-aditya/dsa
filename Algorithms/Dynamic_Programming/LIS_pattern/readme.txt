@@ -17,4 +17,7 @@ Order of solving
 10. Longest Divisible Subset
 11. Russian Doll Envelopes
 12. Maximum Height Stacking Cuboids
+13. Longest Arithmetic Sequence
+14. Longest Modulo Subsequence
+
 
