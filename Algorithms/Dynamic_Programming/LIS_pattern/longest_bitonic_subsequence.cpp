@@ -54,7 +54,7 @@ int LongestBitonicSequence(int n, vector<int> &nums) {
   // Find the maximum length of bitonic subsequence
   int maxLength = 0;
   for(int i = 0; i < n; i++) {
-      if(dp1[i] > 1 && dp2[i] >> 1) {
+      if(dp1[i] > 1 && dp2[i] % 2) {
           // Bitonic subsequence length is LIS[i] + LDS[i] - 1 (because nums[i] is counted twice)
           maxLength = max(maxLength, dp1[i] + dp2[i] - 1);
       }

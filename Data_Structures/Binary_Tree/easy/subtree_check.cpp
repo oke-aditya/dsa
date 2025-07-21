@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/subtree-of-another-tree/
 // Given two binary trees with head reference as T and S having at most N nodes.
 // The task is to check if S is present as subtree in T.
 // A subtree of a tree T1 is a tree T2 consisting of a node in T1 and all of its
@@ -43,7 +44,7 @@ bool are_identical(Node *root1, Node *root2) {
 
   // Data of both roots is same, and left and right are same
 
-  if ((root1->data == root2->data)) {
+  if (root1->data == root2->data) {
     return (are_identical(root1->left, root2->left) &&
             are_identical(root1->right, root2->right));
   } else {

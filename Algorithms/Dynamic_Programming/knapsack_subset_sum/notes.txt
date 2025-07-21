@@ -1,0 +1,31 @@
+Start with Knapsack
+
+Understand the subset sum concept
+
+We have 2 state variables here, the sum and number of elements
+if sum == 0, we can always make that, making 0 sum means taking 0 elements
+if n == 0, we cannot make any sum, unless the sum = 0
+
+so the grid will look
+
+n ->
+true, false, false, ....
+true,
+true,
+true,
+
+i row will capture the n,
+j col will capture the sum.
+
+Now for i, jth position, we ask the question, is this sum possible for current n.
+
+if the arr[i-1] is > than the sum[j]; then it is not possible, as number is bigger.
+if it is not possible, then it is as good as dp[i - 1][j], ignoring the n
+
+otherwise there is chance it is possible
+
+then dp[i][j] is either still not possible, meaning dp[i -1 ][j], ignoring n.
+otherwise it is dp sum - current sum.
+
+
+

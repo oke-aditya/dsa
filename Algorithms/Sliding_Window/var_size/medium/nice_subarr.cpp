@@ -20,10 +20,6 @@
 
 // Solution:
 // Trick is simple.
-// Keep track when we have odd and odd count hits the k threshold
-// If it does hit that, then we can decrement the odd count and start counting
-// from left pointer Add these counts to restul
-
 // we can also do an alternate trick.
 // similar to binary sub array sum
 // note the trick, it works if we want to count atleast k.
@@ -33,58 +29,29 @@
 using namespace std;
 
 class Solution {
- public:
-  int helper(vector<int>& nums, int k) {
-    int i = 0, j = 0, count = 0;
-    int res = 0;
-    int n = nums.size();
-    int odd_count = 0;
+public:
 
-    for (int j = 0; j < n; j++) {
-      // odd no
-      if (nums[j] % 2 == 1) {
-        odd_count += 1;
-        while (odd_count > k) {
-          if (nums[i] % 2 == 1) {
-            odd_count -= 1;
-          }
-          i += 1;
+    int sub_arr_count(vector<int> nums, int k) {
+        int count = 0, n = nums.size(), odd_count = 0, i = 0;
+        
+        for(int j=0; j<n; j++) {
+            
+            if(nums[j] % 2) {
+                odd_count += 1;
+            }
+
+            while(odd_count > k) {
+                if(nums[i] % 2) {
+                    odd_count -= 1;
+                }
+                i += 1;
+            }
+            count += (j - i + 1);
         }
-      }
-      count += (j - i + 1);
+        return count;
     }
-    return count;
-  }
 
-  int numberOfSubarrays(vector<int>& nums, int k) {
-    return helper(nums, k) - helper(nums, k - 1);
-  }
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        return sub_arr_count(nums, k) - sub_arr_count(nums, k - 1);
+    }
 };
-
-int numberOfSubarrays(vector<int>& nums, int k) {
-  int i = 0, j = 0, count = 0;
-  int res = 0;
-  int n = nums.size();
-  int odd_count = 0;
-
-  for (int j = 0; j < n; j++) {
-    // odd no
-    if (nums[j] % 2 == 1) {
-      odd_count += 1;
-
-      if (odd_count == k) {
-        count = 0;
-        // while we have even numbers on the left
-        while (odd_count == k) {
-          if (nums[i] % 2 == 1) {
-            odd_count -= 1;
-          }
-          i += 1;
-          count += 1;
-        }
-      }
-    }
-    res += count;
-  }
-  return res;
-}

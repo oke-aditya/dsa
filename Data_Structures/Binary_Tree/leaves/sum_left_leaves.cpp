@@ -13,23 +13,28 @@ class TreeNode {
   TreeNode *left, *right;
 };
 
-int dfs(TreeNode *root, bool is_left) {
-  if (root == NULL) {
-    return 0;
+  void dfs(TreeNode *root, int &sum, bool is_left) {
+      if(root == nullptr)
+          return ;
+
+      // since we moved left, this is a left node and leaf node
+      if(is_left && root->left == nullptr && root->right == nullptr)
+          sum += root->val;
+      dfs(root->left, sum, true);
+      dfs(root->right, sum, false);
   }
 
-  if (root->left == NULL && root->right == NULL) {
-    if (is_left) {
-      return root->val;
-    } else {
-      return 0;
-    }
-  }
 
-  int left_sum = dfs(root->left, true);
-  int right_sum = dfs(root->right, false);
-  return left_sum + right_sum;
-}
+  int sumOfLeftLeaves2(TreeNode* root) {
+      // don't do a BFS
+      // it's hard to identify left node
+
+      int sum = 0;
+      bool is_left = false;
+      dfs(root, sum, is_left);
+      return sum;
+
+  }
 
 int sumOfLeftLeaves(TreeNode *root) {
   if (root == NULL) return 0;

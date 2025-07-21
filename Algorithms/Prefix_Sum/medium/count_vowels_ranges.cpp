@@ -12,51 +12,42 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+class Solution {
+public:
 
-bool is_start_end_vowel(string s) {
-  vector<string> vowels = {"a", "e", "i", "o", "u"};
-  string chk = string{s[0]};
-  string chk2 = string{s[s.size() - 1]};
+    unordered_set<char> st = {'a', 'e', 'i', 'o', 'u'};
+    bool start_ends_vowel(string s) {
 
-  bool first_check = false;
-  bool last_check = false;
+        if(s.size() == 1) {
+            return st.find(s[0]) != st.end();
+        }
 
-  for (auto v : vowels) {
-    if (v == chk) {
-      first_check = true;
+        else {
+            return st.find(s[0]) != st.end() && st.find(s[s.size()-1]) != st.end();
+        }
     }
-    if (v == chk2) {
-      last_check = true;
+
+    vector<int> vowelStrings(vector<string>& words, vector<vector<int>>& queries) {
+        int n = words.size();
+        vector<int> res, prefix_sum(n+1, 0);
+
+        for(int i=0; i<n; i++) {
+            if(start_ends_vowel(words[i])) {
+                prefix_sum[i+1] = prefix_sum[i] + 1;
+            }
+            else {
+                prefix_sum[i+1] = prefix_sum[i];
+            }
+        }
+
+        for(auto query: queries) {
+            int L = query[0];
+            int R = query[1];
+            res.push_back(prefix_sum[R+1] - prefix_sum[L]);
+        }
+
+        // answer the queries
+        return res;
+
     }
-  }
-
-  return (first_check && last_check);
-}
-
-vector<int> vowelStrings(vector<string> &words, vector<vector<int>> &queries) {
-  vector<int> res;
-  int n = words.size();
-  vector<int> prefix_count(n + 1);
-
-  for (int i = 0; i < n; i++) {
-    if (is_start_end_vowel(words[i])) {
-      prefix_count[i + 1] = prefix_count[i] + 1;
-    } else {
-      prefix_count[i + 1] = prefix_count[i];
-    }
-  }
-
-  for (auto q : queries) {
-    int left = q[0];
-    int right = q[1];
-
-    res.push_back(prefix_count[right + 1] - prefix_count[left]);
-  }
-
-  // for(auto c: prefix_count)
-  // {
-  //     cout<<c<<" ";
-  // }
-
-  return res;
-}
+};

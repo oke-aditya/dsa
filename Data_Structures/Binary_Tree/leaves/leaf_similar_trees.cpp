@@ -1,4 +1,9 @@
 // https://leetcode.com/problems/leaf-similar-trees/
+// Consider all the leaves of a binary tree, from left to right order, 
+// the values of those leaves form a leaf value sequence.
+// For example, in the given tree above, the leaf value sequence is (6, 7, 4, 9, 8).
+
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -9,6 +14,9 @@ class TreeNode {
   TreeNode *left, *right;
 };
 
+
+// bfs will not work here too.
+// look at the example carefully
 void dfs(TreeNode *root, vector<int> &res) {
   if (root == NULL) return;
 

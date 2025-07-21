@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/partition-equal-subset-sum/description/
 // Partition problem is to determine whether a
 // given set can be partitioned into two subsets such that the sum of elements
 // in both subsets is the same.
@@ -13,61 +14,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int dp[100][100];
+class Solution {
+    bool canPartition(vector<int>& nums) {
+        // get half of the sum;
 
-bool is_subset_sum(int arr[], int sum, int n) {
-  if (dp[n][sum] != -1) {
-    return dp[n][sum];
-  }
+        int sum = accumulate(begin(nums), end(nums), 0);
 
-  // // base conditions
-  if (n == 0) {
-    if (sum == 0) {
-      return 1;
+        if(sum % 2)
+            return false;
+
+
+        int half_sum = sum / 2;
+        int n = nums.size();
+        // subset sum dp;
+        vector<vector<bool>> dp(n+1, vector<bool>(half_sum+1, false));
+
+        for(int i=0; i<=n; i++) {
+            for(int j=0; j<=half_sum; j++) {
+                // if sum == 0, j == 0;
+                if(j == 0) {
+                    dp[i][j] = true;
+                }
+            }
+        }
+
+        // if n == 0 and sum == 0
+        dp[0][0] = true;
+
+        for(int i=1; i<=n; i++) {
+            for(int j=1; j<=half_sum; j++) {
+                
+                if(nums[i-1] > j) {
+                    dp[i][j] = dp[i-1][j];
+                }
+                else {
+                    dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i-1]];
+                }
+            }
+        }
+
+        return dp[n][half_sum];
     }
-    return 0;
-  }
-
-  else {
-    if (arr[n - 1] > sum) {
-      dp[n][sum] = is_subset_sum(arr, sum, n - 1);
-      return dp[n][sum];
-    } else {
-      dp[n][sum] = (is_subset_sum(arr, sum, n - 1) ||
-                    is_subset_sum(arr, sum - arr[n - 1], n - 1));
-      return dp[n][sum];
-    }
-  }
-}
-
-bool equal_sum(int arr[], int n) {
-  int sum = 0;
-  for (int i = 0; i < n; i++) {
-    sum += arr[i];
-  }
-  if (sum % 2 == 0) {
-    return is_subset_sum(arr, sum / 2, n);
-  } else {
-    return false;
-  }
-}
-
-int main(int argc, char const *argv[]) {
-  int arr[] = {3, 1, 5, 9, 12};
-  int n = sizeof(arr) / sizeof(arr[0]);
-
-  for (int i = 0; i < 100; i++) {
-    for (int j = 0; j < 100; j++) {
-      dp[i][j] = -1;
-    }
-  }
-
-  // Function call
-  if (equal_sum(arr, n)) {
-    cout << "Can be divided into two subsets of equal sum";
-  } else {
-    cout << "Can not be divided into two subsets of equal sum";
-  }
-
-  return 0;
-}
+};
