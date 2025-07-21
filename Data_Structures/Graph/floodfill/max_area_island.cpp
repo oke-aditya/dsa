@@ -69,3 +69,58 @@ class Solution {
     return max_area;
   }
 };
+
+// bfs solution
+
+class Solution2 {
+public:
+
+    vector<int> dx = {-1, 1, 0, 0 };
+    vector<int> dy = {0, 0, 1, -1};
+
+    // bfs solution
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+
+        
+        int m = grid.size();
+        int n = grid[0].size();
+
+        vector<vector<int>> visited(m, vector<int>(n, 0));
+
+        // append all 1s to a queue?
+        queue<pair<int, int>> q;
+        int max_area = 0;
+
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(grid[i][j]) {
+                    q.push({i, j});
+                    visited[i][j] = 1;
+                    int area = 1;
+
+                    while(!q.empty()) {
+                        int x = q.front().first;
+                        int y = q.front().second;
+                        q.pop();
+
+                        // bfs all 4 directions
+                        for(int i=0; i<4; i++) {
+                            int new_x = x + dx[i];
+                            int new_y = y + dy[i];
+                            if(new_x >= 0 && new_x < m && new_y >= 0 && new_y < n && grid[new_x][new_y] && !visited[new_x][new_y]) {
+                                area += 1;
+                                visited[new_x][new_y] = 1;
+                                q.push({new_x, new_y});
+                            }
+                        }
+                    }
+                    max_area = max(max_area, area);
+                }
+            }
+        }
+
+        return max_area;
+
+    }
+};
+

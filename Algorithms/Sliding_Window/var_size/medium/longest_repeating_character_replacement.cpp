@@ -32,38 +32,35 @@
 #include <unordered_map>
 
 using namespace std;
-
 class Solution {
     public:
     
-        int find_max(unordered_map<int, int> &mp) {
-            int max_v = 0;
-            for(auto itr=mp.begin(); itr!=mp.end(); itr++) {
-                max_v = max(max_v, itr->second);
+        int find_max(unordered_map<char, int> mp) {
+            int max_val = 0;
+            for(auto itr=mp.begin(); itr != mp.end(); itr++) {
+                if(itr->second > max_val) {
+                    max_val = max(max_val, itr->second);
+                }
             }
-            return max_v;
+    
+            return max_val;
+    
         }
     
         int characterReplacement(string s, int k) {
-            // same logic but handle the replacement
-    
-            int i=0, j=0;
-            unordered_map<int, int> mp;
-            int n = s.size(), max_len = 0;
+            int i=0, j=0, n=s.size(), max_len = 0;
+            unordered_map<char, int> mp;
     
             for(j=0; j<n; j++) {
                 mp[s[j]] += 1;
     
-                // find max in the map?
-                int max_v = find_max(mp);    
+                int max_v = find_max(mp);
+                // for this max_v, check the window size
     
-                // if the window size - max_v is less than / equal to k
-                // we have a solution
                 if((j - i + 1 - max_v) <= k) {
                     max_len = max(max_len, (j - i + 1));
                 }
     
-                // we would need to do cleanup from left
                 else {
                     while((j - i + 1 - max_v) > k) {
                         mp[s[i]] -= 1;
@@ -71,13 +68,11 @@ class Solution {
                             mp.erase(s[i]);
                         }
                         i += 1;
-                    }
-                    // after cleaning if the condition is satisifed
+                    } 
                     max_len = max(max_len, (j - i + 1));
                 }
             }
     
             return max_len;
-    
         }
     };

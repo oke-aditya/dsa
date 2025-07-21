@@ -14,40 +14,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int longest_cons_seq_brute(vector<int> nums) {
-  // Simple sorting solution.
-  if (nums.size() == 0) {
-    return 0;
-  }
-
-  sort(begin(nums), end(nums));
-  int current_streak = 1;
-  int max_streak = 0;
-
-  int n = nums.size();
-
-  for (int i = 1; i < n; i++) {
-    // same numbers don't do anything
-    if (nums[i] == nums[i - 1]) {
-      continue;
+int longestConsecutive(vector<int>& nums) {
+    
+    int n = nums.size();
+    if(n == 1) {
+        return 1;
     }
 
-    // add to streak
-    if (nums[i] == nums[i - 1] + 1) {
-      current_streak += 1;
+    sort(begin(nums), end(nums));
+
+    int max_streak = 0, current_streak = 1;
+
+    for(int i=1; i<n; i++) {
+        if(nums[i] - nums[i-1] == 1) {
+            current_streak += 1;
+        }
+
+        else if (nums[i] - nums[i-1] == 0) {
+            current_streak += 0;
+        }
+
+        else {
+            current_streak = 1;
+        }
+
+        max_streak = max(max_streak, current_streak);
     }
 
-    // new result and reset the streak
-    else {
-      max_streak = max(max_streak, current_streak);
-      current_streak = 1;
-    }
-  }
-
-  // finally if we have a remaining streak
-  max_streak = max(max_streak, current_streak);
-
-  return max_streak;
+    return max_streak;
 }
 
 int longest_cons_seq_opt(vector<int> v) {
@@ -85,7 +79,7 @@ int longest_cons_seq_opt(vector<int> v) {
 
 int main(int argc, char const *argv[]) {
   vector<int> v = {100, 4, 101, 1, 3, 2};
-  auto res = longest_cons_seq_brute(v);
+  auto res = longestConsecutive(v);
   cout << res << endl;
 
   auto res2 = longest_cons_seq_opt(v);

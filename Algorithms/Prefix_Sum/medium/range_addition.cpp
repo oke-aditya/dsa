@@ -22,6 +22,8 @@
 // [0 2 5 5 3]
 // [-2 0 3 5 3]
 //
+
+
 // Range Update with Difference Array:
 
 // For each operation [start, end, inc],
@@ -48,7 +50,9 @@ vector<int> getModifiedArray(int length, vector<vector<int>> &updates) {
 
     nums[left] += inc;
 
-    if (right + 1 < length) nums[right + 1] -= inc;
+    if (right + 1 < length) {
+      nums[right + 1] -= inc;
+    }
   }
 
   for (int i = 1; i < length; i++) {

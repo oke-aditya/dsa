@@ -67,7 +67,7 @@ int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
 
 // iterative dp.
 
-int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
+int uniquePathsWithObstacles2(vector<vector<int>> &obstacleGrid) {
   int m = obstacleGrid.size(), n = obstacleGrid[0].size();
 
   vector<vector<int>> dp(m, vector<int>(n, 0));

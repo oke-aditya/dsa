@@ -20,52 +20,36 @@
 // Explanation: The Fibonacci numbers are: 1, 1, 2, 3, 5, 8, 13, ...
 // For k = 7 we can use 2 + 5 = 7.
 
-#include <bits/stdc++.h>
+#include<vector>
 using namespace std;
 
-int findMinFibonacciNumbers(int k) {
-  int first = 1, second = 1;
-  int sum = 2;
-
-  vector<int> dp;
-  dp.push_back(first);
-  dp.push_back(second);
-
-  // int count = 0;
-
-  int i = 0;
-
-  while (i <= 42) {
-    int next = first + second;
-    first = second;
-    second = next;
-
-    // sum += next;
-
-    dp.push_back(next);
-    i += 1;
-    // count += 1;
-    // cout<<next;
-    // i++;
-  }
-
-  reverse(begin(dp), end(dp));
-
-  int count = 0;
-
-  for (auto x : dp) {
-    if (k == 0) {
-      break;
-    }
-
-    if (x <= k) {
-      // cout<<x<<" "<<k<<endl;
-      k -= x;
-      count += 1;
-    }
-  }
-
-  return count;
-
-  // return count-1;
-}
+class Solution {
+  public:
+      int findMinFibonacciNumbers(int k) {
+          int n = 42;
+          vector<int> dp(n + 1);
+          dp[0] = 1;
+          dp[1] = 2;
+          for(int i=2; i<=42; i++) {
+              dp[i] = dp[i-1] + dp[i-2];
+              // cout<<"dp i "<<dp[i];
+          }
+  
+          // reverse(begin(dp), end(dp));
+  
+          int count = 0;
+          while(k > 0) {
+              for(int i=n; i>=0; i--) {
+                  if(dp[i] <= k) {
+                      k -= dp[i];
+                      // cout<<k<<endl;
+                      count += 1;
+                      
+                  }
+                  
+              }
+          }
+  
+          return count;
+      }
+  };
