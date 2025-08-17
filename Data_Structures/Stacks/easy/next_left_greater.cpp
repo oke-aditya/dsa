@@ -9,52 +9,43 @@ using namespace std;
 
 vector<int> nl_g_naive(int arr[], int n) {
   vector<int> res;
-  for (int i = n - 1; i >= 0; i--) {
+  for(int i=0; i<n; i++) {
     int fg = 1;
-    for (int j = i - 1; j >= 0; j--) {
-      if (arr[j] > arr[i]) {
-        res.push_back(arr[j]);
-        fg = 0;
-        break;
-      }
+    for(int j=i-1; j>=0; j--) {
+       if(arr[j] > arr[i]) {
+          res.push_back(arr[j]);
+          fg = 0;
+          break;
+       }
     }
-    if (fg) {
+    if(fg == 1) {
       res.push_back(-1);
     }
   }
-  reverse(begin(res), end(res));
   return res;
 }
 
 vector<int> nl_g(int arr[], int n) {
-  stack<int> stk;
-  vector<int> res;
+    stack<int> stk;
+    vector<int> res;
 
-  for (int i = 0; i < n; i++) {
-    if (stk.empty()) {
-      res.push_back(-1);
+    for(int i = 0; i < n; i++) {
+        while(!stk.empty() && stk.top() <= arr[i]) {
+            stk.pop();
+        }
+
+        if(stk.empty()) {
+            res.push_back(-1);
+        } else {
+            res.push_back(stk.top());
+        }
+
+        stk.push(arr[i]);
     }
 
-    if (!stk.empty() && stk.top() > arr[i]) {
-      res.push_back(stk.top());
-    }
-
-    else if (!stk.empty() && stk.top() <= arr[i]) {
-      while (!stk.empty() && stk.top() <= arr[i]) {
-        stk.pop();
-      }
-
-      if (stk.empty()) {
-        res.push_back(-1);
-      } else {
-        res.push_back(stk.top());
-      }
-    }
-
-    stk.push(arr[i]);
-  }
-  return res;
+    return res;
 }
+
 
 void print_v(vector<int> v) {
   for (auto x : v) {
@@ -65,7 +56,8 @@ void print_v(vector<int> v) {
 int main(int argc, char const *argv[]) {
   int arr[] = {11, 13, 21, 3};
   int n = sizeof(arr) / sizeof(arr[0]);
-  nl_g_naive(arr, n);
+  auto res2 = nl_g_naive(arr, n);
+  print_v(res2);
   cout << endl;
 
   auto res = nl_g(arr, n);
