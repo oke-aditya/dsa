@@ -50,7 +50,7 @@
 // Use binary search on queries to find best answer
 // same solution as zero array first, with added binary search
 
-#include<vector>
+#include <vector>
 using namespace std;
 
 class Solution {
