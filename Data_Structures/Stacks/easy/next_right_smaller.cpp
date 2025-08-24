@@ -30,29 +30,26 @@ void print_v(vector<int> v) {
   }
 }
 
-vector<int> nse_stack(int arr[], int n) {
-  stack<int> s;
-  vector<int> v;
-
-  for (int i = n - 1; i >= 0; i--) {
-    if (s.empty()) {
-      v.push_back(-1);
-    } else if (!s.empty() && arr[i] > s.top()) {
-      v.push_back(s.top());
-    } else if (!s.empty() && arr[i] <= s.top()) {
-      while (!s.empty() && arr[i] <= s.top()) {
-        s.pop();
-      }
-      if (s.empty()) {
-        v.push_back(-1);
-      } else {
-        v.push_back(s.top());
-      }
-    }
-    s.push(arr[i]);
-  }
-  reverse(v.begin(), v.end());
-  return v;
+vector<int> nr_s(int arr[], int n) {
+	stack<int> stk;
+	vector<int> res;
+	for(int i=n-1; i>=0; i--) {
+		while(!stk.empty() && arr[i] <= stk.top()) {
+			stk.pop();
+		}
+		
+		if(stk.empty()) {
+			res.push_back(-1);
+		}
+		
+		else {
+			res.push_back(stk.top());
+		}
+		
+		stk.push(arr[i]);
+	}
+  reverse(begin(res), end(res));
+  return res;
 }
 
 int main(int argc, char const *argv[]) {
@@ -62,9 +59,9 @@ int main(int argc, char const *argv[]) {
   auto res = nse_naive(arr, n);
   print_v(res);
 
-  auto res = nse_stack(arr, n);
+  auto res2 = nr_s(arr, n);
 
-  print_v(res);
+  print_v(res2);
 
   return 0;
 }
