@@ -13,6 +13,7 @@
 // Check if num count is = 1 is hashmap add it.
 
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 
 int uniq_sum(vector<int> nums) {
@@ -34,6 +35,26 @@ int uniq_sum(vector<int> nums) {
 
   return sum;
 }
+
+// one pass algo
+
+int uniq_sum2(vector<int> nums) {
+  unordered_map<int, int> mp;
+  int sum = 0;
+
+  for(int i=0; i<nums.size(); i++) {
+    if(mp.find(nums[i]) == mp.end()) {
+      sum += nums[i];
+    }
+    else {
+      mp[nums[i]] += 1;
+    }
+  }
+
+  return sum;
+
+}
+
 
 int main(int argc, char const *argv[]) {
   vector<int> nums = {1, 2, 3, 2};
