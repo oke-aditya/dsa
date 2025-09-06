@@ -23,27 +23,24 @@ void naive_nse(int arr[], int n) {
 }
 
 vector<int> nse_stack(int arr[], int n) {
-  vector<int> v;
-  stack<int> s;
+    stack<int> stk;
+    vector<int> res;
 
-  for (int i = 0; i < n; i++) {
-    if (s.empty()) {
-      v.push_back(-1);
-    } else if (!s.empty() && arr[i] > s.top()) {
-      v.push_back(s.top());
-    } else if (!s.empty() && arr[i] <= s.top()) {
-      while (!s.empty() && arr[i] <= s.top()) {
-        s.pop();
-      }
-      if (s.empty()) {
-        v.push_back(-1);
-      } else {
-        v.push_back(s.top());
-      }
+    for(int i = 0; i < n; i++) {
+        while(!stk.empty() && stk.top() >= arr[i]) {
+            stk.pop();
+        }
+
+        if(stk.empty()) {
+            res.push_back(-1);
+        } else {
+            res.push_back(stk.top());
+        }
+
+        stk.push(arr[i]);
     }
-    s.push(arr[i]);
-  }
-  return v;
+
+    return res;
 }
 
 void print_v(vector<int> v) {

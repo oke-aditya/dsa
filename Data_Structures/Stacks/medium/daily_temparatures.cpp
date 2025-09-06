@@ -17,8 +17,9 @@
 // Input: temperatures = [30,60,90]
 // Output: [1,1,0]
 
-#include<vector>
-#include<stack>
+#include <vector>
+#include <stack>
+#include <algorithm>
 
 using namespace std;
 
@@ -60,28 +61,28 @@ class Solution {
         }
     };
 
-
     vector<int> dailyTemperatures(vector<int>& arr) {
-        // loosely translates to finding index of next greater element to right
-
-        // optimized stack solution
-        
-        int i=0, j=0, m=arr.size();
-        vector<int> res(m, 0);
+        // O(n)
+        vector<int> res;
+        int n = arr.size();
         stack<int> stk;
 
-        // we go from left
-        for(i=0; i<m; i++) {
-
-            // if stack has population and arrays coming in > arr[stk.top()]
-            while(!stk.empty() && arr[stk.top()] < arr[i]) {
-                int idx = stk.top();
+        for(int i=n-1; i>=0; i--) {
+            while(!stk.empty() && arr[stk.top()] <= arr[i]) {
                 stk.pop();
-                res[idx] = i - idx;
             }
+            if(stk.empty()) {
+                res.push_back(0);
+            }
+            else {
+                res.push_back(stk.top() - i);
+            }
+
             stk.push(i);
         }
+        
+        reverse(begin(res), end(res));
+
         return res;
     }
-
     
