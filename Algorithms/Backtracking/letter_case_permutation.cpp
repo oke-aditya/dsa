@@ -17,6 +17,7 @@
 // Output: ["3z4","3Z4"]
 
 #include <bits/stdc++.h>
+#include <cctype>
 using namespace std;
 
 void print_vs(vector<string> vv) {
@@ -39,15 +40,15 @@ void backtrack(string &s, int start, string &sol, vector<string> &res) {
     // In case interviewer twists the question asking to ToGGLe we can add if
     // here.
 
-    sol += tolower(s[start]);
+    sol.push_back(tolower(s[start]));
     backtrack(s, start + 1, sol, res);
     sol.pop_back();
 
-    sol += toupper(s[start]);
+    sol.push_back(toupper(s[start]));
     backtrack(s, start + 1, sol, res);
     sol.pop_back();
   } else {
-    sol += s[start];
+    sol.push_back(s[start]);
     backtrack(s, start + 1, sol, res);
     sol.pop_back();
   }

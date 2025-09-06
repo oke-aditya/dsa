@@ -116,24 +116,18 @@ public:
             // new pass rate is what would happen if we give yet another student
             double new_pass_rate = ((double) (delta_pair.second.first + 2) / (delta_pair.second.second + 2));
             
-            double new_delta = current_pass_rate - new_pass_rate;
+            double new_delta = new_pass_rate - current_pass_rate;
             
-            maxh.push({new_delta, {delta_pair.second.first + 1, delta_pair.second.second+ 1}});
-
-            for(int i=0; i<n; i++) {
-                // find the delta between current pass ratio and if student was allocated
-                double current_pass_rate = ((double) classes[i][0] / classes[i][1]);
-                double future_pass_rate = ((double) (classes[i][0] + 1) / (classes[i][1] + 1));
-
-                double new_delta = future_pass_rate - current_pass_rate;
-            }
+            maxh.push({new_delta, {delta_pair.second.first + 1, delta_pair.second.second + 1}});
         }
 
         // pop the max heap and compute the delta that is currently not future.
         while(!maxh.empty()) {
+            // cout<<maxh.top().second.first<<"/"<<maxh.top().second.second<<endl;
+            // cout<<maxh.top().second<endl;
             end_pass_rate +=  ((double) maxh.top().second.first / maxh.top().second.second);
             maxh.pop();
-            cout<<end_pass_rate<<endl;
+            // cout<<end_pass_rate<<endl;
         }
 
         return (end_pass_rate / n);
