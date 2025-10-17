@@ -1,4 +1,4 @@
-// Given a Binary Tree, print left view of it.
+// Given a Binary Tree,                         
 // Left view of a Binary Tree is set of nodes visible when tree is visited from
 // left side. Input :
 //                  1
@@ -39,37 +39,37 @@ class TreeNode {
   TreeNode *left, *right;
 };
 
+
 class Solution {
- public:
-  vector<int> leftSideView(TreeNode *root) {
-    vector<int> res;
-
-    if (root == nullptr) {
-      return res;
+  public:
+    vector<int> leftView(TreeNode *root) {
+        // code here
+        vector<int> res;
+        
+        queue<TreeNode *> q;
+        q.push(root);
+        
+        while(!q.empty()) {
+            
+            int k = q.size();
+            
+            for(int i=0; i<k; i++) {
+                TreeNode *node = q.front();
+                q.pop();
+                if(i == 0) {
+                    res.push_back(node->val);
+                }
+    
+                if(node->left != nullptr) {
+                    q.push(node->left);
+                }
+                
+                if(node->right != nullptr) {
+                    q.push(node->right);
+                }
+            }
+        }
+        
+        return res;
     }
-
-    queue<TreeNode *> q;
-    q.push(root);
-
-    while (!q.empty()) {
-      int ln = q.size();
-      while (ln--) {
-        TreeNode *node = q.front();
-        q.pop();
-
-        if (ln == 1) {
-          res.push_back(node->val);
-        }
-
-        if (node->left != NULL) {
-          q.push(node->left);
-        }
-
-        if (node->right != NULL) {
-          q.push(node->right);
-        }
-      }
-    }
-    return res;
-  }
 };

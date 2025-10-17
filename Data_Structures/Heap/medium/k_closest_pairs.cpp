@@ -17,43 +17,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2,
-                                   int k) {
-  // Maintain a max heap with (sum, {num, num})
-  // pair<pair<int, pair<int, int>>> pp;
+vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+    priority_queue<pair<int, pair<int, int>>> maxh;
 
-  priority_queue<pair<int, pair<int, int>>> maxh;
+    int m = nums1.size();
+    int n = nums2.size();
 
-  // for all possible sums
-  int n = nums1.size();
-  int m = nums2.size();
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-      int sum = nums1[i] + nums2[j];
-      if ((maxh.size() < k)) {
-        maxh.push(make_pair(sum, make_pair(nums1[i], nums2[j])));
-      } else if (sum < maxh.top().first) {
-        maxh.pop();
-        maxh.push(make_pair(sum, make_pair(nums1[i], nums2[j])));
-      }
-      // The gurantee of ascending order, we will skil sums that are useless.
-      else {
-        break;
-      }
+    for(int i=0; i<m; i++) {
+        for(int j=0; j<n; j++) {
+            int sum = nums1[i] + nums2[j];
+
+            if(maxh.size() < k) {
+                maxh.push({sum, {nums1[i], nums2[j]}});
+            }
+
+            else if(sum < maxh.top().first) {
+                maxh.push({sum, {nums1[i], nums2[j]}});
+                maxh.pop();
+            }
+            else {
+                break;
+            }
+            
+        }
     }
-  }
 
-  vector<vector<int>> res;
+    vector<vector<int>> res;
 
-  while (!maxh.empty()) {
-    int sum = maxh.top().first;
-    pair<int, int> pr = maxh.top().second;
-    vector<int> sol = {pr.first, pr.second};
-    res.push_back(sol);
-    maxh.pop();
-  }
-  return res;
+    while(!maxh.empty()) {
+        vector<int> temp;
+        temp.push_back(maxh.top().second.first);
+        temp.push_back(maxh.top().second.second);
+        res.push_back(temp);
+        maxh.pop();
+    }
+
+    return res;
+
 }
+
 
 int main(int argc, char const* argv[]) {
   vector<int> nums1 = {1, 7, 11};
