@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/car-pooling/
 // There is a car with capacity empty seats. 
 // The vehicle only drives east (i.e., it cannot turn around and drive west).
 
@@ -25,24 +26,23 @@ using namespace std;
 class Solution {
 public:
     bool carPooling(vector<vector<int>>& trips, int capacity) {
-        // from and to are pretty small
-        // store from and to
-        vector<int> prefix_sum(1001, 0);
+        int n = 1001;
+        vector<int> prefix_sum(n+1, 0);
 
-        // just allocate the trips
         for(auto trip: trips) {
-            int start = trip[1];
-            int end = trip[2];
-            int curr_cap = trip[0];
-
-            for(int i=start; i<end; i++) {
-                prefix_sum[i] += curr_cap; 
-            }
+            int c = trip[0];
+            int left = trip[1];
+            int right = trip[2];
+            prefix_sum[left] += c;
+            prefix_sum[right] -= c; 
         }
-        
-        // if any trip would be overfull
-        for(auto cap: prefix_sum) {
-            if(cap > capacity) {
+
+        for(int i=1; i<=n; i++) {
+            prefix_sum[i] += prefix_sum[i-1];
+        }
+
+        for(int i=0; i<n; i++) {
+            if(prefix_sum[i] > capacity) {
                 return false;
             }
         }
@@ -51,4 +51,3 @@ public:
 
     }
 };
-
