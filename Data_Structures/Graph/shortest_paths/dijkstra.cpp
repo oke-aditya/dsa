@@ -39,9 +39,7 @@ class Solution {
     vector<int> distance(n, INT_MAX);
 
     // simple min heap
-    priority_queue<pair<int, int>, vector<pair<int, int>>,
-                   greater<pair<int, int>>>
-        q;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
 
     // we should push source to pq
     // mark distance as 0
